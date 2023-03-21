@@ -4,7 +4,7 @@
 
 Pages can be added under the `docs` folder, the navigation of the site is represented by the folder structure under this directory.
 
-All files are standard Markdown with a few extensions enabled by [mkdocs-material](https://squidfunk.github.io/mkdocs-material/). A full reference guide of the extra features can be found on the [references](https://squidfunk.github.io/mkdocs-material/reference/) page.
+All files are standard [Markdown](https://www.markdownguide.org/basic-syntax/) with a few extensions enabled by [mkdocs-material](https://squidfunk.github.io/mkdocs-material/). A full reference guide of the extra features can be found on the [references](https://squidfunk.github.io/mkdocs-material/reference/) page.
 
 ## Running `mkdocs` Locally
 
