@@ -5,7 +5,7 @@ site_author: Leigh Hackspace
 site_url: https://leigh-hackspace.github.io/HackspaceWiki/
 
 # Repository
-repo_name: leigh-hackspace/docs
+repo_name: leigh-hackspace/HackspaceWiki
 repo_url: https://github.com/leigh-hackspace/HackspaceWiki
 edit_uri: "edit/main/docs/"
 
