@@ -29,6 +29,10 @@ theme:
     - navigation.tabs
     - navigation.prune
     - navigation.indexes
+    - navigation.sections
+    - navigation.path
+    - toc.integrate
+    - navigation.top
 
 docs_dir: ./docs
 
