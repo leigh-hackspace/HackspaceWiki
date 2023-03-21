@@ -58,6 +58,7 @@ extra:
 plugins:
   - search
   - table-reader
+  - git-revision-date-localized
 
 # Extensions
 markdown_extensions:
