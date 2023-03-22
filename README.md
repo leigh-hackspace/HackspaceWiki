@@ -8,7 +8,7 @@ All files are standard [Markdown](https://www.markdownguide.org/basic-syntax/) w
 
 ## Running `mkdocs` Locally
 
-A `Makefile` exists to install and configure the dependencies for mkdocs. All that is require is a recent version of Python and `virtualenv` to be available.
+A `Makefile` exists to install and configure the dependencies for mkdocs. All that is required is a recent version of Python and `virtualenv` to be available.
 
 Running `make serve` will run a local, automatically updating instance of mkdocs on your system. This is useful to check any changes made before pushing them to the git repository.
 
@@ -21,3 +21,5 @@ INFO     -  Documentation built in 0.16 seconds
 INFO     -  [20:03:09] Watching paths for changes: 'docs', 'mkdocs.yaml'
 INFO     -  [20:03:09] Serving on http://127.0.0.1:8000/HackspaceWiki/
 ```
+
+Once running you can access your local `mkdocs` instance at http://127.0.0.1:8000/
