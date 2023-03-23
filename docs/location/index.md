@@ -4,7 +4,7 @@ Leigh Hackspace is located inside [Leigh Spinners Mill](https://www.leighspinner
 
 ```
 Leigh Hackspace
-3rd Floor
+3rd Floor, Unit 3.14
 Leigh Spinners Mill
 Park Lane
 Leigh
