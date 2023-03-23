@@ -8,17 +8,33 @@ This is a list of tools available in the workshop, it may not be a exhaustive or
 
 ### Hand Tools
 
+* Screw drivers, bits of various types and sizes
+* Chisels for general use
+* Craft knives
+* Wood and metal saws
+* Hammers, Mallets
+* Various squares, spirit levels, and mitre gauges
+
 ### Machinery 
 
 | Name / ID | Type                    | Make         | Model  | Status   | Notes                                                  |
 | --------- | ----------------------- | ------------ | ------ | -------- | ------------------------------------------------------ |
-|           | 18" Bandsaw             |              |        | Unknown  |                                                        |
+|           | 16" Bandsaw             | Record Power | BS400  | Unknown  |                                                        |
+|           | Benchtop Bandsaw        |              |        | Unknown  |                                                        |
 |           | Belt & Disc Sander      | Clarke       | CS4-6E | Unknown  |                                                        |
-|           | Benchtop Drill Press    |              |        | Unknown  |                                                        |
+|           | Pillar Drill Press      | Record Power |        | Unknown  |                                                        |
+|           | Benchtop Drill Press    | Delta        |        | Working  |                                                        |
+|           | Benchtop Drill Press    | Clarke       |        | Unknown  |                                                        |
+|           | Benchtop Drill Press    | Clarke       | CDP-202B | Unknown  |                                                        |
 |           | Cyclone Dust Extractor  | Homemade     |        | Unknown  |                                                        |
 |           | Standing Dust Extractor | Record Power |        | Unknown  |                                                        |
 |           | Table Saw               |              |        | _Unsafe_ | No guards                                              |
 |           | Wood Lathe              |              |        | _Unsafe_ | Requires a waist-height bench/stand for safe operation |
+|           | Planer                  | Record Power | PT260  | Unknown  |                                                        |
+|           | Radial Arm Saw          | DeWalt       | DW720  | Unknown  |                                                        |
+|           | 8" Mitre Saw            | Evolution    |        | Unknown  |                                                        |
+|           | Scroll Saw              | Rexon        |        | Unknown  |                                                        |
+
 
 ### PPE
 
