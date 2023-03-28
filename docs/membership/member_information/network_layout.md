@@ -37,11 +37,17 @@ Our outbound internet route, should be treated as untrusted due to relatively li
 
 IP Range: `192.168.0.0/16`
 
-### Wifi - VLAN 225?
+### Shared Services - VLAN 225
+
+Where the servers, routers, and other central bits are hosted.
+
+IP Range: `10.3.1.0/24`
+
+### Wifi - VLAN 226
 
 Wifi users, General open access to the internet and internal services.
 
-IP Range: `10.3.1.0/24`
+IP Range: `10.3.2.0/24`
 
 ### Pi Room - VLAN 227
 
@@ -49,13 +55,13 @@ Pi Room / Co-Working space. General open access to the internet and internal ser
 
 IP Range: `10.3.14.0/24`
 
-### Classroom - VLAN 226
+### Classroom - VLAN 228
 
 Class room, General open access to the internet and internal services.
 
 IP Range `10.3.15.0/24`
 
-### Automation - VLAN 224
+### Automation - VLAN 229
 
 Used for any automation devices that do not require open internet access, or need to be secured away from the general network (e.g. Door system)
 
