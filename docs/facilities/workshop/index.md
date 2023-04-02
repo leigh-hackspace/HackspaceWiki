@@ -1,6 +1,6 @@
-# Wood Workshop
+# Workshop
 
-The wood workshop contains almost all the tools required to work with any type of wood.
+The workshop contains almost all the tools required to work with a range of materials.
 
 ## Available Tools
 
