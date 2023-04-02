@@ -2,18 +2,53 @@
 
 ## Hardware
 
-| Name     | Manf    | Model    | Type      | Location    | Status | Notes                 |
-| -------- | ------- | -------- | --------- | ----------- | ------ | --------------------- |
-| Switch 1 | Cisco   | 3900     | L3 Switch | Rack        |        |                       |
-| Server 1 | Dell    | R320 SFF | Server    | Rack        |        | Awaiting installation |
-| Server 2 | Dell    | R320 LFF | Server    | Rack        |        | Awaiting installation |
-| AP       | TP-Link |          | Router/AP | Top of Rack | Live   | Uses stock firmware   |
+| Name     | Manf    | Model   | Type      | Location    | Status                  | Notes                             |
+| -------- | ------- | ------- | --------- | ----------- | ----------------------- | --------------------------------- |
+| GW       | HP      | Unknown | Router    | Rack 1      | Live                    | HP desktop system running pfSense |
+| Switch 1 | Cisco   | 3900    | L3 Switch | Rack 1      | Waiting to be installed |                                   |
+| AP       | TP-Link |         | AP        | Top of Rack | Live                    | Uses stock firmware               |
 
-## Wifi
+## Physical Layout
 
-Wifi is served by a router/AP on top of the rack.
+Correct as of 2023-04-01
 
-## VLANs
+```mermaid
+graph LR
+    subgraph Rack1
+    AP[Wifi AP] -->|en1| GW
+    SWITCH1[Switch 1] -.-> GW
+    GW[GW - pfSense] 
+    end
+    GW -->|re0| MILL
+    MILL[Mill Network] --> MILLROUTER[Mill Router] --> INTERNET[Internet]
+    PIROOM[Pi Room] -->|Port4| AP
+```
+
+### GW - pfSense
+
+We've got a small HP desktop system running pfSense with a quad port NIC, giving us 5 physical NICs. At the moment the motherboard NIC is connected to the Mill network, and the 4 port NIC is used for internal traffic.
+
+| Port  | Connected to | Notes                                          |
+| ----- | ------------ | ---------------------------------------------- |
+| `re0` | Mill network |                                                |
+| `en0` |              | Future connection to Switch1, all VLANs tagged |
+| `en1` | WiFi AP      |                                                |
+| `en2` |              |                                                |
+| `en3` |              |                                                |
+
+## Wifi AP
+
+Wifi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mode, in that DHCP is disabled and we're not using any of the routing mode of the router itself. It has a 4 port switch and a 'Internet' port.
+
+| Port       | Connected to | Notes                                          |
+| ---------- | ------------ | ---------------------------------------------- |
+| `Internet` |              |                                                |
+| `Port1`    |              |                                                |
+| `Port2`    |              |                                                |
+| `Port3`    | Pi Room      | Temporary link to a single port in the Pi Room |
+| `Port4`    | GW           |                                                |
+
+## L3 Layout / VLANs
 
 ```mermaid
 graph
