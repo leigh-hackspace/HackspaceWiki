@@ -19,19 +19,19 @@ This is a list of tools available in the workshop, it may not be a exhaustive or
 
 | Name / ID | Type                     | Make         | Model    | Status   | Notes                                                  |
 | --------- | ------------------------ | ------------ | -------- | -------- | ------------------------------------------------------ |
-|           | 16" Bandsaw              | Record Power | BS400    | Unknown  |                                                        |
+|           | 16" Bandsaw              | Record Power | BS400    | Unknown  |  [Manual](manuals/recordpower_bs400.pdf)                                                      |
 |           | 8" Mitre Saw             | Evolution    |          | Unknown  |                                                        |
-|           | Belt & Disc Sander       | Clarke       | CS4-6E   | Unknown  |                                                        |
+|           | Belt & Disc Sander       | Clarke       | CS4-6E   | Unknown  | [Manual](manuals/clarke-cs4-6e.pdf)                                                       |
 |           | Benchtop Bandsaw         |              |          | Unknown  |                                                        |
 |           | Benchtop Drill Press     | Clarke       |          | Unknown  |                                                        |
-|           | Benchtop Drill Press     | Clarke       | CDP-202B | Unknown  |                                                        |
+|           | Benchtop Drill Press     | Clarke       | CDP-202B | Unknown  | [Manual](manuals/clarke-cdp-202b.pdf)                                                       |
 |           | Benchtop Drill Press     | Delta        |          | Working  |                                                        |
 |           | Cyclone Dust Extractor   | Homemade     |          | Unknown  |                                                        |
 |           | Metal Bandsaw            |              |          | Unknown  |                                                        |
 |           | Pillar Drill Press       | Record Power |          | Unknown  |                                                        |
 |           | Planer                   | Record Power | PT260    | Unknown  |                                                        |
-|           | Radial Arm Saw           | DeWalt       | DW720    | Unknown  |                                                        |
-|           | Scroll Saw               | Rexon        |          | Unknown  |                                                        |
+|           | Radial Arm Saw           | DeWalt       | DW720    | Unknown  | [Manual](manuals/dewalt-dw720.pdf)                                                       |
+|           | Scroll Saw               | Rexon        |          | Unknown  | [Manual](manuals/recordpower-pt260.pdf)                                                       |
 |           | Standing Dust Extractor  | Record Power |          | Unknown  |                                                        |
 |           | Table Saw                |              |          | _Unsafe_ | No guards                                              |
 |           | Table Saw / Planer Combo |              |          | Unknown  |                                                        |
