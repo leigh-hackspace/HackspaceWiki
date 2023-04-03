@@ -21,7 +21,7 @@ graph LR
     end
     GW -->|re0| MILL
     MILL[Mill Network] --> MILLROUTER[Mill Router] --> INTERNET((Internet))
-    PIROOM[Pi Room] -->|Port4| AP
+    PIROOM[Pi Room] -->|Port3| AP
 ```
 
 ### GW - pfSense
