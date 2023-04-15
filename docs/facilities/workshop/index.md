@@ -22,13 +22,13 @@ This may not be a complete list, please check the item and wear the correct PPE 
 | Name / ID | Type                     | Make           | Model      | Status      | Notes                                           |
 | --------- | ------------------------ | -------------- | ---------- | ----------- | ----------------------------------------------- |
 |           | 16" Bandsaw              | Record Power   | BS400      | Unknown     | [Manual](manuals/recordpower_bs400.pdf)         |
-|           | 8" Compound Mitre Saw    | Evolution      | FURY3B210Z | Working     |                                                 |
+|           | 8" Compound Mitre Saw    | Evolution      | FURY3B210Z | Working     | [Manual](manuals/evolution-fury3b.pdf)          |
 |           | 8" Mitre Saw             | Evolution      | RAGE 35    | Not Working | Has power, but motor doesnt start               |
 |           | Belt & Disc Sander       | Clarke         | CS4-6E     | Working     | [Manual](manuals/clarke-cs4-6e.pdf)             |
 |           | Benchtop Bandsaw         | Black & Decker | BD339      | Working     |                                                 |
 |           | Benchtop Drill Press     | Clarke         | CDP-202B   | Working     | [Manual](manuals/clarke-cdp-202b.pdf)           |
-|           | Benchtop Drill Press     | Clarke         | CDP5RB     | Working     |                                                 |
-|           | Benchtop Drill Press     | Delta          | 11-950     | Working     |                                                 |
+|           | Benchtop Drill Press     | Clarke         | CDP5RB     | Working     | [Manual](manuals/clarke-cdp5rb.pdf)             |
+|           | Benchtop Drill Press     | Delta          | 11-950     | Working     | [Manual](manuals/delta-11950.pdf)               |
 |           | Benchtop Drill Press     | Performance    | NLE250DP   | Working     | Metal clamp attached                            |
 |           | Cyclone Dust Extractor   | Homemade       |            | Unknown     |                                                 |
 |           | Desktop Table Saw        |                |            | Unknown     | .                                               |
