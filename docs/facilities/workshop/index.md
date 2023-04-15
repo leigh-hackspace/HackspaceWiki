@@ -33,16 +33,16 @@ This may not be a complete list, please check the item and wear the correct PPE 
 |           | Cyclone Dust Extractor   | Homemade       |            | Unknown     |                                                 |
 |           | Desktop Table Saw        |                |            | Unknown     | .                                               |
 |           | Metal Bandsaw            | Elektra Beckum | BAS 315    | Unknown     |                                                 |
-|           | Pillar Drill Press       | Record Power   | DP58P      | Working     |                                                 |
+|           | Pillar Drill Press       | Record Power   | DP58P      | Working     | [Manual](manuals/recordpower-dp58p.pdf)         |
 |           | Planer                   | Record Power   | PT260      | Unknown     | [Manual](manuals/recordpower-pt260.pdf)         |
 |           | Radial Arm Saw           | DeWalt         | DW720      | Unknown     | [Manual](manuals/dewalt-dw720.pdf)              |
-|           | Scroll Saw               | Proxxcon       | LU6869     | Working     |                                                 |
-|           | Scroll Saw               | Rexon          | VS40003A   | Working     |                                                 |
-|           | Standing Dust Extractor  | Record Power   | CX2000     | Unknown     |                                                 |
-|           | Standing Table Saw       | Jet            | JTS-10     | Unknown     |                                                 |
+|           | Scroll Saw               | Proxxon        | 28092 DSH  | Working     | [Manual](manuals/proxxon-28092-dsh.pdf)         |
+|           | Scroll Saw               | Rexon          | VS40003A   | Working     | [Manual](manuals/rexon-vs4003a.pdf)             |
+|           | Standing Dust Extractor  | Record Power   | CX2000     | Unknown     | [Manual](manuals/recordpower-cx2000.pdf)        |
+|           | Standing Table Saw       | Jet            | JTS-10     | Unknown     | [Manual](manuals/jet-jts10.pdf)                 |
 |           | Table Saw                |                |            | _Unsafe_    | No guards                                       |
 |           | Table Saw / Planer Combo | ???            | LSJ25P     | Unknown     |                                                 |
-|           | Wood Lathe               | Tyme Machines  | The Club   | Working     | Requires a permanent bench for proper operation |
+|           | Wood Lathe               | Tyme Machines  | The Cub    | Working     | Requires a permanent bench for proper operation |
 
 
 ### PPE
