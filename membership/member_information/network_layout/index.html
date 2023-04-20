@@ -1057,7 +1057,12 @@
     end
     GW --&gt;|re0| MILL
     MILL[Mill Network] --&gt; MILLROUTER[Mill Router] --&gt; INTERNET((Internet))
-    PIROOM[Pi Room] --&gt;|Port3-24| SWITCH1</code></pre>
+
+    subgraph Pi Room
+    PIROOMPC[Pi Room PCs] --&gt;|Port3-24| SWITCH1
+    PRINTERS[Printers] --&gt;|Port47-48| SWITCH1
+    end
+</code></pre>
 <h3 id="gw-pfsense">GW - pfSense</h3>
 <p>We've got a small HP desktop system running pfSense with a quad port NIC, giving us 5 physical NICs. At the moment the motherboard NIC is connected to the Mill network, and the 4 port NIC is used for internal traffic.</p>
 <p>Some ports are having issues pulling 1gbps to the Switch, so the card/system needs replacing at the moment. If traffic across VLAN boundries becomes a problems it can be sorted.</p>
