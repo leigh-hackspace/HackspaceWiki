@@ -10,43 +10,45 @@
 
 ## Physical Layout
 
-Correct as of 2023-04-01
+Correct as of 2023-04-20
 
 ```mermaid
 graph LR
     subgraph Rack1
     AP[Wifi AP] -->|en1| GW
-    SWITCH1[Switch 1] -.-> GW
+    SWITCH1[Switch 1] -->|en0| GW
     GW[GW - pfSense] 
     end
     GW -->|re0| MILL
     MILL[Mill Network] --> MILLROUTER[Mill Router] --> INTERNET((Internet))
-    PIROOM[Pi Room] -->|Port3| AP
+    PIROOM[Pi Room] -->|Port3-24| SWITCH1
 ```
 
 ### GW - pfSense
 
 We've got a small HP desktop system running pfSense with a quad port NIC, giving us 5 physical NICs. At the moment the motherboard NIC is connected to the Mill network, and the 4 port NIC is used for internal traffic.
 
-| Port  | Connected to | Notes                                          |
-| ----- | ------------ | ---------------------------------------------- |
-| `re0` | Mill network |                                                |
-| `en0` |              | Future connection to Switch1, all VLANs tagged |
-| `en1` | WiFi AP      |                                                |
-| `en2` |              |                                                |
-| `en3` |              |                                                |
+Some ports are having issues pulling 1gbps to the Switch, so the card/system needs replacing at the moment. If traffic across VLAN boundries becomes a problems it can be sorted.
+
+| Port  | Connected to | Notes                          |
+| ----- | ------------ | ------------------------------ |
+| `re0` | Mill network |                                |
+| `en0` | Switch 1     | Tagged only traffic, all VLANs |
+| `en1` | WiFi AP      |                                |
+| `en2` |              |                                |
+| `en3` |              |                                |
 
 ## Wifi AP
 
 Wifi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mode, in that DHCP is disabled and we're not using any of the routing mode of the router itself. It has a 4 port switch and a 'Internet' port.
 
-| Port       | Connected to | Notes                                          |
-| ---------- | ------------ | ---------------------------------------------- |
-| `Internet` |              |                                                |
-| `Port1`    |              |                                                |
-| `Port2`    |              |                                                |
-| `Port3`    | Pi Room      | Temporary link to a single port in the Pi Room |
-| `Port4`    | GW           |                                                |
+| Port       | Connected to | Notes |
+| ---------- | ------------ | ----- |
+| `Internet` |              |       |
+| `Port1`    |              |       |
+| `Port2`    |              |       |
+| `Port3`    |              |       |
+| `Port4`    | GW           |       |
 
 ## L3 Layout / VLANs
 
