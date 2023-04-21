@@ -2,11 +2,12 @@
 
 ## Hardware
 
-| Name     | Manf    | Model   | Type      | Location    | Status                  | Notes                             |
-| -------- | ------- | ------- | --------- | ----------- | ----------------------- | --------------------------------- |
-| GW       | HP      | Unknown | Router    | Rack 1      | Live                    | HP desktop system running pfSense |
-| Switch 1 | Cisco   | 3900    | L3 Switch | Rack 1      | Waiting to be installed |                                   |
-| AP       | TP-Link |         | AP        | Top of Rack | Live                    | Uses stock firmware               |
+| Name     | Manf    | Model          | Type      | Location    | Status                  | Notes                                 |
+| -------- | ------- | -------------- | --------- | ----------- | ----------------------- | ------------------------------------- |
+| GW       | HP      | Unknown        | Router    | Rack 1      | Live                    | HP desktop system running pfSense     |
+| Switch 1 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Live                    | Serial console connected to USB on GW |
+| Switch 2 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Waiting to be installed | Sandbox/Learning switch               |
+| AP       | TP-Link |                | AP        | Top of Rack | Live                    | Uses stock firmware                   |
 
 ## Physical Layout
 
@@ -15,18 +16,18 @@ Correct as of 2023-04-20
 ```mermaid
 graph LR
     subgraph Rack1
+    GW[GW - pfSense] 
     AP[Wifi AP] -->|en1| GW
     SWITCH1[Switch 1] -->|en0| GW
-    GW[GW - pfSense] 
     end
+
     GW -->|re0| MILL
-    MILL[Mill Network] --> MILLROUTER[Mill Router] --> INTERNET((Internet))
+    MILL[Mill Network] --> MILLROUTER[Mill Router?] --> INTERNET((Internet))
     
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] -->|Port3-24| SWITCH1
     PRINTERS[Printers] -->|Port47-48| SWITCH1
     end
-
 ```
 
 ### GW - pfSense
@@ -59,7 +60,7 @@ Wifi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mod
 
 ```mermaid
 graph
-    INTERNET((Internet<br/>Mill Network))
+    INTERNET((Internet))
     PIROOM[Pi Room - VLAN 227]
     CLASSROOM[Classroom - VLAN 226]
     SHARED[Shared Services - VLAN 225]
@@ -73,7 +74,7 @@ graph
     SHARED --> AUTOMATION
 ```
 
-### Mill Network - VLAN 101
+### Mill Network - VLAN '101'
 
 Our outbound internet route, should be treated as untrusted due to relatively little control over devices in other businesses.
 
@@ -85,11 +86,22 @@ Where the servers, routers, and other central bits are hosted.
 
 IP Range: `10.3.1.0/24`
 
+This subnet doesn't have DHCP enabled, we use static assignment. Here is the current list:
+
+| Device Name   | IP Address  | Location    |
+| ------------- | ----------- | ----------- |
+| GW            | `10.3.1.1`  | Rack 1      |
+| Switch 1      | `10.3.1.2`  | Rack 1      |
+| HP Printer    | `10.3.1.50` | Pi Room 5/7 |
+| Epson Printer | `10.3.1.51` | Pi Room 5/8 |
+
 ### Wifi - VLAN 226
 
 Wifi users, General open access to the internet and internal services.
 
 IP Range: `10.3.2.0/24`
+
+DHCP enabled, `10.3.2.2 - 10.3.2.254`
 
 ### Pi Room - VLAN 227
 
@@ -97,14 +109,25 @@ Pi Room / Co-Working space. General open access to the internet and internal ser
 
 IP Range: `10.3.14.0/24`
 
+DHCP enabled, `10.3.14.2 - 10.3.14.254`
+
 ### Classroom - VLAN 228
 
 Class room, General open access to the internet and internal services.
 
 IP Range `10.3.15.0/24`
 
+DHCP enabled, `10.3.15.2 - 10.3.15.254`
+
 ### Automation - VLAN 229
 
 Used for any automation devices that do not require open internet access, or need to be secured away from the general network (e.g. Door system)
 
 IP Range `10.3.16.0/24`
+
+DHCP enabled, `10.3.16.2 - 10.3.16.128`
+
+This subnet does have DHCP enabled, but we use some static assignment. Here is the current list:
+
+| Device Name | IP Address | Location |
+| ----------- | ---------- | -------- |
