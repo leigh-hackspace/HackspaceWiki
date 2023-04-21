@@ -904,7 +904,7 @@
         
           <li class="md-nav__item">
   <a href="#mill-network-vlan-101" class="md-nav__link">
-    Mill Network - VLAN 101
+    Mill Network - VLAN '101'
   </a>
   
 </li>
@@ -1030,11 +1030,20 @@
 <tr>
 <td>Switch 1</td>
 <td>Cisco</td>
-<td>3900</td>
+<td>Catalyst 3560G</td>
+<td>L3 Switch</td>
+<td>Rack 1</td>
+<td>Live</td>
+<td>Serial console connected to USB on GW</td>
+</tr>
+<tr>
+<td>Switch 2</td>
+<td>Cisco</td>
+<td>Catalyst 3560G</td>
 <td>L3 Switch</td>
 <td>Rack 1</td>
 <td>Waiting to be installed</td>
-<td></td>
+<td>Sandbox/Learning switch</td>
 </tr>
 <tr>
 <td>AP</td>
@@ -1051,18 +1060,18 @@
 <p>Correct as of 2023-04-20</p>
 <pre class="mermaid"><code>graph LR
     subgraph Rack1
+    GW[GW - pfSense] 
     AP[Wifi AP] --&gt;|en1| GW
     SWITCH1[Switch 1] --&gt;|en0| GW
-    GW[GW - pfSense] 
     end
+
     GW --&gt;|re0| MILL
-    MILL[Mill Network] --&gt; MILLROUTER[Mill Router] --&gt; INTERNET((Internet))
+    MILL[Mill Network] --&gt; MILLROUTER[Mill Router?] --&gt; INTERNET((Internet))
 
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] --&gt;|Port3-24| SWITCH1
     PRINTERS[Printers] --&gt;|Port47-48| SWITCH1
-    end
-</code></pre>
+    end</code></pre>
 <h3 id="gw-pfsense">GW - pfSense</h3>
 <p>We've got a small HP desktop system running pfSense with a quad port NIC, giving us 5 physical NICs. At the moment the motherboard NIC is connected to the Mill network, and the 4 port NIC is used for internal traffic.</p>
 <p>Some ports are having issues pulling 1gbps to the Switch, so the card/system needs replacing at the moment. If traffic across VLAN boundries becomes a problems it can be sorted.</p>
@@ -1142,7 +1151,7 @@
 </table>
 <h2 id="l3-layout-vlans">L3 Layout / VLANs</h2>
 <pre class="mermaid"><code>graph
-    INTERNET((Internet&lt;br/&gt;Mill Network))
+    INTERNET((Internet))
     PIROOM[Pi Room - VLAN 227]
     CLASSROOM[Classroom - VLAN 226]
     SHARED[Shared Services - VLAN 225]
@@ -1154,31 +1163,84 @@
     PIROOM --&gt; SHARED
     CLASSROOM --&gt; SHARED
     SHARED --&gt; AUTOMATION</code></pre>
-<h3 id="mill-network-vlan-101">Mill Network - VLAN 101</h3>
+<h3 id="mill-network-vlan-101">Mill Network - VLAN '101'</h3>
 <p>Our outbound internet route, should be treated as untrusted due to relatively little control over devices in other businesses.</p>
 <p>IP Range: <code>192.168.0.0/16</code></p>
 <h3 id="shared-services-vlan-225">Shared Services - VLAN 225</h3>
 <p>Where the servers, routers, and other central bits are hosted.</p>
 <p>IP Range: <code>10.3.1.0/24</code></p>
+<p>This subnet doesn't have DHCP enabled, we use static assignment. Here is the current list:</p>
+<table>
+<thead>
+<tr>
+<th>Device Name</th>
+<th>IP Address</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GW</td>
+<td><code>10.3.1.1</code></td>
+<td>Rack 1</td>
+</tr>
+<tr>
+<td>Switch 1</td>
+<td><code>10.3.1.2</code></td>
+<td>Rack 1</td>
+</tr>
+<tr>
+<td>HP Printer</td>
+<td><code>10.3.1.50</code></td>
+<td>Pi Room 5/7</td>
+</tr>
+<tr>
+<td>Epson Printer</td>
+<td><code>10.3.1.51</code></td>
+<td>Pi Room 5/8</td>
+</tr>
+</tbody>
+</table>
 <h3 id="wifi-vlan-226">Wifi - VLAN 226</h3>
 <p>Wifi users, General open access to the internet and internal services.</p>
 <p>IP Range: <code>10.3.2.0/24</code></p>
+<p>DHCP enabled, <code>10.3.2.2 - 10.3.2.254</code></p>
 <h3 id="pi-room-vlan-227">Pi Room - VLAN 227</h3>
 <p>Pi Room / Co-Working space. General open access to the internet and internal services.</p>
 <p>IP Range: <code>10.3.14.0/24</code></p>
+<p>DHCP enabled, <code>10.3.14.2 - 10.3.14.254</code></p>
 <h3 id="classroom-vlan-228">Classroom - VLAN 228</h3>
 <p>Class room, General open access to the internet and internal services.</p>
 <p>IP Range <code>10.3.15.0/24</code></p>
+<p>DHCP enabled, <code>10.3.15.2 - 10.3.15.254</code></p>
 <h3 id="automation-vlan-229">Automation - VLAN 229</h3>
 <p>Used for any automation devices that do not require open internet access, or need to be secured away from the general network (e.g. Door system)</p>
 <p>IP Range <code>10.3.16.0/24</code></p>
+<p>DHCP enabled, <code>10.3.16.2 - 10.3.16.128</code></p>
+<p>This subnet does have DHCP enabled, but we use some static assignment. Here is the current list:</p>
+<table>
+<thead>
+<tr>
+<th>Device Name</th>
+<th>IP Address</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 20, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 21, 2023</span>
       
         <br>
         Created:
