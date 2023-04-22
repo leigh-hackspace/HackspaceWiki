@@ -22,7 +22,7 @@ graph LR
     end
 
     GW -->|re0| MILL
-    MILL[Mill Network] --> MILLROUTER[Mill Router?] --> INTERNET((Internet))
+    MILL[Mill Network] --> MILLROUTER[Mill Router - Draytek] --> INTERNET((Internet))
     
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] -->|Port3-24| SWITCH1
