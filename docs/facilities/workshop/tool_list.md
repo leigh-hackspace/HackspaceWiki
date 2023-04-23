@@ -44,8 +44,6 @@ This may not be a complete list, please check the item and wear the correct PPE 
 |           | Scroll Saw                         | Rexon          | VS40003A   | Working     | [Manual](manuals/rexon-vs4003a.pdf)                                        |                                                            |
 |           | Standing Dust Extractor            | Record Power   | CX2000     | Unknown     | [Manual](manuals/recordpower-cx2000.pdf)                                   |                                                            |
 |           | Standing Table Saw                 | Jet            | JTS-10     | Unknown     | [Manual](manuals/jet-jts10.pdf)                                            |                                                            |
-|           | Table Saw                          |                |            | _Unsafe_    | No guards                                                                  |                                                            |
-|           | Table Saw / Planer Combo           | ???            | LSJ25P     | Unknown     |                                                                            |                                                            |
 |           | [Wood Lathe](woodturning_lathe.md) | Tyme Machines  | The Cub    | Working     | Requires a permanent bench for safe operation with heavier workloads.      |                                                            |
 
 
