@@ -40,8 +40,7 @@ graph LR
     end
     
     subgraph Workshop
-    WORKSHOP[Workshop Socket] --> |Port28| SWITCH1
-    WORKSHOP --> |Port24| SWITCH3[Switch 3]
+    SWITCH3[Switch 3] -->|Port28| SWITCH1
     end
 ```
 
