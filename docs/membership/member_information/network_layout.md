@@ -108,6 +108,7 @@ This subnet doesn't have DHCP enabled, we use static assignment. Here is the cur
 | GW            | `10.3.1.1`  | Rack 1      |
 | Switch 1      | `10.3.1.2`  | Rack 1      |
 | Server 1      | `10.3.1.3`  | Rack 1      |
+| Switch 3      | `10.3.1.4`  | Workshop / Fabrication |
 | HP Printer    | `10.3.1.50` | Pi Room 5/7 |
 | Epson Printer | `10.3.1.51` | Pi Room 5/8 |
 
