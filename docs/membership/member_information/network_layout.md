@@ -7,6 +7,7 @@
 | GW       | HP      | Unknown        | Router    | Rack 1      | Live                    | HP desktop system running pfSense     |
 | Switch 1 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Live                    | Serial console connected to USB on GW |
 | Switch 2 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Waiting to be installed | Sandbox/Learning switch               |
+| Switch 3 | HP      | Procurve 2428  | L2 Switch | Fabrication | Waiting to be installed | Switch for the fabrication area       |
 | AP       | TP-Link |                | AP        | Top of Rack | Live                    | Uses stock firmware                   |
 
 ## Physical Layout
@@ -38,7 +39,7 @@ graph LR
     end
     
     subgraph Workshop
-    WORKSHOP[Workshop Socket] --> |Port28| SWITCH1
+    WORKSHOP[Workshop Socket] --> |Port28| SWITCH3[Switch 3]
     end
 ```
 
