@@ -36,11 +36,11 @@ graph LR
     end
     
     subgraph Bar
-    BAR[Bar Socket] -->|Port27| SWITCH1
+    BAR[Bar Socket] -->|Port33| SWITCH1
     end
     
     subgraph Workshop
-    SWITCH3[Switch 3] -->|Port28| SWITCH1
+    SWITCH3[Switch 3] -->|Port34| SWITCH1
     end
 ```
 
