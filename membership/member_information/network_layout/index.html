@@ -1088,11 +1088,11 @@
     end
 
     subgraph Bar
-    BAR[Bar Socket] --&gt;|Port27| SWITCH1
+    BAR[Bar Socket] --&gt;|Port33| SWITCH1
     end
 
     subgraph Workshop
-    SWITCH3[Switch 3] --&gt;|Port28| SWITCH1
+    SWITCH3[Switch 3] --&gt;|Port34| SWITCH1
     end</code></pre>
 <h3 id="gw-pfsense">GW - pfSense</h3>
 <p>We've got a small HP desktop system running pfSense with a quad port NIC, giving us 5 physical NICs. At the moment the motherboard NIC is connected to the Mill network, and the 4 port NIC is used for internal traffic.</p>
