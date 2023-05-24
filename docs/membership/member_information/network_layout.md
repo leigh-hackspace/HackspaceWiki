@@ -76,14 +76,17 @@ Wifi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mod
 ```mermaid
 graph
     INTERNET((Internet))
-    PIROOM[Pi Room - VLAN 227]
-    CLASSROOM[Classroom - VLAN 226]
     SHARED[Shared Services - VLAN 225]
-    AUTOMATION[Automation VLAN 224]
+    WIFI[WiFi - VLAN 226]
+    PIROOM[Pi Room - VLAN 227]
+    CLASSROOM[Classroom - VLAN 228]
+    AUTOMATION[Automation VLAN 229]
     SHARED --> INTERNET
     PIROOM --> INTERNET
     CLASSROOM --> INTERNET
+    WIFI --> INTERNET
     
+    WIFI --> SHARED
     PIROOM --> SHARED
     CLASSROOM --> SHARED
     SHARED --> AUTOMATION
