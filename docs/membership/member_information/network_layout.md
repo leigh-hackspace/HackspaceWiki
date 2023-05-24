@@ -39,6 +39,7 @@ graph LR
     
     subgraph Workshop
     WORKSHOP[Workshop Socket] --> |Port28| SWITCH1
+    end
 ```
 
 ### GW - pfSense
