@@ -1175,14 +1175,17 @@
 <h2 id="l3-layout-vlans">L3 Layout / VLANs</h2>
 <pre class="mermaid"><code>graph
     INTERNET((Internet))
-    PIROOM[Pi Room - VLAN 227]
-    CLASSROOM[Classroom - VLAN 226]
     SHARED[Shared Services - VLAN 225]
-    AUTOMATION[Automation VLAN 224]
+    WIFI[WiFi - VLAN 226]
+    PIROOM[Pi Room - VLAN 227]
+    CLASSROOM[Classroom - VLAN 228]
+    AUTOMATION[Automation VLAN 229]
     SHARED --&gt; INTERNET
     PIROOM --&gt; INTERNET
     CLASSROOM --&gt; INTERNET
+    WIFI --&gt; INTERNET
 
+    WIFI --&gt; SHARED
     PIROOM --&gt; SHARED
     CLASSROOM --&gt; SHARED
     SHARED --&gt; AUTOMATION</code></pre>
