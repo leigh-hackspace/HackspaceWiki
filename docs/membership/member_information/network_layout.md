@@ -32,6 +32,13 @@ graph LR
     subgraph Classroom
     CLASSROOMPC[Class Room PCs] -->|Port25-26| SWITCH1
     end
+    
+    subgraph Bar
+    BAR[Bar Socket] -->|Port27| SWITCH1
+    end
+    
+    subgraph Workshop
+    WORKSHOP[Workshop Socket] --> |Port28| SWITCH1
 ```
 
 ### GW - pfSense
@@ -96,6 +103,7 @@ This subnet doesn't have DHCP enabled, we use static assignment. Here is the cur
 | ------------- | ----------- | ----------- |
 | GW            | `10.3.1.1`  | Rack 1      |
 | Switch 1      | `10.3.1.2`  | Rack 1      |
+| Server 1      | `10.3.1.3`  | Rack 1      |
 | HP Printer    | `10.3.1.50` | Pi Room 5/7 |
 | Epson Printer | `10.3.1.51` | Pi Room 5/8 |
 
