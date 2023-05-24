@@ -20,6 +20,7 @@ graph LR
     GW[GW - pfSense] 
     AP[Wifi AP] -->|en1| GW
     SWITCH1[Switch 1] -->|en0| GW
+    SERVER1[Server 1] -->|Port46| SWITCH1
     end
 
     GW -->|re0| MILL
