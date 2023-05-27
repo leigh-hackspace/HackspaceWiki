@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/</loc>
+         <lastmod>2023-05-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/bar/</loc>
          <lastmod>2023-05-27</lastmod>
          <changefreq>daily</changefreq>
@@ -82,11 +87,6 @@
     </url>
     <url>
          <loc>https://leigh-hackspace.github.io/HackspaceWiki/membership/rules/</loc>
-         <lastmod>2023-05-27</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://leigh-hackspace.github.io/HackspaceWiki/welcome/</loc>
          <lastmod>2023-05-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
