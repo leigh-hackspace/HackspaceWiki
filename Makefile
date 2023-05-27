@@ -1,8 +1,8 @@
-env:
-	virtualenv env && env/bin/pip install -r requirements-docs.txt
+.venv:
+	virtualenv .venv && .venv/bin/pip install -r requirements-docs.txt
 
-build: env
-	env/bin/mkdocs build
+build: .venv
+	.venv/bin/mkdocs build
 
-serve: env
-	env/bin/mkdocs serve
+serve: .venv
+	.venv/bin/mkdocs serve
