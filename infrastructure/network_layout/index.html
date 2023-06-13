@@ -820,8 +820,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#wifi-ap" class="md-nav__link">
-    Wifi AP
+  <a href="#ap-1" class="md-nav__link">
+    AP 1
   </a>
   
 </li>
@@ -962,17 +962,44 @@
 <td>Procurve 2824</td>
 <td>L2 Switch</td>
 <td>Fabrication</td>
-<td>Waiting to be installed</td>
+<td>Live</td>
 <td>Switch for the fabrication area</td>
 </tr>
 <tr>
-<td>AP</td>
+<td>AP 1</td>
 <td>TP-Link</td>
 <td></td>
 <td>AP</td>
 <td>Top of Rack</td>
 <td>Live</td>
 <td>Uses stock firmware</td>
+</tr>
+<tr>
+<td>AP 2</td>
+<td>???</td>
+<td>???</td>
+<td>AP</td>
+<td>Pi Room</td>
+<td>Live</td>
+<td>Connects to Pi Room VLAN, needs fixing</td>
+</tr>
+<tr>
+<td>NAS 1</td>
+<td>QNAP</td>
+<td>TS-431+</td>
+<td>NAS</td>
+<td>Rack 1</td>
+<td>Waiting to be installed</td>
+<td>Requires PSU</td>
+</tr>
+<tr>
+<td>UPS</td>
+<td>APC</td>
+<td>???</td>
+<td>UPS</td>
+<td>Rack 1</td>
+<td>Waiting to be used</td>
+<td>Ready to go when NAS has a PSU</td>
 </tr>
 </tbody>
 </table>
@@ -981,9 +1008,10 @@
 <pre class="mermaid"><code>graph LR
     subgraph Rack1
     GW[GW - pfSense] 
-    AP[Wifi AP] --&gt;|en1| GW
+    AP[AP 1] --&gt;|en1| GW
     SWITCH1[Switch 1] --&gt;|en0| GW
     SERVER1[Server 1] --&gt;|Port46| SWITCH1
+    NAS1[NAS 1] --&gt; |Port45| SWITCH1
     end
 
     GW --&gt;|re0| MILL
@@ -992,6 +1020,7 @@
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] --&gt;|Port3-24| SWITCH1
     PRINTERS[Printers] --&gt;|Port47-48| SWITCH1
+    PIROOMAP[AP 2] --&gt; |Port15?| SWITCH1
     end
 
     subgraph Classroom
@@ -1029,7 +1058,7 @@
 </tr>
 <tr>
 <td><code>en1</code></td>
-<td>WiFi AP</td>
+<td>AP 1</td>
 <td></td>
 </tr>
 <tr>
@@ -1044,7 +1073,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="wifi-ap">Wifi AP</h2>
+<h2 id="ap-1">AP 1</h2>
 <p>Wifi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mode, in that DHCP is disabled and we're not using any of the routing mode of the router itself. It has a 4 port switch and a 'Internet' port.</p>
 <table>
 <thead>
@@ -1186,7 +1215,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 27, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 13, 2023</span>
       
         <br>
         Created:
