@@ -26,8 +26,8 @@ This may not be a complete list, please check the item and wear the correct PPE 
 | Name / ID | Type                               | Make           | Model      | Status      | Notes                                                                      | Consumables                                                |
 | --------- | ---------------------------------- | -------------- | ---------- | ----------- | -------------------------------------------------------------------------- | ---------------------------------------------------------- |
 |           | 16" Bandsaw                        | Record Power   | BS400      | Unknown     | [Manual](manuals/recordpower_bs400.pdf)                                    | * 133"/3378mm Bandsaw Blades<br>* SRSBS10-72 Table Inserts |
-|           | 8" Compound Mitre Saw              | Evolution      | FURY3B210Z | Working     | [Manual](manuals/evolution-fury3b.pdf)                                     |                                                            |
-|           | 8" Mitre Saw                       | Evolution      | RAGE 3S    | Not Working | [Manual](manuals/evolution-rage3s.pdf). Has power, but motor doesn't start |                                                            |
+|           | 8" Compound Mitre Saw              | Evolution      | FURY3B210Z | **Missing** | [Manual](manuals/evolution-fury3b.pdf)                                     | May of been on loan to the Hackspace                       |
+|           | 8" Mitre Saw                       | Evolution      | RAGE 3S    | Not Working | [Manual](manuals/evolution-rage3s.pdf). Has power, but motor doesn't start | Requires new brushes                                       |
 |           | Belt & Disc Sander                 | Clarke         | CS4-6E     | Working     | [Manual](manuals/clarke-cs4-6e.pdf)                                        |                                                            |
 |           | Benchtop Bandsaw                   | Black & Decker | BD339      | Working     |                                                                            | * 1510mm Bandsaw Blade                                     |
 |           | Benchtop Drill Press               | Clarke         | CDP-202B   | Working     | [Manual](manuals/clarke-cdp-202b.pdf)                                      |                                                            |
@@ -43,7 +43,7 @@ This may not be a complete list, please check the item and wear the correct PPE 
 |           | Scroll Saw                         | Proxxon        | 28092 DSH  | Working     | [Manual](manuals/proxxon-28092-dsh.pdf)                                    |                                                            |
 |           | Scroll Saw                         | Rexon          | VS40003A   | Working     | [Manual](manuals/rexon-vs4003a.pdf)                                        |                                                            |
 |           | Standing Dust Extractor            | Record Power   | CX2000     | Unknown     | [Manual](manuals/recordpower-cx2000.pdf)                                   |                                                            |
-|           | Standing Table Saw                 | Jet            | JTS-10     | Unknown     | [Manual](manuals/jet-jts10.pdf)                                            |                                                            |
+|           | Standing Table Saw                 | Jet            | JTS-10     | Working     | [Manual](manuals/jet-jts10.pdf)                                            |                                                            |
 |           | [Wood Lathe](woodturning_lathe.md) | Tyme Machines  | The Cub    | Working     | Requires a permanent bench for safe operation with heavier workloads.      |                                                            |
 
 
@@ -56,3 +56,4 @@ All PPE is available near the door to the workshop.
  | Ear Defenders |      |       | 5+    |       |
  | Gloves        |      |       | 5+    |       |
  | Face Masks    |      |       | 5+    |       |
+ | Ear Plugs     |      |       | 5+    |       |
