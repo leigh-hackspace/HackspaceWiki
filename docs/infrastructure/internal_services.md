@@ -14,3 +14,11 @@ We have a MQTT server available, at `mqtt.int.leighhack.org`. At the moment this
 
 Hostname: `mqtt.int.leighhack.org`
 Port: `1883`
+
+## Prometheus
+
+A internal Prometheus instance is available at `http://server1.int.leighhack.org:9090`. If you wish to have it scrape any internal services then drop a message to the Infra team.
+
+## Grafana
+
+Grafana dashboarding is available at [http://grafana.int.leighhack.org](https://grafana.int.leighhack.org).
