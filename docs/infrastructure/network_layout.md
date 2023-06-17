@@ -18,13 +18,13 @@
 Correct as of 2023-04-20
 
 ```mermaid
-graph LR
+graph 
     subgraph Rack1
     GW[GW - pfSense] 
-    AP[AP 1] -->|en1| GW
-    SWITCH1[Switch 1] -->|en0| GW
-    SERVER1[Server 1] -->|Port46| SWITCH1
-    NAS1[NAS 1] --> |Port45| SWITCH1
+    AP[AP 1] -->|Port43| SWITCH1
+    SWITCH1[Switch 1] -->|Port1 / en0| GW
+    SERVER1[Server 1] -->|Port45| SWITCH1
+    NAS1[NAS 1] --> |Port46| SWITCH1
     end
 
     GW -->|re0| MILL
@@ -33,7 +33,7 @@ graph LR
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] -->|Port3-24| SWITCH1
     PRINTERS[Printers] -->|Port47-48| SWITCH1
-    PIROOMAP[AP 2] --> |Port15?| SWITCH1
+    PIROOMAP[AP 2] --> |Port47| SWITCH1
     end
 
     subgraph Classroom
