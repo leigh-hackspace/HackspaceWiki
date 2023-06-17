@@ -1090,7 +1090,7 @@
 </tbody>
 </table>
 <h2 id="physical-layout">Physical Layout</h2>
-<p>Correct as of 2023-04-20</p>
+<p>Correct as of 2023-06-17</p>
 <pre class="mermaid"><code>graph 
     subgraph Rack1
     GW[GW - pfSense] 
@@ -1198,6 +1198,7 @@
 </tbody>
 </table>
 <h2 id="l3-layout-vlans">L3 Layout / VLANs</h2>
+<p>TL;DR: All VLANs can access Shared Services, Automation is only accessible via Shared Services.</p>
 <pre class="mermaid"><code>graph
     INTERNET((Internet))
     SHARED[Shared Services - VLAN 225]
