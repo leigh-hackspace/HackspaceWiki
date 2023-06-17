@@ -2,16 +2,16 @@
 
 ## Hardware
 
-| Name     | Manf    | Model          | Type      | Location    | Status                  | Notes                                  |
-| -------- | ------- | -------------- | --------- | ----------- | ----------------------- | -------------------------------------- |
-| GW       | HP      | Unknown        | Router    | Rack 1      | Live                    | HP desktop system running pfSense      |
-| Switch 1 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Live                    | Serial console connected to USB on GW  |
-| Switch 2 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Waiting to be installed | Sandbox/Learning switch                |
-| Switch 3 | HP      | Procurve 2824  | L2 Switch | Fabrication | Live                    | Switch for the fabrication area        |
-| AP 1     | TP-Link |                | AP        | Top of Rack | Live                    | Uses stock firmware                    |
-| AP 2     | ???     | ???            | AP        | Pi Room     | Live                    | Connects to Pi Room VLAN, needs fixing |
-| NAS 1    | QNAP    | TS-431+        | NAS       | Rack 1      | Waiting to be installed | Requires PSU                           |
-| UPS      | APC     | ???            | UPS       | Rack 1      | Waiting to be used      | Ready to go when NAS has a PSU         |
+| Name     | Manf    | Model          | Type      | Location    | Status                   | Notes                                  |
+| -------- | ------- | -------------- | --------- | ----------- | ------------------------ | -------------------------------------- |
+| GW       | HP      | Unknown        | Router    | Rack 1      | Live                     | HP desktop system running pfSense      |
+| Switch 1 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Live                     | Serial console connected to USB on GW  |
+| Switch 2 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Waiting to be installed  | Sandbox/Learning switch                |
+| Switch 3 | HP      | Procurve 2824  | L2 Switch | Fabrication | Live                     | Switch for the fabrication area        |
+| AP 1     | TP-Link |                | AP        | Top of Rack | Live                     | Uses stock firmware                    |
+| AP 2     | ???     | ???            | AP        | Pi Room     | Live                     | Connects to Pi Room VLAN, needs fixing |
+| NAS 1    | QNAP    | TS-431+        | NAS       | Rack 1      | Waiting software install |                                        |
+| UPS      | APC     | ???            | UPS       | Rack 1      | Live                     |                                        |
 
 ## Physical Layout
 
@@ -59,7 +59,7 @@ Some ports are having issues pulling 1gbps to the Switch, so the card/system nee
 | ----- | ------------ | ------------------------------ |
 | `re0` | Mill network |                                |
 | `en0` | Switch 1     | Tagged only traffic, all VLANs |
-| `en1` | AP 1         |                                |
+| `en1` |              |                                |
 | `en2` |              |                                |
 | `en3` |              |                                |
 
@@ -72,8 +72,8 @@ Wifi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mod
 | `Internet` |              |       |
 | `Port1`    |              |       |
 | `Port2`    |              |       |
-| `Port3`    |              |       |
-| `Port4`    | GW           |       |
+| `Port3`    | Switch1      |       |
+| `Port4`    |              |       |
 
 ## L3 Layout / VLANs
 
@@ -116,8 +116,9 @@ This subnet doesn't have DHCP enabled, we use static assignment. Here is the cur
 | Switch 1      | `10.3.1.2`  | Rack 1                 |
 | Server 1      | `10.3.1.3`  | Rack 1                 |
 | Switch 3      | `10.3.1.4`  | Workshop / Fabrication |
+| NAS 1         | `10.3.1.5`  | Rack 1                 |
 | HP Printer    | `10.3.1.50` | Pi Room 5/7            |
-| Epson Printer | `10.3.1.51` | Pi Room 5/8            |
+| Epson Printer | `10.3.1.51` | Pi Room                |
 
 ### Wifi - VLAN 226
 
