@@ -15,7 +15,7 @@
 
 ## Physical Layout
 
-Correct as of 2023-04-20
+Correct as of 2023-06-17
 
 ```mermaid
 graph 
@@ -76,6 +76,8 @@ Wifi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mod
 | `Port4`    |              |       |
 
 ## L3 Layout / VLANs
+
+TL;DR: All VLANs can access Shared Services, Automation is only accessible via Shared Services.
 
 ```mermaid
 graph
