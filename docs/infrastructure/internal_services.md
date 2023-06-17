@@ -21,4 +21,4 @@ A internal Prometheus instance is available at `http://server1.int.leighhack.org
 
 ## Grafana
 
-Grafana dashboarding is available at [http://grafana.int.leighhack.org](https://grafana.int.leighhack.org).
+Grafana dashboarding is available at [http://grafana.int.leighhack.org](http://grafana.int.leighhack.org).
