@@ -128,7 +128,13 @@ Wifi users, General open access to the internet and internal services.
 
 IP Range: `10.3.2.0/24`
 
-DHCP enabled, `10.3.2.2 - 10.3.2.254`
+DHCP enabled, `10.3.2.11 - 10.3.2.254`
+
+| Device Name | IP Address | Location                |
+| ----------- | ---------- | ----------------------- |
+| AP1         | `10.3.2.2` | Rack 1                  |
+| AP2         | `10.3.2.3` | Pi Room behind Printers |
+| AP3         | `10.3.2.4` | Fabrication             |
 
 ### Pi Room - VLAN 227
 
