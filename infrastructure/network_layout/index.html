@@ -1091,13 +1091,13 @@
 </table>
 <h2 id="physical-layout">Physical Layout</h2>
 <p>Correct as of 2023-04-20</p>
-<pre class="mermaid"><code>graph LR
+<pre class="mermaid"><code>graph 
     subgraph Rack1
     GW[GW - pfSense] 
-    AP[AP 1] --&gt;|en1| GW
-    SWITCH1[Switch 1] --&gt;|en0| GW
-    SERVER1[Server 1] --&gt;|Port46| SWITCH1
-    NAS1[NAS 1] --&gt; |Port45| SWITCH1
+    AP[AP 1] --&gt;|Port43| SWITCH1
+    SWITCH1[Switch 1] --&gt;|Port1 / en0| GW
+    SERVER1[Server 1] --&gt;|Port45| SWITCH1
+    NAS1[NAS 1] --&gt; |Port46| SWITCH1
     end
 
     GW --&gt;|re0| MILL
@@ -1106,7 +1106,7 @@
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] --&gt;|Port3-24| SWITCH1
     PRINTERS[Printers] --&gt;|Port47-48| SWITCH1
-    PIROOMAP[AP 2] --&gt; |Port15?| SWITCH1
+    PIROOMAP[AP 2] --&gt; |Port47| SWITCH1
     end
 
     subgraph Classroom
@@ -1301,7 +1301,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 13, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 17, 2023</span>
       
         <br>
         Created:
