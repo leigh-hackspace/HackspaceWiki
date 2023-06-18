@@ -14,8 +14,8 @@ As we mirror mDNS across the network it should be visible by default on Windows 
 
 Filestore is a generic, web and SMB accessible filestore system that is available on all segments of the network. Any files stored in this location are scanned with ClamAV, and anything identified as problematic will be automatically quarantined. If you have any issues then contact [infra](../membership/useful_contacts.md#tech-infrastructure).
 
-[http://filestore.int.leighhack.org](http://filestore.int.leighhack.org)
-[smb://nas1.int.leighhack.org/filestore](smb://nas1.int.leighhack.org/filestore)
+* [http://filestore.int.leighhack.org](http://filestore.int.leighhack.org)
+* [smb://nas1.int.leighhack.org/filestore](smb://guest:guest@nas1.int.leighhack.org/filestore)
 
 ## MQTT
 
