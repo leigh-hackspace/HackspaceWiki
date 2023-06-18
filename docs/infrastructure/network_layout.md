@@ -53,8 +53,6 @@ graph
 
 We've got a small HP desktop system running pfSense with a quad port NIC, giving us 5 physical NICs. At the moment the motherboard NIC is connected to the Mill network, and the 4 port NIC is used for internal traffic.
 
-Some ports are having issues pulling 1gbps to the Switch, so the card/system needs replacing at the moment. If traffic across VLAN boundries becomes a problems it can be sorted.
-
 | Port  | Connected to | Notes                          |
 | ----- | ------------ | ------------------------------ |
 | `re0` | Mill network |                                |
@@ -65,7 +63,7 @@ Some ports are having issues pulling 1gbps to the Switch, so the card/system nee
 
 ## AP 1
 
-Wifi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mode, in that DHCP is disabled and we're not using any of the routing mode of the router itself. It has a 4 port switch and a 'Internet' port.
+WiFi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mode, in that DHCP is disabled and we're not using any of the routing mode of the router itself. It has a 4 port switch and a 'Internet' port.
 
 | Port       | Connected to | Notes |
 | ---------- | ------------ | ----- |
@@ -83,16 +81,16 @@ TL;DR: All VLANs can access Shared Services, Automation is only accessible via S
 graph
     INTERNET((Internet))
     SHARED[Shared Services - VLAN 225]
-    WIFI[WiFi - VLAN 226]
+    WiFi[WiFi - VLAN 226]
     PIROOM[Pi Room - VLAN 227]
     CLASSROOM[Classroom - VLAN 228]
     AUTOMATION[Automation VLAN 229]
     SHARED --> INTERNET
     PIROOM --> INTERNET
     CLASSROOM --> INTERNET
-    WIFI --> INTERNET
+    WiFi --> INTERNET
     
-    WIFI --> SHARED
+    WiFi --> SHARED
     PIROOM --> SHARED
     CLASSROOM --> SHARED
     SHARED --> AUTOMATION
@@ -122,9 +120,9 @@ This subnet doesn't have DHCP enabled, we use static assignment. Here is the cur
 | HP Printer    | `10.3.1.50` | Pi Room 5/7            |
 | Epson Printer | `10.3.1.51` | Pi Room                |
 
-### Wifi - VLAN 226
+### WiFi - VLAN 226
 
-Wifi users, General open access to the internet and internal services.
+WiFi users, General open access to the internet and internal services.
 
 IP Range: `10.3.2.0/24`
 
@@ -132,9 +130,9 @@ DHCP enabled, `10.3.2.11 - 10.3.2.254`
 
 | Device Name | IP Address | Location                |
 | ----------- | ---------- | ----------------------- |
-| AP1         | `10.3.2.2` | Rack 1                  |
+| AP1         | `10.3.2.2` | On top of Rack 1        |
 | AP2         | `10.3.2.3` | Pi Room behind Printers |
-| AP3         | `10.3.2.4` | Fabrication             |
+| AP3         | `10.3.2.4` | Bar above the door      |
 
 ### Pi Room - VLAN 227
 
