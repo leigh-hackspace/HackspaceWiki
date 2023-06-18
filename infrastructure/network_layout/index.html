@@ -936,7 +936,7 @@
         
           <li class="md-nav__item">
   <a href="#wifi-vlan-226" class="md-nav__link">
-    Wifi - VLAN 226
+    WiFi - VLAN 226
   </a>
   
 </li>
@@ -1122,7 +1122,6 @@
     end</code></pre>
 <h3 id="gw-pfsense">GW - pfSense</h3>
 <p>We've got a small HP desktop system running pfSense with a quad port NIC, giving us 5 physical NICs. At the moment the motherboard NIC is connected to the Mill network, and the 4 port NIC is used for internal traffic.</p>
-<p>Some ports are having issues pulling 1gbps to the Switch, so the card/system needs replacing at the moment. If traffic across VLAN boundries becomes a problems it can be sorted.</p>
 <table>
 <thead>
 <tr>
@@ -1160,7 +1159,7 @@
 </tbody>
 </table>
 <h2 id="ap-1">AP 1</h2>
-<p>Wifi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mode, in that DHCP is disabled and we're not using any of the routing mode of the router itself. It has a 4 port switch and a 'Internet' port.</p>
+<p>WiFi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mode, in that DHCP is disabled and we're not using any of the routing mode of the router itself. It has a 4 port switch and a 'Internet' port.</p>
 <table>
 <thead>
 <tr>
@@ -1202,16 +1201,16 @@
 <pre class="mermaid"><code>graph
     INTERNET((Internet))
     SHARED[Shared Services - VLAN 225]
-    WIFI[WiFi - VLAN 226]
+    WiFi[WiFi - VLAN 226]
     PIROOM[Pi Room - VLAN 227]
     CLASSROOM[Classroom - VLAN 228]
     AUTOMATION[Automation VLAN 229]
     SHARED --&gt; INTERNET
     PIROOM --&gt; INTERNET
     CLASSROOM --&gt; INTERNET
-    WIFI --&gt; INTERNET
+    WiFi --&gt; INTERNET
 
-    WIFI --&gt; SHARED
+    WiFi --&gt; SHARED
     PIROOM --&gt; SHARED
     CLASSROOM --&gt; SHARED
     SHARED --&gt; AUTOMATION</code></pre>
@@ -1268,8 +1267,8 @@
 </tr>
 </tbody>
 </table>
-<h3 id="wifi-vlan-226">Wifi - VLAN 226</h3>
-<p>Wifi users, General open access to the internet and internal services.</p>
+<h3 id="wifi-vlan-226">WiFi - VLAN 226</h3>
+<p>WiFi users, General open access to the internet and internal services.</p>
 <p>IP Range: <code>10.3.2.0/24</code></p>
 <p>DHCP enabled, <code>10.3.2.11 - 10.3.2.254</code></p>
 <table>
@@ -1284,7 +1283,7 @@
 <tr>
 <td>AP1</td>
 <td><code>10.3.2.2</code></td>
-<td>Rack 1</td>
+<td>On top of Rack 1</td>
 </tr>
 <tr>
 <td>AP2</td>
@@ -1294,7 +1293,7 @@
 <tr>
 <td>AP3</td>
 <td><code>10.3.2.4</code></td>
-<td>Fabrication</td>
+<td>Bar above the door</td>
 </tr>
 </tbody>
 </table>
@@ -1333,7 +1332,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 17, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2023</span>
       
         <br>
         Created:

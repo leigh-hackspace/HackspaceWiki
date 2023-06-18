@@ -867,6 +867,13 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#nas-storage" class="md-nav__link">
+    NAS Storage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#filestore" class="md-nav__link">
     Filestore
   </a>
@@ -943,9 +950,14 @@
 
 <h1 id="internal-services">Internal Services</h1>
 <p>The hackspace runs a collection of services on the hackspace network, either to assist with automation or just to be useful for members.</p>
+<h2 id="nas-storage">NAS Storage</h2>
+<p>We have a 4TB NAS storage system running as RAID-10, while it should give a reasonable amount of reliability we provide absolutely no guarantees regarding data security and provide <em>no backups</em>.</p>
+<p>Its available via SMB/CIFS: <a href="smb://nas1.int.leighhack.org">smb://nas1.int.leighhack.org/</a></p>
+<p>As we mirror mDNS across the network it should be visible by default on Windows and macOS, if not, use the above address. Public shares are guest writeable. If you have a specific requirement for a private share, contact <a href="../../membership/useful_contacts/#tech-infrastructure">infra</a>.</p>
 <h2 id="filestore">Filestore</h2>
-<p>Filestore is a generic, web-accessible filestore system that is available on all segments of the network. </p>
-<p><a href="http://filestore.int.leighhack.org">http://filestore.int.leighhack.org</a></p>
+<p>Filestore is a generic, web and SMB accessible filestore system that is available on all segments of the network. Any files stored in this location are scanned with ClamAV, and anything identified as problematic will be automatically quarantined. If you have any issues then contact <a href="../../membership/useful_contacts/#tech-infrastructure">infra</a>.</p>
+<p><a href="http://filestore.int.leighhack.org">http://filestore.int.leighhack.org</a>
+<a href="smb://nas1.int.leighhack.org/filestore">smb://nas1.int.leighhack.org/filestore</a></p>
 <h2 id="mqtt">MQTT</h2>
 <p>We have a MQTT server available, at <code>mqtt.int.leighhack.org</code>. At the moment this service is unauthenticated, but in the future it'll require a login and possibly TLS client certs.</p>
 <p>Hostname: <code>mqtt.int.leighhack.org</code>
@@ -960,7 +972,7 @@ Port: <code>1883</code></p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 17, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2023</span>
       
         <br>
         Created:
