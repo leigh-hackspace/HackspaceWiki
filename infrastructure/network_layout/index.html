@@ -1097,7 +1097,7 @@
     AP[AP 1] --&gt;|Port43| SWITCH1
     SWITCH1[Switch 1] --&gt;|Port1 / en0| GW
     SERVER1[Server 1] --&gt;|Port45| SWITCH1
-    NAS1[NAS 1] --&gt; |Port46| SWITCH1
+    NAS1[NAS 1] --&gt; |Port44| SWITCH1
     end
 
     GW --&gt;|re0| MILL
@@ -1105,7 +1105,7 @@
 
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] --&gt;|Port3-24| SWITCH1
-    PRINTERS[Printers] --&gt;|Port47-48| SWITCH1
+    PRINTERS[Printers] --&gt;|Port48| SWITCH1
     PIROOMAP[AP 2] --&gt; |Port47| SWITCH1
     end
 
