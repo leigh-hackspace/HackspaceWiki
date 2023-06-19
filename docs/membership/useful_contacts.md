@@ -2,7 +2,7 @@
 
 ## Directors
 
-The Leigh Hackspace directors can be contacted either on Slack in `#general`, or via email at [directors@leighhack.org](mailto:directors@leighhack.org).
+The Leigh Hackspace directors can be contacted either on [Slack in `#general`](https://leighhack.slack.com/archives/C0A9Y6H26), or via email at [directors@leighhack.org](mailto:directors@leighhack.org).
 
 ## Area Specific Contacts
 
@@ -21,7 +21,7 @@ While our directors can address most questions concerning the use of the space a
 
 ## Tech Infrastructure
 
-If you have any issues with the WiFi, network, or a hosted service, contact one of the Infra team on `#infra` on Slack or via PM.
+If you have any issues with the WiFi, network, or a hosted service, contact one of the Infra team on [`#infra` on Slack](https://leighhack.slack.com/archives/C051CNT80BD) or via PM.
 
 * Paul Williams
 * Andrew Williams
