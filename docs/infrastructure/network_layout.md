@@ -2,16 +2,16 @@
 
 ## Hardware
 
-| Name     | Manf    | Model          | Type      | Location    | Status                   | Notes                                  |
-| -------- | ------- | -------------- | --------- | ----------- | ------------------------ | -------------------------------------- |
-| GW       | HP      | Unknown        | Router    | Rack 1      | Live                     | HP desktop system running pfSense      |
-| Switch 1 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Live                     | Serial console connected to USB on GW  |
-| Switch 2 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Waiting to be installed  | Sandbox/Learning switch                |
-| Switch 3 | HP      | Procurve 2824  | L2 Switch | Fabrication | Live                     | Switch for the fabrication area        |
-| AP 1     | TP-Link |                | AP        | Top of Rack | Live                     | Uses stock firmware                    |
-| AP 2     | ???     | ???            | AP        | Pi Room     | Live                     | Connects to Pi Room VLAN, needs fixing |
-| NAS 1    | QNAP    | TS-431+        | NAS       | Rack 1      | Waiting software install |                                        |
-| UPS      | APC     | ???            | UPS       | Rack 1      | Live                     |                                        |
+| Name     | Manf    | Model          | Type      | Location    | Status                  | Notes                                  |
+| -------- | ------- | -------------- | --------- | ----------- | ----------------------- | -------------------------------------- |
+| GW       | HP      | Unknown        | Router    | Rack 1      | Live                    | HP desktop system running pfSense      |
+| Switch 1 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Live                    | Serial console connected to USB on GW  |
+| Switch 2 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Waiting to be installed | Sandbox/Learning switch                |
+| Switch 3 | HP      | Procurve 2824  | L2 Switch | Fabrication | Live                    | Switch for the fabrication area        |
+| AP 1     | TP-Link |                | AP        | Top of Rack | Live                    | Uses stock firmware                    |
+| AP 2     | ???     | ???            | AP        | Pi Room     | Live                    | Connects to Pi Room VLAN, needs fixing |
+| NAS 1    | QNAP    | TS-431+        | NAS       | Rack 1      | Live                    |                                        |
+| UPS      | APC     | ???            | UPS       | Rack 1      | Live                    |                                        |
 
 ## Physical Layout
 
@@ -161,6 +161,15 @@ IP Range `10.3.16.0/24`
 DHCP enabled, `10.3.16.2 - 10.3.16.128`
 
 This subnet does have DHCP enabled, but we use some static assignment. Here is the current list:
+
+| Device Name | IP Address | Location |
+| ----------- | ---------- | -------- |
+
+### DMZ - VLAN 230
+
+Used for internet facing services, all systems are allocated addresses within the A&A delgated IP range.
+
+IP Range: `xxx.xxx.xxx.xxx/29`
 
 | Device Name | IP Address | Location |
 | ----------- | ---------- | -------- |
