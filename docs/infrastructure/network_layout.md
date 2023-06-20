@@ -28,7 +28,7 @@ graph
     end
 
     GW -->|re0| MILL
-    GW -. L2TP .-> AAISP
+    GW -. L2TP via Mill Network .-> AAISP
     MILL[Mill Network] --> MILLROUTER[Mill Router - Draytek] --> INTERNET((Internet))
     AAISP[Andrews Arnold] --> INTERNET
     
