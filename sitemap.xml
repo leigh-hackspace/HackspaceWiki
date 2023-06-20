@@ -6,7 +6,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/artist_pods/</loc>
+         <lastmod>2023-06-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/bar/</loc>
+         <lastmod>2023-06-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/classroom/</loc>
          <lastmod>2023-06-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -32,6 +42,11 @@
     </url>
     <url>
          <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/pi_room/</loc>
+         <lastmod>2023-06-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/wet_area/</loc>
          <lastmod>2023-06-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
