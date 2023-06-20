@@ -1101,7 +1101,9 @@
     end
 
     GW --&gt;|re0| MILL
+    GW -. L2TP .-&gt; AAISP
     MILL[Mill Network] --&gt; MILLROUTER[Mill Router - Draytek] --&gt; INTERNET((Internet))
+    AAISP[Andrews Arnold] --&gt; INTERNET
 
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] --&gt;|Port3-24| SWITCH1
@@ -1332,7 +1334,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 18, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 20, 2023</span>
       
         <br>
         Created:
