@@ -1,21 +1,8 @@
 # Network Layout
 
-## Hardware
+## Physical Network Layout
 
-| Name     | Manf    | Model          | Type      | Location    | Status                  | Notes                                  |
-| -------- | ------- | -------------- | --------- | ----------- | ----------------------- | -------------------------------------- |
-| GW       | HP      | Unknown        | Router    | Rack 1      | Live                    | HP desktop system running pfSense      |
-| Switch 1 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Live                    | Serial console connected to USB on GW  |
-| Switch 2 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Waiting to be installed | Sandbox/Learning switch                |
-| Switch 3 | HP      | Procurve 2824  | L2 Switch | Fabrication | Live                    | Switch for the fabrication area        |
-| AP 1     | TP-Link |                | AP        | Top of Rack | Live                    | Uses stock firmware                    |
-| AP 2     | ???     | ???            | AP        | Pi Room     | Live                    | Connects to Pi Room VLAN, needs fixing |
-| NAS 1    | QNAP    | TS-431+        | NAS       | Rack 1      | Live                    |                                        |
-| UPS      | APC     | ???            | UPS       | Rack 1      | Live                    |                                        |
-
-## Physical Layout
-
-Correct as of 2023-06-17
+Correct as of 2023-06-20
 
 ```mermaid
 graph 
@@ -43,13 +30,28 @@ graph
     end
     
     subgraph Bar
-    BAR[Bar Socket] -->|Port33| SWITCH1
+    AP3[AP3] -->|Port33| SWITCH1
     end
     
-    subgraph Workshop
+    subgraph Fabrication
     SWITCH3[Switch 3] -->|Port34| SWITCH1
     end
 ```
+
+## Hardware
+
+| Name     | Manf    | Model          | Type      | Location    | Status                  | Notes                             |
+| -------- | ------- | -------------- | --------- | ----------- | ----------------------- | --------------------------------- |
+| GW       | HP      | Unknown        | Router    | Rack 1      | Live                    | HP desktop system running pfSense |
+| Switch 1 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Live                    |                                   |
+| Switch 2 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Waiting to be installed | Sandbox/Learning switch           |
+| Switch 3 | HP      | Procurve 2824  | L2 Switch | Fabrication | Live                    | Switch for the fabrication area   |
+| AP 1     | TP-Link |                | AP        | Top of Rack | Live                    | Uses stock firmware               |
+| AP 2     | ???     | ???            | AP        | Pi Room     | Live                    |                                   |
+| AP 3     | Cisco   | RV110W         | AP        | Bar         | Waiting to be installed |                                   |
+| NAS 1    | QNAP    | TS-431+        | NAS       | Rack 1      | Live                    |                                   |
+| UPS      | APC     | ???            | UPS       | Rack 1      | Live                    |                                   |
+
 
 ### GW - pfSense
 
@@ -63,7 +65,7 @@ We've got a small HP desktop system running pfSense with a quad port NIC, giving
 | `en2` |              |                                |
 | `en3` |              |                                |
 
-## AP 1
+### AP 1
 
 WiFi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mode, in that DHCP is disabled and we're not using any of the routing mode of the router itself. It has a 4 port switch and a 'Internet' port.
 
@@ -80,7 +82,7 @@ WiFi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mod
 TL;DR: All VLANs can access Shared Services, Automation is only accessible via Shared Services.
 
 ```mermaid
-graph
+graph LR
     INTERNET((Internet))
     SHARED[Shared Services - VLAN 225]
     WiFi[WiFi - VLAN 226]
@@ -91,6 +93,11 @@ graph
     PIROOM --> INTERNET
     CLASSROOM --> INTERNET
     WiFi --> INTERNET
+    INTERNET <--> DMZ[DMZ - VLAN 230]
+    SHARED --> DMZ
+    PIROOM --> DMZ
+    CLASSROOM --> DMZ
+    WiFi --> DMZ
     
     WiFi --> SHARED
     PIROOM --> SHARED
