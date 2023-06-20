@@ -101,6 +101,7 @@ nav:
   - Facilities:
       - Main Room: facilities/main_room.md
       - Pi Room: facilities/pi_room.md
+      - Classroom: facilities/classroom.md
       - Workshop:
         - facilities/workshop/index.md
         - Tools List: facilities/workshop/tool_list.md
@@ -111,7 +112,9 @@ nav:
       - Fabrication: facilities/fabrication.md
       - Electronics: facilities/electronics.md
       - Dark Room: facilities/dark_room.md
+      - Wet Area: facilities/wet_area.md
       - Bar: facilities/bar.md
+      - Artist Pods: facilities/artist_pods.md
   - Infrastructure:
       - Internal Services: infrastructure/internal_services.md
       - Network Layout: infrastructure/network_layout.md
