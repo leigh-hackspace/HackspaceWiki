@@ -879,18 +879,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hardware" class="md-nav__link">
-    Hardware
+  <a href="#physical-network-layout" class="md-nav__link">
+    Physical Network Layout
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#physical-layout" class="md-nav__link">
-    Physical Layout
+  <a href="#hardware" class="md-nav__link">
+    Hardware
   </a>
   
-    <nav class="md-nav" aria-label="Physical Layout">
+    <nav class="md-nav" aria-label="Hardware">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -900,15 +900,15 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
+          <li class="md-nav__item">
   <a href="#ap-1" class="md-nav__link">
     AP 1
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1008,6 +1008,39 @@
 
 
 <h1 id="network-layout">Network Layout</h1>
+<h2 id="physical-network-layout">Physical Network Layout</h2>
+<p>Correct as of 2023-06-20</p>
+<pre class="mermaid"><code>graph 
+    subgraph Rack1
+    GW[GW - pfSense] 
+    AP[AP 1] --&gt;|Port43| SWITCH1
+    SWITCH1[Switch 1] --&gt;|Port1 / en0| GW
+    SERVER1[Server 1] --&gt;|Port45| SWITCH1
+    NAS1[NAS 1] --&gt; |Port44| SWITCH1
+    end
+
+    GW --&gt;|re0| MILL
+    GW -. L2TP via Mill Network .-&gt; AAISP
+    MILL[Mill Network] --&gt; MILLROUTER[Mill Router - Draytek] --&gt; INTERNET((Internet))
+    AAISP[Andrews Arnold] --&gt; INTERNET
+
+    subgraph Pi Room
+    PIROOMPC[Pi Room PCs] --&gt;|Port3-24| SWITCH1
+    PRINTERS[Printers] --&gt;|Port48| SWITCH1
+    PIROOMAP[AP 2] --&gt; |Port47| SWITCH1
+    end
+
+    subgraph Classroom
+    CLASSROOMPC[Class Room PCs] --&gt;|Port25-26| SWITCH1
+    end
+
+    subgraph Bar
+    AP3[AP3] --&gt;|Port33| SWITCH1
+    end
+
+    subgraph Fabrication
+    SWITCH3[Switch 3] --&gt;|Port34| SWITCH1
+    end</code></pre>
 <h2 id="hardware">Hardware</h2>
 <table>
 <thead>
@@ -1038,7 +1071,7 @@
 <td>L3 Switch</td>
 <td>Rack 1</td>
 <td>Live</td>
-<td>Serial console connected to USB on GW</td>
+<td></td>
 </tr>
 <tr>
 <td>Switch 2</td>
@@ -1074,7 +1107,16 @@
 <td>AP</td>
 <td>Pi Room</td>
 <td>Live</td>
-<td>Connects to Pi Room VLAN, needs fixing</td>
+<td></td>
+</tr>
+<tr>
+<td>AP 3</td>
+<td>Cisco</td>
+<td>RV110W</td>
+<td>AP</td>
+<td>Bar</td>
+<td>Waiting to be installed</td>
+<td></td>
 </tr>
 <tr>
 <td>NAS 1</td>
@@ -1096,39 +1138,6 @@
 </tr>
 </tbody>
 </table>
-<h2 id="physical-layout">Physical Layout</h2>
-<p>Correct as of 2023-06-17</p>
-<pre class="mermaid"><code>graph 
-    subgraph Rack1
-    GW[GW - pfSense] 
-    AP[AP 1] --&gt;|Port43| SWITCH1
-    SWITCH1[Switch 1] --&gt;|Port1 / en0| GW
-    SERVER1[Server 1] --&gt;|Port45| SWITCH1
-    NAS1[NAS 1] --&gt; |Port44| SWITCH1
-    end
-
-    GW --&gt;|re0| MILL
-    GW -. L2TP via Mill Network .-&gt; AAISP
-    MILL[Mill Network] --&gt; MILLROUTER[Mill Router - Draytek] --&gt; INTERNET((Internet))
-    AAISP[Andrews Arnold] --&gt; INTERNET
-
-    subgraph Pi Room
-    PIROOMPC[Pi Room PCs] --&gt;|Port3-24| SWITCH1
-    PRINTERS[Printers] --&gt;|Port48| SWITCH1
-    PIROOMAP[AP 2] --&gt; |Port47| SWITCH1
-    end
-
-    subgraph Classroom
-    CLASSROOMPC[Class Room PCs] --&gt;|Port25-26| SWITCH1
-    end
-
-    subgraph Bar
-    BAR[Bar Socket] --&gt;|Port33| SWITCH1
-    end
-
-    subgraph Workshop
-    SWITCH3[Switch 3] --&gt;|Port34| SWITCH1
-    end</code></pre>
 <h3 id="gw-pfsense">GW - pfSense</h3>
 <p>We've got a small HP desktop system running pfSense with a quad port NIC, giving us 5 physical NICs. At the moment the motherboard NIC is connected to the Mill network, and the 4 port NIC is used for internal traffic.</p>
 <table>
@@ -1167,7 +1176,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="ap-1">AP 1</h2>
+<h3 id="ap-1">AP 1</h3>
 <p>WiFi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mode, in that DHCP is disabled and we're not using any of the routing mode of the router itself. It has a 4 port switch and a 'Internet' port.</p>
 <table>
 <thead>
@@ -1207,7 +1216,7 @@
 </table>
 <h2 id="l3-layout-vlans">L3 Layout / VLANs</h2>
 <p>TL;DR: All VLANs can access Shared Services, Automation is only accessible via Shared Services.</p>
-<pre class="mermaid"><code>graph
+<pre class="mermaid"><code>graph LR
     INTERNET((Internet))
     SHARED[Shared Services - VLAN 225]
     WiFi[WiFi - VLAN 226]
@@ -1218,6 +1227,11 @@
     PIROOM --&gt; INTERNET
     CLASSROOM --&gt; INTERNET
     WiFi --&gt; INTERNET
+    INTERNET &lt;--&gt; DMZ[DMZ - VLAN 230]
+    SHARED --&gt; DMZ
+    PIROOM --&gt; DMZ
+    CLASSROOM --&gt; DMZ
+    WiFi --&gt; DMZ
 
     WiFi --&gt; SHARED
     PIROOM --&gt; SHARED
