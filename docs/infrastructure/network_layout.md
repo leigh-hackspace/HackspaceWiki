@@ -28,7 +28,9 @@ graph
     end
 
     GW -->|re0| MILL
+    GW -. L2TP .-> AAISP
     MILL[Mill Network] --> MILLROUTER[Mill Router - Draytek] --> INTERNET((Internet))
+    AAISP[Andrews Arnold] --> INTERNET
     
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] -->|Port3-24| SWITCH1
