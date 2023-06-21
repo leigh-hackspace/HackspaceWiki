@@ -176,7 +176,7 @@ This subnet does have DHCP enabled, but we use some static assignment. Here is t
 
 Used for internet facing services, all systems are allocated addresses within the A&A delgated IP range.
 
-IP Range: `xxx.xxx.xxx.xxx/29`
+IP Range: `81.187.195.16/29`
 
 | Device Name | IP Address | Location |
 | ----------- | ---------- | -------- |
