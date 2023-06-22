@@ -183,3 +183,7 @@ IP Range: `81.187.195.16/29`
 
 | Device Name | IP Address | Location |
 | ----------- | ---------- | -------- |
+
+### OpenVPN
+
+The pfSense has a OpenVPN server, this allocates IPs in the `10.3.254.0/24` range and is available as a normal interface on pfSense, but it doesn't have a VLAN assigned to it.
