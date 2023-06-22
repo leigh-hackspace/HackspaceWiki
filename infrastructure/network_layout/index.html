@@ -1057,7 +1057,7 @@
 
 <h1 id="network-layout">Network Layout</h1>
 <h2 id="physical-network-layout">Physical Network Layout</h2>
-<p>Correct as of 2023-06-20</p>
+<p>Correct as of 2023-06-22</p>
 <pre class="mermaid"><code>graph 
     subgraph Rack1
     GW[GW - pfSense] 
@@ -1065,6 +1065,7 @@
     SWITCH1[Switch 1] --&gt;|Port1 / en0| GW
     SERVER1[Server 1] --&gt;|Port45| SWITCH1
     NAS1[NAS 1] --&gt; |Port44| SWITCH1
+    ESX1[ESX 1] -.-&gt; |Port??/??| SWITCH1
     end
 
     GW --&gt;|re0| MILL
@@ -1163,7 +1164,7 @@
 <td>RV110W</td>
 <td>AP</td>
 <td>Bar</td>
-<td>Waiting to be installed</td>
+<td>Live</td>
 <td></td>
 </tr>
 <tr>
@@ -1182,6 +1183,15 @@
 <td>UPS</td>
 <td>Rack 1</td>
 <td>Live</td>
+<td></td>
+</tr>
+<tr>
+<td>ESX 1</td>
+<td>Dell</td>
+<td>R320</td>
+<td>Server</td>
+<td>Rack 1</td>
+<td>Waiting to be installed</td>
 <td></td>
 </tr>
 </tbody>
@@ -1327,6 +1337,16 @@
 <td>Rack 1</td>
 </tr>
 <tr>
+<td>ESX 1</td>
+<td><code>10.3.1.10</code></td>
+<td>Rack 1</td>
+</tr>
+<tr>
+<td>ESX 1 iDRAC</td>
+<td><code>10.3.1.20</code></td>
+<td>Rack 1</td>
+</tr>
+<tr>
 <td>HP Printer</td>
 <td><code>10.3.1.50</code></td>
 <td>Pi Room 5/7</td>
@@ -1339,7 +1359,7 @@
 </tbody>
 </table>
 <h3 id="wifi-vlan-226">WiFi - VLAN 226</h3>
-<p>WiFi users, General open access to the internet and internal services.</p>
+<p>WiFi users, General open access to the internet and internal services. Due to the terrible routing on these APs, its unlikely that the management address will respond outside the VLAN.</p>
 <p>IP Range: <code>10.3.2.0/24</code></p>
 <p>DHCP enabled, <code>10.3.2.11 - 10.3.2.254</code></p>
 <table>
@@ -1422,7 +1442,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 21, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 22, 2023</span>
       
         <br>
         Created:
