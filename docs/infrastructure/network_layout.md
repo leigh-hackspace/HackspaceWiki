@@ -41,18 +41,18 @@ graph
 
 ## Hardware
 
-| Name     | Manf    | Model          | Type      | Location    | Status                  | Notes                                          |
-| -------- | ------- | -------------- | --------- | ----------- | ----------------------- | ---------------------------------------------- |
-| GW       | HP      | Unknown        | Router    | Rack 1      | Live                    | HP desktop system running pfSense              |
-| Switch 1 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Live                    |                                                |
-| Switch 2 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Waiting to be installed | Sandbox/Learning switch                        |
-| Switch 3 | HP      | Procurve 2824  | L2 Switch | Fabrication | Live                    | Switch for the fabrication area                |
-| AP 1     | TP-Link |                | AP        | Top of Rack | Live                    | Uses stock firmware                            |
-| AP 2     | ???     | ???            | AP        | Pi Room     | Live                    |                                                |
-| AP 3     | Cisco   | RV110W         | AP        | Bar         | Live                    |                                                |
-| NAS 1    | QNAP    | TS-431+        | NAS       | Rack 1      | Live                    |                                                |
-| UPS      | APC     | ???            | UPS       | Rack 1      | Live                    |                                                |
-| ESX 1    | Dell    | R320           | Server    | Rack 1      | Waiting to be installed |                                                |
+| Name     | Manf    | Model          | Type      | Location    | Status                  | Notes                             |
+| -------- | ------- | -------------- | --------- | ----------- | ----------------------- | --------------------------------- |
+| GW       | HP      | Unknown        | Router    | Rack 1      | Live                    | HP desktop system running pfSense |
+| Switch 1 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Live                    |                                   |
+| Switch 2 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Waiting to be installed | Sandbox/Learning switch           |
+| Switch 3 | HP      | Procurve 2824  | L2 Switch | Fabrication | Live                    | Switch for the fabrication area   |
+| AP 1     | Linksys | WRT1900ACS     | AP        | Top of Rack | Live                    | Uses stock firmware               |
+| AP 2     | Netgear | WNR2000        | AP        | Pi Room     | Live                    |                                   |
+| AP 3     | Cisco   | RV110W         | AP        | Bar         | Live                    |                                   |
+| NAS 1    | QNAP    | TS-431+        | NAS       | Rack 1      | Live                    |                                   |
+| UPS      | APC     | ???            | UPS       | Rack 1      | Live                    |                                   |
+| ESX 1    | Dell    | R320           | Server    | Rack 1      | Waiting to be installed |                                   |
 
 ### GW - pfSense
 
