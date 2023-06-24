@@ -12,7 +12,7 @@ graph
     SWITCH1[Switch 1] -->|Port1 / en0| GW
     SERVER1[Server 1] -->|Port45| SWITCH1
     NAS1[NAS 1] --> |Port44| SWITCH1
-    ESX1[ESX 1] -.-> |Port??/??| SWITCH1
+    ESX1[ESX 1] -.-> |Port41/42| SWITCH1
     end
 
     GW -->|re0| MILL
@@ -52,7 +52,7 @@ graph
 | AP 3     | Cisco   | RV110W         | AP        | Bar         | Live                    |                                   |
 | NAS 1    | QNAP    | TS-431+        | NAS       | Rack 1      | Live                    |                                   |
 | UPS      | APC     | ???            | UPS       | Rack 1      | Live                    |                                   |
-| ESX 1    | Dell    | R320           | Server    | Rack 1      | Waiting to be installed |                                   |
+| ESX 1    | Dell    | R320           | Server    | Rack 1      | Live                    |                                   |
 
 ### GW - pfSense
 
