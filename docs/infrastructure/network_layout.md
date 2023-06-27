@@ -12,9 +12,11 @@ graph
     SWITCH1[Switch 1] -->|Port1 / en0| GW
     SERVER1[Server 1] -->|Port45| SWITCH1
     NAS1[NAS 1] --> |Port44| SWITCH1
-    ESX1[ESX 1] -.-> |Port41/42| SWITCH1
+    ESX1[ESX 1] --> |Port40/41/42| SWITCH1
+    LEIGHOOB[Leigh OOB] -.-> |Port39| SWITCH1
     end
 
+    LEIGHOOB --> MILL
     GW -->|re0| MILL
     GW -. L2TP via Mill Network .-> AAISP
     MILL[Mill Network] --> MILLROUTER[Mill Router - Draytek] --> INTERNET((Internet))
@@ -41,18 +43,19 @@ graph
 
 ## Hardware
 
-| Name     | Manf    | Model          | Type      | Location    | Status                  | Notes                             |
-| -------- | ------- | -------------- | --------- | ----------- | ----------------------- | --------------------------------- |
-| GW       | HP      | Unknown        | Router    | Rack 1      | Live                    | HP desktop system running pfSense |
-| Switch 1 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Live                    |                                   |
-| Switch 2 | Cisco   | Catalyst 3560G | L3 Switch | Rack 1      | Waiting to be installed | Sandbox/Learning switch           |
-| Switch 3 | HP      | Procurve 2824  | L2 Switch | Fabrication | Live                    | Switch for the fabrication area   |
-| AP 1     | Linksys | WRT1900ACS     | AP        | Top of Rack | Live                    | Uses stock firmware               |
-| AP 2     | Netgear | WNR2000        | AP        | Pi Room     | Live                    |                                   |
-| AP 3     | Cisco   | RV110W         | AP        | Bar         | Live                    |                                   |
-| NAS 1    | QNAP    | TS-431+        | NAS       | Rack 1      | Live                    |                                   |
-| UPS      | APC     | ???            | UPS       | Rack 1      | Live                    |                                   |
-| ESX 1    | Dell    | R320           | Server    | Rack 1      | Live                    |                                   |
+| Name      | Manf         | Model          | Type      | Location    | Status                  | Notes                                                          |
+| --------- | ------------ | -------------- | --------- | ----------- | ----------------------- | -------------------------------------------------------------- |
+| GW        | HP           | Unknown        | Router    | Rack 1      | Live                    | HP desktop system running pfSense                              |
+| Switch 1  | Cisco        | Catalyst 3560G | L3 Switch | Rack 1      | Live                    |                                                                |
+| Switch 2  | Cisco        | Catalyst 3560G | L3 Switch | Rack 1      | Waiting to be installed | Sandbox/Learning switch                                        |
+| Switch 3  | HP           | Procurve 2824  | L2 Switch | Fabrication | Live                    | Switch for the fabrication area                                |
+| AP 1      | Linksys      | WRT1900ACS     | AP        | Top of Rack | Live                    | Uses stock firmware                                            |
+| AP 2      | Netgear      | WNR2000        | AP        | Pi Room     | Live                    |                                                                |
+| AP 3      | Cisco        | RV110W         | AP        | Bar         | Live                    |                                                                |
+| NAS 1     | QNAP         | TS-431+        | NAS       | Rack 1      | Live                    |                                                                |
+| UPS       | APC          | ???            | UPS       | Rack 1      | Live                    |                                                                |
+| ESX 1     | Dell         | R320           | Server    | Rack 1      | Live                    |                                                                |
+| Leigh OOB | Raspberry Pi | 2 B+           | Server    | Rack 1      | Awaiting install        | Gives us 'out of band' access to Hackspace network and devices |
 
 ### GW - pfSense
 
@@ -129,6 +132,7 @@ This subnet doesn't have DHCP enabled, we use static assignment. Here is the cur
 | NAS 1         | `10.3.1.5`  | Rack 1                 |
 | ESX 1         | `10.3.1.10` | Rack 1                 |
 | ESX 1 iDRAC   | `10.3.1.20` | Rack 1                 |
+| Leigh OOB     | `10.3.1.21  | Rack 1                 |
 | HP Printer    | `10.3.1.50` | Pi Room 5/7            |
 | Epson Printer | `10.3.1.51` | Pi Room                |
 
@@ -187,3 +191,9 @@ IP Range: `81.187.195.16/29`
 ### OpenVPN
 
 The pfSense has a OpenVPN server, this allocates IPs in the `10.3.254.0/24` range and is available as a normal interface on pfSense, but it doesn't have a VLAN assigned to it.
+
+### OOB Access
+
+Out of band access to the network is available via 'Leigh OOB', this uses Tailscale to handle situations where GW or the L2TP is unavailable.
+
+For access, contact the [Infra team](../membership/useful_contacts.md#tech-infrastructure), or Andrew Williams.
