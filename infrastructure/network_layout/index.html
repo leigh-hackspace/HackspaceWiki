@@ -1024,6 +1024,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#oob-access" class="md-nav__link">
+    OOB Access
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1072,9 +1079,11 @@
     SWITCH1[Switch 1] --&gt;|Port1 / en0| GW
     SERVER1[Server 1] --&gt;|Port45| SWITCH1
     NAS1[NAS 1] --&gt; |Port44| SWITCH1
-    ESX1[ESX 1] -.-&gt; |Port41/42| SWITCH1
+    ESX1[ESX 1] --&gt; |Port40/41/42| SWITCH1
+    LEIGHOOB[Leigh OOB] -.-&gt; |Port39| SWITCH1
     end
 
+    LEIGHOOB --&gt; MILL
     GW --&gt;|re0| MILL
     GW -. L2TP via Mill Network .-&gt; AAISP
     MILL[Mill Network] --&gt; MILLROUTER[Mill Router - Draytek] --&gt; INTERNET((Internet))
@@ -1200,6 +1209,15 @@
 <td>Rack 1</td>
 <td>Live</td>
 <td></td>
+</tr>
+<tr>
+<td>Leigh OOB</td>
+<td>Raspberry Pi</td>
+<td>2 B+</td>
+<td>Server</td>
+<td>Rack 1</td>
+<td>Awaiting install</td>
+<td>Gives us 'out of band' access to Hackspace network and devices</td>
 </tr>
 </tbody>
 </table>
@@ -1354,6 +1372,11 @@
 <td>Rack 1</td>
 </tr>
 <tr>
+<td>Leigh OOB</td>
+<td>`10.3.1.21</td>
+<td>Rack 1</td>
+</tr>
+<tr>
 <td>HP Printer</td>
 <td><code>10.3.1.50</code></td>
 <td>Pi Room 5/7</td>
@@ -1445,13 +1468,16 @@
 </table>
 <h3 id="openvpn">OpenVPN</h3>
 <p>The pfSense has a OpenVPN server, this allocates IPs in the <code>10.3.254.0/24</code> range and is available as a normal interface on pfSense, but it doesn't have a VLAN assigned to it.</p>
+<h3 id="oob-access">OOB Access</h3>
+<p>Out of band access to the network is available via 'Leigh OOB', this uses Tailscale to handle situations where GW or the L2TP is unavailable.</p>
+<p>For access, contact the <a href="../../membership/useful_contacts/#tech-infrastructure">Infra team</a>, or Andrew Williams.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 24, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 27, 2023</span>
       
         <br>
         Created:
