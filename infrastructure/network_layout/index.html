@@ -981,8 +981,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#mill-network-vlan-101" class="md-nav__link">
-    Mill Network - VLAN '101'
+  <a href="#mill-network-vlan-50" class="md-nav__link">
+    Mill Network - VLAN '50'
   </a>
   
 </li>
@@ -1093,10 +1093,12 @@
     NAS1[NAS 1] --&gt; |Port44| SWITCH1
     ESX1[ESX 1] --&gt; |Port40/41/42| SWITCH1
     LEIGHOOB[Leigh OOB] -.-&gt; |Port39| SWITCH1
+    MINISWITCH[Mini Switch]
     end
 
-    LEIGHOOB --&gt; MILL
-    GW --&gt;|re0| MILL
+    LEIGHOOB --&gt; MINISWITCH
+    GW --&gt;|re0| MINISWITCH
+    MINISWITCH --&gt; MILL
     GW -. L2TP via Mill Network .-&gt; AAISP
     MILL[Mill Network] --&gt; MILLROUTER[Mill Router - Draytek] --&gt; INTERNET((Internet))
     AAISP[Andrews Arnold] --&gt; INTERNET
@@ -1228,8 +1230,17 @@
 <td>2 B+</td>
 <td>Server</td>
 <td>Rack 1</td>
-<td>Awaiting install</td>
+<td>Live</td>
 <td>Gives us 'out of band' access to Hackspace network and devices</td>
+</tr>
+<tr>
+<td>Mini Switch</td>
+<td>Gigabyte</td>
+<td>???</td>
+<td>L2 Switch</td>
+<td>Rack 1</td>
+<td>Live</td>
+<td>Multiple ports on the Mill network, needs switching to Switch 1</td>
 </tr>
 </tbody>
 </table>
@@ -1246,8 +1257,8 @@
 <tbody>
 <tr>
 <td><code>re0</code></td>
-<td>Mill network</td>
-<td></td>
+<td>Mini Switch</td>
+<td>Connection to mill network</td>
 </tr>
 <tr>
 <td><code>en0</code></td>
@@ -1332,12 +1343,21 @@
     PIROOM --&gt; SHARED
     CLASSROOM --&gt; SHARED
     SHARED --&gt; AUTOMATION</code></pre>
-<h3 id="mill-network-vlan-101">Mill Network - VLAN '101'</h3>
-<p>Our outbound internet route, should be treated as untrusted due to relatively little control over devices in other businesses.</p>
-<p>IP Range: <code>192.168.0.0/16</code></p>
+<h3 id="mill-network-vlan-50">Mill Network - VLAN '50'</h3>
+<p>Our outbound internet route, should be treated as untrusted due to relatively little control over devices in other businesses. Our port seems to be be on VLAN 50 on the Mill's switch infrastructure and is a 100mbps port. <code>192.168.20.1</code> is our gateway, which is a DrayTek 2865.</p>
+<p>The mill switch network and internet access is managed by Image Village, and the ISP is Awareness Software Limited (AS34931).</p>
+<p>IP Range: <code>192.168.20.0/24</code></p>
 <h3 id="shared-services-vlan-225">Shared Services - VLAN 225</h3>
 <p>Where the servers, routers, and other central bits are hosted.</p>
 <p>IP Range: <code>10.3.1.0/24</code></p>
+<p>The range is split into logical groups:</p>
+<ul>
+<li><code>1</code> to <code>9</code> - Network hardware</li>
+<li><code>10</code> to <code>19</code> - Physical Servers</li>
+<li><code>20</code> to <code>29</code> - Physical Server Management Interfaces</li>
+<li><code>30</code> to <code>49</code> - VMs</li>
+<li><code>50</code> to <code>59</code> - Printers</li>
+</ul>
 <p>This subnet doesn't have DHCP enabled, we use static assignment. Here is the current list:</p>
 <table>
 <thead>
@@ -1385,8 +1405,13 @@
 </tr>
 <tr>
 <td>Leigh OOB</td>
-<td>`10.3.1.21</td>
+<td><code>10.3.1.21</code></td>
 <td>Rack 1</td>
+</tr>
+<tr>
+<td>Apps1</td>
+<td><code>10.3.1.30</code></td>
+<td>ESX 1</td>
 </tr>
 <tr>
 <td>HP Printer</td>
@@ -1489,7 +1514,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 27, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 28, 2023</span>
       
         <br>
         Created:
