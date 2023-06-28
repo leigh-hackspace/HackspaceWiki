@@ -12,12 +12,13 @@ While our directors can address most questions concerning the use of the space a
 * Pi Room - Directors
 * Classroom - Directors
 * Main Space - Directors
-* Bar & Social Space - Directors
+* Social Space - Directors
+* Garden / Hydroponics - John Williams
 * Electronics - Kian Ryan, Andy Woodward
 * Fabrication - Kian Ryan, Andy Woodward
 * Workshop - Ian Harter, Andrew Williams
 * Dark Room - Katie Dixon, Cat Ryan
-* Fabrics - Cat Ryan
+* Crafts Space - Cat Ryan
 
 ## Tech Infrastructure
 
@@ -25,3 +26,7 @@ If you have any issues with the WiFi, network, or a hosted service, contact one 
 
 * Paul Williams
 * Andrew Williams
+
+## Anything Else
+
+If you've got a question about something not covered here, then just ask in [Slack in `#general`](https://leighhack.slack.com/archives/C0A9Y6H26) and someone should be able to guide you in the right direction.

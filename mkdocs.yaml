@@ -99,7 +99,8 @@ nav:
       - Disputes: membership/disputes.md
       - Useful Contacts: membership/useful_contacts.md
   - Facilities:
-      - Main Room: facilities/main_room.md
+      - facilities/index.md
+      - Main Space: facilities/main_space.md
       - Pi Room: facilities/pi_room.md
       - Classroom: facilities/classroom.md
       - Workshop:
@@ -112,8 +113,8 @@ nav:
       - Fabrication: facilities/fabrication.md
       - Electronics: facilities/electronics.md
       - Dark Room: facilities/dark_room.md
-      - Wet Area: facilities/wet_area.md
-      - Bar: facilities/bar.md
+      - Crafts Space: facilities/crafts_space.md
+      - Social Space: facilities/social_space.md
       - Artist Pods: facilities/artist_pods.md
   - Infrastructure:
       - Internal Services: infrastructure/internal_services.md

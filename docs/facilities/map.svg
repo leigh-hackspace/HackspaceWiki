@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="Map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330.73 411.11">
+  <defs>
+    <style>
+      .d {
+        font-family: MyriadPro-Regular, 'Myriad Pro';
+      }
+
+      .d, .e {
+        fill: #1d1d1b;
+        font-size: 9px;
+      }
+
+      .f {
+        letter-spacing: .02em;
+      }
+
+      .g {
+        letter-spacing: 0em;
+      }
+
+      .e {
+        font-family: Roboto-Regular, Roboto;
+      }
+
+      .h {
+        fill: #676766;
+      }
+
+      .h, .i, .j {
+        stroke: #1d1d1b;
+        stroke-miterlimit: 10;
+      }
+
+      .i {
+        fill: #fff;
+      }
+
+      .j {
+        fill: #afafaf;
+      }
+
+      .k {
+        letter-spacing: -.02em;
+      }
+
+      .l {
+        letter-spacing: 0em;
+      }
+
+      .m {
+        letter-spacing: -.02em;
+      }
+
+      .n {
+        letter-spacing: 0em;
+      }
+
+      .o {
+        letter-spacing: -.02em;
+      }
+
+      .p {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <g id="b" data-name="Rooms">
+    <rect class="i" x="91.82" y="139.18" width="57.99" height="35.28"/>
+    <rect class="h" x="91.82" y="174.46" width="57.99" height="35.76"/>
+    <rect class="i" x="25.62" y="244.52" width="66.2" height="35.28"/>
+    <rect class="i" x="149.81" y="244.52" width="69.58" height="35.28"/>
+    <rect class="i" x="149.81" y="279.8" width="69.58" height="109.21"/>
+    <rect class="i" x="25.62" y="345.15" width="124.19" height="43.85"/>
+    <polygon class="i" points="305.5 358.08 305.5 385.69 297.19 385.69 297.19 389 219.39 389 219.39 257.57 297.19 257.57 297.19 358.08 305.5 358.08"/>
+    <path class="i" d="m159.1,307.44c0,.28-.01.56-.04.84h-9.26v36.87s-124.18,0-124.18,0v-65.35h66.2v-35.28h57.98v42.95h9.26c.03.28.04.56.04.84,0,5.19-4.14,9.41-9.3,9.54v.05c5.16.13,9.3,4.35,9.3,9.54Z"/>
+    <rect class="i" x="149.81" y="59.45" width="69.58" height="54.29"/>
+    <rect class="i" x="91.82" y="59.45" width="57.99" height="79.73"/>
+    <path class="i" d="m219.39,113.73v108.56h-127.57v-12.08h57.98v-7.1c-.28.03-.56.04-.84.04-5.27,0-9.55-4.28-9.55-9.55h10.39v-30.36c-.28.03-.56.04-.84.04-5.27,0-9.55-4.28-9.55-9.55h10.39v-21.12c-.28.03-.56.04-.84.04-5.27,0-9.55-4.28-9.55-9.55h10.39v-9.37h69.59Z"/>
+  </g>
+  <text class="e" transform="translate(103.46 103.6)"><tspan x="0" y="0">Pi Room</tspan></text>
+  <text class="e" transform="translate(160.8 90.41)"><tspan x="0" y="0">Elect</tspan><tspan class="l" x="19.72" y="0">r</tspan><tspan x="22.68" y="0">onics</tspan></text>
+  <g id="c" data-name="Corridors">
+    <path class="j" d="m240.8,59.45v50.98l12.41-.12v53.64l-12.41.12v93.51h-3.82c-.1,5.18-4.34,9.36-9.55,9.36-.28,0-.56-.01-.84-.04v-9.32h-7.2v-119.29h-9.32c-.03-.28-.04-.56-.04-.84,0-5.21,4.18-9.45,9.36-9.55v-.03c-5.18-.1-9.36-4.34-9.36-9.55,0-.28.01-.56.04-.84h9.32v-58.02h21.41Z"/>
+    <path class="j" d="m297.19,16.44v43.01h-57.67v10.39c-5.27,0-9.55-4.28-9.55-9.55,0-.28.01-.56.04-.84h-.08c.03.28.04.56.04.84,0,5.27-4.28,9.55-9.55,9.55v-10.39h-14.56V16.44h91.33Z"/>
+    <path class="j" d="m216.25,47.49h-10.39v11.96h-100.32c.03.28.04.56.04.84,0,5.27-4.28,9.55-9.55,9.55v-10.39H25.62V16.44h180.24v11.95h10.39c0,5.27-4.28,9.55-9.55,9.55-.28,0-.56,0-.84-.04v.08c.28-.03.56-.04.84-.04,5.27,0,9.55,4.28,9.55,9.55Z"/>
+    <path class="j" d="m229.78,242.95h-10.39v1.57h-74.78v9.51c-.28.03-.56.04-.84.04-5.27,0-9.55-4.28-9.55-9.55h-.03c0,5.27-4.28,9.55-9.55,9.55-.28,0-.56,0-.84-.04v-9.51h-31.98v-22.23h94.39c0-5.27,4.28-9.55,9.55-9.55.28,0,.56,0,.84.04v9.51h22.79v1.56h10.39c0,5.28-4.28,9.55-9.55,9.55-.28,0-.56-.01-.84-.03v.07c.28-.03.56-.04.84-.04,5.27,0,9.55,4.28,9.55,9.55Z"/>
+    <path class="j" d="m102.21,242.95h-10.39v1.57H25.62v-22.23h66.2v1.56h10.39c0,5.28-4.28,9.55-9.55,9.55-.28,0-.56-.01-.84-.03v.07c.28-.03.56-.04.84-.04,5.27,0,9.55,4.28,9.55,9.55Z"/>
+  </g>
+  <text class="e" transform="translate(244.29 323.29)"><tspan x="0" y="0">Social</tspan><tspan x="-.16" y="10.8">Space</tspan></text>
+  <text class="e" transform="translate(165.12 334.4)"><tspan class="k" x="0" y="0">W</tspan><tspan x="7.85" y="0">orkshop</tspan></text>
+  <text class="e" transform="translate(79.73 311.72)"><tspan x="0" y="0">C</tspan><tspan class="m" x="5.86" y="0">r</tspan><tspan x="8.73" y="0">afts</tspan></text>
+  <text class="e" transform="translate(161.55 265)"><tspan class="o" x="0" y="0">F</tspan><tspan x="4.83" y="0">abrication</tspan></text>
+  <text class="e" transform="translate(36.01 264.91)"><tspan x="0" y="0">Dark Room</tspan></text>
+  <text class="e" transform="translate(67.69 370.57)"><tspan x="0" y="0">A</tspan><tspan class="f" x="5.87" y="0">r</tspan><tspan x="9.14" y="0">tist </tspan><tspan class="p" x="24.07" y="0">P</tspan><tspan x="29.69" y="0">ods</tspan></text>
+  <text class="e" transform="translate(173.65 162.47)"><tspan x="0" y="0">Main</tspan><tspan x="-2.43" y="10.8">Space</tspan></text>
+  <path class="j" d="m25.62,27.55v9.51c.28.03.56.04.84.04,5.27,0,9.55-4.28,9.55-9.55h-10.39Z"/>
+  <path class="j" d="m25.62,46.65v-9.51c.28-.03.56-.04.84-.04,5.27,0,9.55,4.28,9.55,9.55h-10.39Z"/>
+  <path class="j" d="m25.62,223.86v9.51c.28.03.56.04.84.04,5.27,0,9.55-4.28,9.55-9.55h-10.39Z"/>
+  <path class="j" d="m25.62,242.96v-9.51c.28-.03.56-.04.84-.04,5.27,0,9.55,4.28,9.55,9.55h-10.39Z"/>
+  <polygon class="h" points="321.94 233.4 321.94 258.16 318.49 258.16 318.49 271.06 301.34 271.06 301.34 258.16 297.19 258.16 297.19 257.57 240.8 257.57 240.8 164.06 297.19 164.06 297.19 233.4 321.94 233.4"/>
+  <polygon class="h" points="297.19 59.45 297.19 164.06 253.21 164.06 253.21 113.73 239.52 113.73 239.52 59.45 297.19 59.45"/>
+  <rect class="h" x="25.62" y="59.45" width="66.2" height="162.84"/>
+  <text class="d" transform="translate(96.85 159.52)"><tspan x="0" y="0">Class</tspan><tspan class="n" x="18.81" y="0">r</tspan><tspan class="g" x="21.66" y="0">oom</tspan></text>
+</svg>

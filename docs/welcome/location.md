@@ -1,6 +1,8 @@
 # Location
 
-Leigh Hackspace is located inside [Leigh Spinners Mill](https://www.leighspinnersmill.co.uk/), a Grade II listed former cotton spinning mill, restored by Leigh Building Preservation Trust and now hosting multiple business and community projects.
+Leigh Hackspace is located inside [Leigh Spinners Mill](https://www.leighspinnersmill.co.uk/), a Grade II* listed former cotton spinning mill, restored by Leigh Building Preservation Trust and now hosting multiple business and community projects.
+
+The hackspace is located on the third floor of Mill 2, located at the end of the main corridor from the lift and stairs. 
 
 ```
 Leigh Hackspace
