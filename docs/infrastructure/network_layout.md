@@ -10,7 +10,6 @@ graph
     GW[GW - pfSense] 
     AP[AP 1] -->|Port43| SWITCH1
     SWITCH1[Switch 1] -->|Port1 / en0| GW
-    SERVER1[Server 1] -->|Port45| SWITCH1
     NAS1[NAS 1] --> |Port44| SWITCH1
     ESX1[ESX 1] --> |Port40/41/42| SWITCH1
     LEIGHOOB[Leigh OOB] -.-> |Port39| SWITCH1
@@ -140,7 +139,6 @@ This subnet doesn't have DHCP enabled, we use static assignment. Here is the cur
 | ------------- | ----------- | ---------------------- |
 | GW            | `10.3.1.1`  | Rack 1                 |
 | Switch 1      | `10.3.1.2`  | Rack 1                 |
-| Server 1      | `10.3.1.3`  | Rack 1                 |
 | Switch 3      | `10.3.1.4`  | Workshop / Fabrication |
 | NAS 1         | `10.3.1.5`  | Rack 1                 |
 | ESX 1         | `10.3.1.10` | Rack 1                 |

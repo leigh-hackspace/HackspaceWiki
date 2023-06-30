@@ -26,7 +26,7 @@ Port: `1883`
 
 ## Prometheus
 
-A internal Prometheus instance is available at `http://server1.int.leighhack.org:9090`. If you wish to have it scrape any internal services then drop a message to the Infra team.
+A internal Prometheus instance is available at `http://apps1.int.leighhack.org:9090`. If you wish to have it scrape any internal services then drop a message to the Infra team.
 
 ## Grafana
 
