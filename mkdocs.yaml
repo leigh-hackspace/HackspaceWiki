@@ -119,3 +119,4 @@ nav:
   - Infrastructure:
       - Internal Services: infrastructure/internal_services.md
       - Network Layout: infrastructure/network_layout.md
+      - VPN: infrastructure/vpn.md
