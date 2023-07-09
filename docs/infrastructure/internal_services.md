@@ -30,3 +30,7 @@ A internal Prometheus instance is available at `http://apps1.int.leighhack.org:9
 ## Grafana
 
 Grafana dashboarding is available at [http://grafana.int.leighhack.org](http://grafana.int.leighhack.org).
+
+## Member VMs
+
+We are able to provision VMs for members to use, on request. For further information contact [infra](../membership/useful_contacts.md#tech-infrastructure).
