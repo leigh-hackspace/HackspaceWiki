@@ -6,7 +6,7 @@ We currently use OpenVPN, so on Windows, Linux, Android, and iOS you can use the
 
 ## Requirements
 
-You'll need an account on [id.leighhack.org](https://id.leighhack.org). Once created you'll need to ask in [#infra on slack]() to get added to the correct group.
+You'll need an account on [id.leighhack.org](https://id.leighhack.org). Ideally, sign up with the same email address that you used for your GoCardless membership. Once created you'll need to ask in [#infra on slack]() to get added to the correct group.
 
 ## Configuration
 
