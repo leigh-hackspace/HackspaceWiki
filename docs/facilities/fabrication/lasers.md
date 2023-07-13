@@ -4,4 +4,4 @@
 
 Laser Engraver
 
-* [OctoPi](http://laser-1.int.leighhack.org)
+* [LaserWeb](http://laser-1.int.leighhack.org)
