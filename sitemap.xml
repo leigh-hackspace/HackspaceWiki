@@ -51,6 +51,26 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/fabrication/</loc>
+         <lastmod>2023-07-13</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/fabrication/3d_printers/</loc>
+         <lastmod>2023-07-13</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/fabrication/cncs/</loc>
+         <lastmod>2023-07-13</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/fabrication/lasers/</loc>
+         <lastmod>2023-07-13</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/workshop/</loc>
          <lastmod>2023-07-13</lastmod>
          <changefreq>daily</changefreq>
@@ -72,26 +92,6 @@
     </url>
     <url>
          <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/workshop/woodturning_lathe/</loc>
-         <lastmod>2023-07-13</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/workshop/fabrication/</loc>
-         <lastmod>2023-07-13</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/workshop/fabrication/3d_printers/</loc>
-         <lastmod>2023-07-13</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/workshop/fabrication/cncs/</loc>
-         <lastmod>2023-07-13</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/workshop/fabrication/lasers/</loc>
          <lastmod>2023-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
