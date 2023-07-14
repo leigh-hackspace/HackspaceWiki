@@ -1054,26 +1054,6 @@
     Hardware
   </a>
   
-    <nav class="md-nav" aria-label="Hardware">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gw-pfsense" class="md-nav__link">
-    GW - pfSense
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ap-1" class="md-nav__link">
-    AP 1
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1106,15 +1086,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pi-room-vlan-227" class="md-nav__link">
-    Pi Room - VLAN 227
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#classroom-vlan-228" class="md-nav__link">
-    Classroom - VLAN 228
+  <a href="#wired-vlan-227" class="md-nav__link">
+    Wired - VLAN 227
   </a>
   
 </li>
@@ -1361,104 +1334,25 @@
 </tr>
 </tbody>
 </table>
-<h3 id="gw-pfsense">GW - pfSense</h3>
-<p>We've got a small HP desktop system running pfSense with a quad port NIC, giving us 5 physical NICs. At the moment the motherboard NIC is connected to the Mill network, and the 4 port NIC is used for internal traffic.</p>
-<table>
-<thead>
-<tr>
-<th>Port</th>
-<th>Connected to</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>re0</code></td>
-<td>Mini Switch</td>
-<td>Connection to mill network</td>
-</tr>
-<tr>
-<td><code>en0</code></td>
-<td>Switch 1</td>
-<td>Tagged only traffic, all VLANs</td>
-</tr>
-<tr>
-<td><code>en1</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>en2</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>en3</code></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="ap-1">AP 1</h3>
-<p>WiFi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mode, in that DHCP is disabled and we're not using any of the routing mode of the router itself. It has a 4 port switch and a 'Internet' port.</p>
-<table>
-<thead>
-<tr>
-<th>Port</th>
-<th>Connected to</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Internet</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>Port1</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>Port2</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>Port3</code></td>
-<td>Switch1</td>
-<td></td>
-</tr>
-<tr>
-<td><code>Port4</code></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
 <h2 id="l3-layout-vlans">L3 Layout / VLANs</h2>
 <p>TL;DR: All VLANs can access Shared Services, Automation is only accessible via Shared Services.</p>
 <pre class="mermaid"><code>graph LR
     INTERNET((Internet))
     SHARED[Shared Services - VLAN 225]
     WiFi[WiFi - VLAN 226]
-    PIROOM[Pi Room - VLAN 227]
-    CLASSROOM[Classroom - VLAN 228]
+    WIRED[Wired - VLAN 227]
     AUTOMATION[Automation VLAN 229]
     SHARED --&gt; INTERNET
-    PIROOM --&gt; INTERNET
-    CLASSROOM --&gt; INTERNET
+    WIRED --&gt; INTERNET
     WiFi --&gt; INTERNET
     INTERNET &lt;--&gt; DMZ[DMZ - VLAN 230]
     SHARED --&gt; DMZ
-    PIROOM --&gt; DMZ
-    CLASSROOM --&gt; DMZ
+    WIRED --&gt; DMZ
     WiFi --&gt; DMZ
 
     WiFi --&gt; SHARED
-    PIROOM --&gt; SHARED
-    CLASSROOM --&gt; SHARED
+    WIRED --&gt; SHARED
+    WiFi --&gt; WIRED
     SHARED --&gt; AUTOMATION</code></pre>
 <h3 id="mill-network-vlan-50">Mill Network - VLAN '50'</h3>
 <p>Our outbound internet route, should be treated as untrusted due to relatively little control over devices in other businesses. Our port seems to be be on VLAN 50 on the Mill's switch infrastructure and is a 100mbps port. <code>192.168.20.1</code> is our gateway, which is a DrayTek 2865.</p>
@@ -1538,7 +1432,7 @@
 </tbody>
 </table>
 <h3 id="wifi-vlan-226">WiFi - VLAN 226</h3>
-<p>WiFi users, General open access to the internet and internal services. Due to the terrible routing on these APs, its unlikely that the management address will respond outside the VLAN.</p>
+<p>WiFi users, General open access to the internet and internal services.</p>
 <p>IP Range: <code>10.3.2.0/24</code></p>
 <p>DHCP enabled, <code>10.3.2.11 - 10.3.2.254</code></p>
 <table>
@@ -1563,18 +1457,14 @@
 <tr>
 <td>AP3</td>
 <td><code>10.3.2.4</code></td>
-<td>Bar above the door</td>
+<td>Bar by the door</td>
 </tr>
 </tbody>
 </table>
-<h3 id="pi-room-vlan-227">Pi Room - VLAN 227</h3>
-<p>Pi Room / Co-Working space. General open access to the internet and internal services.</p>
+<h3 id="wired-vlan-227">Wired - VLAN 227</h3>
+<p>The general hackspace wired network. This covers the Pi Room, Classroom, Electronics, and Fabrication.</p>
 <p>IP Range: <code>10.3.14.0/24</code></p>
 <p>DHCP enabled, <code>10.3.14.2 - 10.3.14.254</code></p>
-<h3 id="classroom-vlan-228">Classroom - VLAN 228</h3>
-<p>Class room, General open access to the internet and internal services.</p>
-<p>IP Range <code>10.3.15.0/24</code></p>
-<p>DHCP enabled, <code>10.3.15.2 - 10.3.15.254</code></p>
 <h3 id="automation-vlan-229">Automation - VLAN 229</h3>
 <p>Used for any automation devices that do not require open internet access, or need to be secured away from the general network (e.g. Door system)</p>
 <p>IP Range <code>10.3.16.0/24</code></p>
@@ -1597,7 +1487,7 @@
 </tbody>
 </table>
 <h3 id="dmz-vlan-230">DMZ - VLAN 230</h3>
-<p>Used for internet facing services, all systems are allocated addresses within the A&amp;A delgated IP range.</p>
+<p>Used for internet facing services, all systems are allocated addresses within the A&amp;A delegated IP range.</p>
 <p>IP Range: <code>81.187.195.16/29</code></p>
 <table>
 <thead>
@@ -1626,7 +1516,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 30, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 14, 2023</span>
       
         <br>
         Created:
