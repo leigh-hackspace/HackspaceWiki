@@ -59,29 +59,6 @@ graph
 | Leigh OOB   | Raspberry Pi | 2 B+           | Server    | Rack 1      | Live                    | Gives us 'out of band' access to Hackspace network and devices  |
 | Mini Switch | Gigabyte     | ???            | L2 Switch | Rack 1      | Live                    | Multiple ports on the Mill network, needs switching to Switch 1 |
 
-### GW - pfSense
-
-We've got a small HP desktop system running pfSense with a quad port NIC, giving us 5 physical NICs. At the moment the motherboard NIC is connected to the Mill network, and the 4 port NIC is used for internal traffic.
-
-| Port  | Connected to | Notes                          |
-| ----- | ------------ | ------------------------------ |
-| `re0` | Mini Switch  | Connection to mill network     |
-| `en0` | Switch 1     | Tagged only traffic, all VLANs |
-| `en1` |              |                                |
-| `en2` |              |                                |
-| `en3` |              |                                |
-
-### AP 1
-
-WiFi is served by a router/AP on top of the rack. Its currently in 'dumb AP' mode, in that DHCP is disabled and we're not using any of the routing mode of the router itself. It has a 4 port switch and a 'Internet' port.
-
-| Port       | Connected to | Notes |
-| ---------- | ------------ | ----- |
-| `Internet` |              |       |
-| `Port1`    |              |       |
-| `Port2`    |              |       |
-| `Port3`    | Switch1      |       |
-| `Port4`    |              |       |
 
 ## L3 Layout / VLANs
 
@@ -92,22 +69,19 @@ graph LR
     INTERNET((Internet))
     SHARED[Shared Services - VLAN 225]
     WiFi[WiFi - VLAN 226]
-    PIROOM[Pi Room - VLAN 227]
-    CLASSROOM[Classroom - VLAN 228]
+    WIRED[Wired - VLAN 227]
     AUTOMATION[Automation VLAN 229]
     SHARED --> INTERNET
-    PIROOM --> INTERNET
-    CLASSROOM --> INTERNET
+    WIRED --> INTERNET
     WiFi --> INTERNET
     INTERNET <--> DMZ[DMZ - VLAN 230]
     SHARED --> DMZ
-    PIROOM --> DMZ
-    CLASSROOM --> DMZ
+    WIRED --> DMZ
     WiFi --> DMZ
     
     WiFi --> SHARED
-    PIROOM --> SHARED
-    CLASSROOM --> SHARED
+    WIRED --> SHARED
+    WiFi --> WIRED
     SHARED --> AUTOMATION
 ```
 
@@ -150,7 +124,7 @@ This subnet doesn't have DHCP enabled, we use static assignment. Here is the cur
 
 ### WiFi - VLAN 226
 
-WiFi users, General open access to the internet and internal services. Due to the terrible routing on these APs, its unlikely that the management address will respond outside the VLAN.
+WiFi users, General open access to the internet and internal services.
 
 IP Range: `10.3.2.0/24`
 
@@ -160,23 +134,15 @@ DHCP enabled, `10.3.2.11 - 10.3.2.254`
 | ----------- | ---------- | ----------------------- |
 | AP1         | `10.3.2.2` | On top of Rack 1        |
 | AP2         | `10.3.2.3` | Pi Room behind Printers |
-| AP3         | `10.3.2.4` | Bar above the door      |
+| AP3         | `10.3.2.4` | Bar by the door         |
 
-### Pi Room - VLAN 227
+### Wired - VLAN 227
 
-Pi Room / Co-Working space. General open access to the internet and internal services.
+The general hackspace wired network. This covers the Pi Room, Classroom, Electronics, and Fabrication.
 
 IP Range: `10.3.14.0/24`
 
 DHCP enabled, `10.3.14.2 - 10.3.14.254`
-
-### Classroom - VLAN 228
-
-Class room, General open access to the internet and internal services.
-
-IP Range `10.3.15.0/24`
-
-DHCP enabled, `10.3.15.2 - 10.3.15.254`
 
 ### Automation - VLAN 229
 
@@ -193,7 +159,7 @@ This subnet does have DHCP enabled, but we use some static assignment. Here is t
 
 ### DMZ - VLAN 230
 
-Used for internet facing services, all systems are allocated addresses within the A&A delgated IP range.
+Used for internet facing services, all systems are allocated addresses within the A&A delegated IP range.
 
 IP Range: `81.187.195.16/29`
 
