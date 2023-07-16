@@ -16,6 +16,16 @@ Filestore is a generic, web accessible filestore system that is available on all
 
 * [http://filestore.int.leighhack.org](http://filestore.int.leighhack.org)
 
+## Outbound Mailserver
+
+`mx1.int.leighhack.org` has been configured as an outbound email server relay for the internal hackspace systems, configured with all mod-cons such as SPF and DKIM so mail should arrive at their destination when the downstream systems are configured correctly.
+
+* Port `25`
+* Supports STARTTLS
+* Use `leighhack.org` or `int.leighhack.org` for the mails
+
+Outbound mails are monitored, and Infra will be unhappy if this is abused.
+
 ## MQTT
 
 We have a MQTT server available, at `mqtt.int.leighhack.org`. At the moment this service is unauthenticated, but in the future it'll require a login and possibly TLS client certs.
