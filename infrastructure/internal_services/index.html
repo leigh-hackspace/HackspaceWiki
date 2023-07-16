@@ -1043,6 +1043,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#outbound-mailserver" class="md-nav__link">
+    Outbound Mailserver
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#mqtt" class="md-nav__link">
     MQTT
   </a>
@@ -1142,6 +1149,14 @@
 <ul>
 <li><a href="http://filestore.int.leighhack.org">http://filestore.int.leighhack.org</a></li>
 </ul>
+<h2 id="outbound-mailserver">Outbound Mailserver</h2>
+<p><code>mx1.int.leighhack.org</code> has been configured as an outbound email server relay for the internal hackspace systems, configured with all mod-cons such as SPF and DKIM so mail should arrive at their destination when the downstream systems are configured correctly.</p>
+<ul>
+<li>Port <code>25</code></li>
+<li>Supports STARTTLS</li>
+<li>Use <code>leighhack.org</code> or <code>int.leighhack.org</code> for the mails</li>
+</ul>
+<p>Outbound mails are monitored, and Infra will be unhappy if this is abused.</p>
 <h2 id="mqtt">MQTT</h2>
 <p>We have a MQTT server available, at <code>mqtt.int.leighhack.org</code>. At the moment this service is unauthenticated, but in the future it'll require a login and possibly TLS client certs.</p>
 <p>Hostname: <code>mqtt.int.leighhack.org</code>
@@ -1158,7 +1173,7 @@ Port: <code>1883</code></p>
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 9, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 16, 2023</span>
       
         <br>
         Created:
