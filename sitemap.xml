@@ -76,6 +76,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/fabrication/workstation/</loc>
+         <lastmod>2023-07-17</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://leigh-hackspace.github.io/HackspaceWiki/facilities/workshop/</loc>
          <lastmod>2023-07-17</lastmod>
          <changefreq>daily</changefreq>
