@@ -869,22 +869,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#3d-1" class="md-nav__link">
-    3D-1
+  <a href="#3d-1-makerbot-replicator-2" class="md-nav__link">
+    3D-1 - Makerbot Replicator 2
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3d-2" class="md-nav__link">
-    3D-2
+  <a href="#3d-2-ender-3-pro" class="md-nav__link">
+    3D-2 - Ender 3 Pro
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3d-3" class="md-nav__link">
-    3D-3
+  <a href="#3d-3-anycubic-vyper" class="md-nav__link">
+    3D-3 - Anycubic Vyper
   </a>
   
 </li>
@@ -1113,23 +1113,84 @@
 
 
 <h1 id="3d-printers">3D Printers</h1>
-<h2 id="3d-1">3D-1</h2>
-<p><strong>Makerbot Replicator 2</strong></p>
+<p>We have 3 printers available for all members to use after training.</p>
+<p>All printers are networked, and we ask that you use the linked OctoPi server when printing your files.</p>
+<p><a href="https://www.prusa3d.com/page/prusaslicer_424/">PrusaSlicer</a> profiles are linked for each printer.</p>
+<p>CAD-1 is available for you to design, slice and print your models.</p>
+<blockquote>
+<p>You are responsible for ensuring the safe operation of printers.<br />
+Do not leave the printers unattended for prolonged periods of 
+time.<br />
+If you are in doubt about the operation of the printers, please ask, and 
+someone will be happy to help.</p>
+</blockquote>
+<p>Workflow:</p>
+<p>There's a number of repeatable steps to printing on our printers.<br />
+We're hoping that everyone can follow them and have a consistent experience.</p>
 <ul>
-<li><a href="http://3d-1.int.leighhack.org">OctoPi</a></li>
-<li><a href="https://downloads.makerbot.com/replicator2/MakerBot_Replicator2_user_manual.pdf">Manual</a></li>
+<li>You'll need a STL model file to print.  <a href="https://www.printables.com/">Find one online</a>, or design your own using the CAD tools available.</li>
+<li>If using CAD-1, <a href="https://www.prusa3d.com/page/prusaslicer_424/">PrusaSlicer</a> is configured for the printers.</li>
+<li>If not using CAD-1, download PrusaSlicer and the PrusaSlicer profile for the printer you want to use.</li>
+<li>Copy the profile files to your local Prusa folder (c:\users\USERNAME\AppData\Roaming\PrusaSlicer on Windows).</li>
+<li>Start PrusaSlicer, import your STL.</li>
+<li><a href="https://help.prusa3d.com/article/first-print-with-prusaslicer_1753">Slice your model and export a GCode file.</a></li>
+<li>Open the OctoPi for your printer, and login (ask if you don't have the password).</li>
+<li>Drag the sliced GCode file to the OctoPi server.</li>
+<li>Turn on the printer.</li>
+<li>Ensure filament is loaded.</li>
+<li>Click on the file in OctoPi to load, print your file from OctoPi.</li>
+<li>Keep an eye on OctoPi and the printer as your file is printing.</li>
 </ul>
-<h2 id="3d-2">3D-2</h2>
-<p><strong>???</strong></p>
+<p>Our printers:</p>
+<h2 id="3d-1-makerbot-replicator-2">3D-1 - Makerbot Replicator 2</h2>
 <ul>
-<li><a href="http://3d-2.int.leighhack.org">OctoPi</a></li>
+<li>The Makerbot Replicator 2 is only suitable for <strong>PLA</strong> printing with 1.75mm filament.</li>
+<li>
+<p>The OctoPi will accept <strong>GCode</strong> files sliced with the linked PrusaSlicer profile.</p>
+</li>
+<li>
+<p>This printer is great for rapid first draft prints.</p>
+</li>
+<li>
+<p><a href="http://3d-1.int.leighhack.org">OctoPi</a> (link only accessible from LeighHack network)</p>
+</li>
+<li><a href="../manuals/makerbot_replicator2.pdf">Manual</a></li>
+<li><a href="https://github.com/qratz/replicator2_PrusaSlicer">PrusaSlicer Profile</a></li>
 </ul>
-<h2 id="3d-3">3D-3</h2>
-<p><strong>AnyCubic Vyper</strong></p>
+<p>OctoPi on 3D-1 is configured to accept gcode files in RepRap format.<br />
+If configuring your own profile, please ensure "G-code flavour" is set to "RepRap Firmware".</p>
+<h2 id="3d-2-ender-3-pro">3D-2 - Ender 3 Pro</h2>
 <ul>
-<li><a href="http://3d-3.int.leighhack.org">OctoPi</a></li>
-<li><a href="https://cdn.shopify.com/s/files/1/0245/5519/2380/files/Anycubic_Vyper_User_Manual_V0.1.1.pdf">Manual</a></li>
+<li>The Ender 3 Pro is suitable for <strong>PLA</strong> and <strong>PETG</strong> printing with 1.75mm filament.</li>
+<li>
+<p>Please only leave <strong>PLA</strong> filament in the printer when not printing.</p>
+</li>
+<li>
+<p>This printer is great for all types of prints, but especially detail prints.</p>
+</li>
+<li>
+<p><a href="http://3d-2.int.leighhack.org">OctoPi</a> (link only accessible from LeighHack network)</p>
+</li>
+<li><a href="../manuals/ender3.pdf">Manual</a></li>
+<li><a href="https://github.com/sn4k3/Ender3">PrusaSlicer Profile</a></li>
+</ul>
+<h2 id="3d-3-anycubic-vyper">3D-3 - Anycubic Vyper</h2>
+<ul>
+<li>The Anycubic Vyper is suitable for <strong>PLA</strong> and <strong>PETG</strong> printing with 1.75mm filament.</li>
+<li>
+<p>Please only leave <strong>PLA</strong> filament in the printer when not printing.</p>
+</li>
+<li>
+<p>This printer is great for all types of prints, but especially detail prints.</p>
+</li>
+<li>
+<p><a href="http://3d-3.int.leighhack.org">OctoPi</a> (link only accessible from LeighHack network)</p>
+</li>
+<li>
+<p><a href="../manuals/anycubic_vyper.pdf">Manual</a></p>
+</li>
 <li><a href="https://www.anycubic.com/pages/firmware-software">Official Support Page</a></li>
+<li><a href="https://github.com/igrowing/sharing_is_caring/tree/main/3d_print/Anycubic%20Vyper">PrusaSlicer Profile</a></li>
 </ul>
 
   <hr>
@@ -1137,7 +1198,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 13, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 17, 2023</span>
       
         <br>
         Created:
