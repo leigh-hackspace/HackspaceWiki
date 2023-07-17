@@ -2,7 +2,7 @@
 
 We have 3 printers available for all members to use after training.
 
-All printers are networked, and we ask that you use the linked OctoPi server when printing your files.
+All printers are networked, and we ask that you use the linked [OctoPrint](https://octoprint.org/) server when printing your files.
 
 [PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/) profiles are linked for each printer.
 
@@ -26,27 +26,29 @@ We're hoping that everyone can follow them and have a consistent experience.
 * Copy the profile files to your local Prusa folder (c:\users\USERNAME\AppData\Roaming\PrusaSlicer on Windows).
 * Start PrusaSlicer, import your STL.
 * [Slice your model and export a GCode file.](https://help.prusa3d.com/article/first-print-with-prusaslicer_1753)
-* Open the OctoPi for your printer, and login (ask if you don't have the password).
-* Drag the sliced GCode file to the OctoPi server.
+* Open the OctoPrint for your printer, and login (ask if you don't have the password).
+* Drag the sliced GCode file to the OctoPrint server.
 * Turn on the printer.
 * Ensure filament is loaded.
-* Click on the file in OctoPi to load, print your file from OctoPi.
-* Keep an eye on OctoPi and the printer as your file is printing.
+* Click on the file in OctoPrint to load, print your file from OctoPrint.
+* Keep an eye on OctoPrint and the printer as your file is printing.
 
 Our printers:
 
 ## 3D-1 - Makerbot Replicator 2
 
 * The Makerbot Replicator 2 is only suitable for **PLA** printing with 1.75mm filament.
-* The OctoPi will accept **GCode** files sliced with the linked PrusaSlicer profile.
+* The OctoPrint server will accept **GCode** files sliced with the linked PrusaSlicer profile.
 
 * This printer is great for rapid first draft prints.
 
-* [OctoPi](http://3d-1.int.leighhack.org) (link only accessible from LeighHack network)
+Links:
+
+* [3D-1 OctoPrint](http://3d-1.int.leighhack.org) (link only accessible from LeighHack network)
 * [Manual](manuals/makerbot_replicator2.pdf)
 * [PrusaSlicer Profile](https://github.com/qratz/replicator2_PrusaSlicer)
 
-OctoPi on 3D-1 is configured to accept gcode files in RepRap format.  
+OctoPrint on 3D-1 is configured to accept gcode files in RepRap format.  
 If configuring your own profile, please ensure "G-code flavour" is set to "RepRap Firmware".
 
 
@@ -57,7 +59,9 @@ If configuring your own profile, please ensure "G-code flavour" is set to "RepRa
 
 * This printer is great for all types of prints, but especially detail prints.
 
-* [OctoPi](http://3d-2.int.leighhack.org) (link only accessible from LeighHack network)
+Links:
+
+* [3D-2 OctoPrint](http://3d-2.int.leighhack.org) (link only accessible from LeighHack network)
 * [Manual](manuals/ender3.pdf)
 * [PrusaSlicer Profile](https://github.com/sn4k3/Ender3)
 
@@ -69,8 +73,9 @@ If configuring your own profile, please ensure "G-code flavour" is set to "RepRa
 
 * This printer is great for all types of prints, but especially detail prints.
 
-* [OctoPi](http://3d-3.int.leighhack.org) (link only accessible from LeighHack network)
+Links:
 
+* [3D-3 OctoPrint](http://3d-3.int.leighhack.org) (link only accessible from LeighHack network)
 * [Manual](manuals/anycubic_vyper.pdf)
 * [Official Support Page](https://www.anycubic.com/pages/firmware-software)
 * [PrusaSlicer Profile](https://github.com/igrowing/sharing_is_caring/tree/main/3d_print/Anycubic%20Vyper)
