@@ -113,6 +113,7 @@ nav:
           - Woodturning Lathe: facilities/workshop/woodturning_lathe.md
       - Fabrication: 
         - facilities/fabrication/index.md
+        - Workstation: facilities/fabrication/workstation.md
         - 3D Printers: facilities/fabrication/3d_printers.md
         - CNCs: facilities/fabrication/cncs.md
         - Lasers: facilities/fabrication/lasers.md
