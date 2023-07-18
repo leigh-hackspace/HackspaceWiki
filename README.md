@@ -10,6 +10,10 @@ All files are standard [Markdown](https://www.markdownguide.org/basic-syntax/) w
 
 The `nav` section in the `mkdocs.yaml` controls the navigation for the site. Check the structure and add as required.
 
+## Using GitHub Codespaces
+
+The repository contains a `.devcontainers.json` config file to configure Codespaces with all the required Python tooling and also some useful VSCode plugins. If you're using Codespaces you can follow the instructions on running `mkdocs` locally.
+
 ## Running `mkdocs` Locally
 
 A `Makefile` exists to install and configure the dependencies for mkdocs. All that is required is a recent version of Python and `virtualenv` to be available.
