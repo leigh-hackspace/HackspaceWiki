@@ -1,2 +1,2 @@
-site/
-env/
+site
+.venv

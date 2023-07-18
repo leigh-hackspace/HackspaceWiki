@@ -5,9 +5,9 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/base:focal",
 	"features": {
-		"ghcr.io/devcontainers/features/hugo:1": {
-			"extended": true,
-			"version": "latest"
+		"ghcr.io/devcontainers/features/python:1": {
+			"installTools": true,
+			"version": "3.11"
 		}
 	},
 	"customizations": {
