@@ -124,6 +124,7 @@ nav:
       - Social Space: facilities/social_space.md
       - Artist Pods: facilities/artist_pods.md
   - Infrastructure:
+      - infrastructure/index.md
       - Internal Services: infrastructure/internal_services.md
       - Network Layout: infrastructure/network_layout.md
       - VPN: infrastructure/vpn.md
