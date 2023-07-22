@@ -116,6 +116,10 @@ This subnet doesn't have DHCP enabled, we use static assignment. Here is the cur
 | Switch 3          | `10.3.1.4`  | Workshop / Fabrication |
 | NAS 1             | `10.3.1.5`  | Rack 1                 |
 | ESX 1             | `10.3.1.10` | Rack 1                 |
+| Proxmox 1         | `10.3.1.11` | Rack 1                 |
+| Proxmox 2         | `10.3.1.12` | Rack 1                 |
+| Proxmox 3         | `10.3.1.13` | Rack 1                 |
+| Proxmox 4         | `10.3.1.14` | Rack 1                 |
 | ESX 1 iDRAC       | `10.3.1.20` | Rack 1                 |
 | Leigh OOB         | `10.3.1.21` | Rack 1                 |
 | Apps1             | `10.3.1.30` | ESX 1                  |
