@@ -109,18 +109,17 @@ The range is split into logical groups:
 
 This subnet doesn't have DHCP enabled, we use static assignment. Here is the current list:
 
-| Device Name   | IP Address  | Location               |
-| ------------- | ----------- | ---------------------- |
-| GW            | `10.3.1.1`  | Rack 1                 |
-| Switch 1      | `10.3.1.2`  | Rack 1                 |
-| Switch 3      | `10.3.1.4`  | Workshop / Fabrication |
-| NAS 1         | `10.3.1.5`  | Rack 1                 |
-| ESX 1         | `10.3.1.10` | Rack 1                 |
-| ESX 1 iDRAC   | `10.3.1.20` | Rack 1                 |
-| Leigh OOB     | `10.3.1.21` | Rack 1                 |
-| Apps1         | `10.3.1.30` | ESX 1                  |
-| HP Printer    | `10.3.1.50` | Pi Room 5/7            |
-| Epson Printer | `10.3.1.51` | Pi Room                |
+| Device Name       | IP Address  | Location               |
+| ----------------- | ----------- | ---------------------- |
+| GW                | `10.3.1.1`  | Rack 1                 |
+| Switch 1          | `10.3.1.2`  | Rack 1                 |
+| Switch 3          | `10.3.1.4`  | Workshop / Fabrication |
+| NAS 1             | `10.3.1.5`  | Rack 1                 |
+| ESX 1             | `10.3.1.10` | Rack 1                 |
+| ESX 1 iDRAC       | `10.3.1.20` | Rack 1                 |
+| Leigh OOB         | `10.3.1.21` | Rack 1                 |
+| Apps1             | `10.3.1.30` | ESX 1                  |
+| HP Laserjet P3015 | `10.3.1.50` | Pi Room 5/7            |
 
 ### WiFi - VLAN 226
 
