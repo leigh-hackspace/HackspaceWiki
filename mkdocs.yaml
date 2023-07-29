@@ -128,3 +128,6 @@ nav:
       - Internal Services: infrastructure/internal_services.md
       - Network Layout: infrastructure/network_layout.md
       - VPN: infrastructure/vpn.md
+      - Devices:
+        - infrastructure/devices/index.md
+        - Hackspace State Switch: infrastructure/devices/state_switch/index.md
