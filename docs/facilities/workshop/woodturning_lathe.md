@@ -18,15 +18,31 @@
 * Clean the lathe
   * Remove any standing sawdusk from the iron surfaces.
 * Re-attach the tailstock and tool rest if removed.
-* Remove the chuck / drive center
+* Remove the chuck / drive center / tailstock center
 * Reset the speed to the lowest level.
 
-## Maintenance
+## Lathe Maintenance
 
 * Clean the rails with WD40
+  * Spray on WD40
+  * Wipe clean, try to remove any wood resin staining.
+
 * Clean the tailstock with WD40
+  * Move the tailstock forward and back, spraying WD40 and working it in.
+  * Remove the live center and clean off any excess WD40.
+
 * Dust around the chuck mount and tailstock
+  * Ensure that no dust is stuck inbetween the the chuck's jaws.
+  
 * Check the belts
+  * Belts should be tight, with no obvious cracking on the outside.
+
+## Tool Maintenance
+
+* Clean off any sawdust
+* Wipe clean with either a wet wipe or WD40 on a rag.
+* Use a diamond file to treat the tool's sharp edges.
+* If the tool has a nick or dent in the cutting edge, then treat the tool on the bench grinder.
 
 ## DO NOTS
 
