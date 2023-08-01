@@ -20,6 +20,12 @@ The same as the [Standard Membership](#standard-membership), but also includes a
 
 A reduced rate membership for people with low-income, students, and pensioners.
 
+## Family Membership
+
+**£40/month**
+
+Family membership for 2 adults and children. 
+
 ## Day Pass
 
 **£10/day**
