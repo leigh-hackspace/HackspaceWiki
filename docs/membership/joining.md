@@ -4,7 +4,7 @@
 
 It is advised that you visit the hackspace and receive a tour, this will give you a quick overview of the spaces available to members, and showcase any projects we're working on as a collective.
 
-At the moment, tours operate on a **Saturday afternoon**, but for the latest information check the [website](https://leighhack.org).
+At the moment, tours operate on a **Saturday** from **12pm to 1pm**, but for the latest information check the [website](https://leighhack.org).
 
 ## On-boarding
 
