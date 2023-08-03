@@ -2,6 +2,15 @@
 
 The hackspace runs a collection of services on the hackspace network, either to assist with automation or just to be useful for members.
 
+## Printers
+
+We have a couple of printers available for members to use, they should be visible to all systems (using Bonjour/mDNS) and work with any device that supports IPP.
+
+* Big Laser Printer - A HP black and white laser printer
+* Colour Inkjet Printer - A Epson colour inkjet multi-function printer.
+
+Both are located in the corner of the [Pi Room](../facilities/pi_room.md). Replacement cartridges/toner are available, if they need replacing then contact [infra](../membership/useful_contacts.md#tech-infrastructure) or one of the [directors](../membership/useful_contacts.md#directors).
+
 ## NAS Storage
 
 We have a 4TB NAS storage system running as RAID-10, while it should give a reasonable amount of reliability we provide absolutely no guarantees regarding data security and provide *no backups*.
