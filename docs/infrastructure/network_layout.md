@@ -121,11 +121,11 @@ This subnet doesn't have DHCP enabled, we use static assignment. Here is the cur
 | Proxmox 3         | `10.3.1.13` | Rack 1                   |
 | Proxmox 4         | `10.3.1.14` | Rack 1                   |
 | ESX 1 iDRAC       | `10.3.1.20` | Rack 1                   |
-| Monster 1 LO100   | `10.3.1.21` | Rack 1                   |
-| Monster 2 LO100   | `10.3.1.22` | Rack 1                   |
-| Monster 3 LO100   | `10.3.1.23` | Rack 1                   |
-| Monster 4 LO100   | `10.3.1.24` | Rack 1                   |
 | Leigh OOB         | `10.3.1.21` | Rack 1                   |
+| Monster 1 LO100   | `10.3.1.22` | Rack 1                   |
+| Monster 2 LO100   | `10.3.1.23` | Rack 1                   |
+| Monster 3 LO100   | `10.3.1.24` | Rack 1                   |
+| Monster 4 LO100   | `10.3.1.25` | Rack 1                   |
 | Apps1             | `10.3.1.30` | ESX 1                    |
 | HP Laserjet P3015 | `10.3.1.50` | Pi Room 5/7              |
 | GW - VIP 1        | `10.3.1.60` | VIP for Internal HAProxy |
