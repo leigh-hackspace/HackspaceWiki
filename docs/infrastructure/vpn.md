@@ -6,7 +6,7 @@ We currently use OpenVPN, so on Windows, Linux, Android, and iOS you can use the
 
 ## Requirements
 
-You'll need an account on [id.leighhack.org](https://id.leighhack.org). Ideally, sign up with the same email address that you used for your GoCardless membership. Once created you'll need to ask in [#infra on slack]() to get added to the correct group.
+You'll need an account on [id.leighhack.org](https://id.leighhack.org). Ideally, sign up with the same email address that you used for your GoCardless membership and privileges will be automatically assigned. If not, then contact [Infra](../membership/useful_contacts.md#tech-infrastructure).
 
 ## Configuration
 
@@ -17,4 +17,4 @@ These config files should enable you to configure and connect with a click of a 
 
 ## Access
 
-This VPN will give you access the same as being on the WiFi within the hackspace. If you have any specific requirements you need from the VPN then contact Infra.
+This VPN will give you access the same as being on the WiFi within the hackspace. If you have any specific requirements you need from the VPN then contact [Infra](../membership/useful_contacts.md#tech-infrastructure).

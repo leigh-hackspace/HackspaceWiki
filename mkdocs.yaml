@@ -128,6 +128,8 @@ nav:
       - Internal Services: infrastructure/internal_services.md
       - Network Layout: infrastructure/network_layout.md
       - VPN: infrastructure/vpn.md
-      - Devices:
+      - Devices & Services:
         - infrastructure/devices/index.md
+        - Authentik: infrastructure/devices/authentik/index.md
         - Hackspace State Switch: infrastructure/devices/state_switch/index.md
+        - Proxmox Clusters: infrastructure/devices/proxmox/index.md
