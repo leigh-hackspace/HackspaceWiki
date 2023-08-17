@@ -111,11 +111,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/doors/</loc>
-         <lastmod>2023-08-17</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/internal_services/</loc>
          <lastmod>2023-08-17</lastmod>
          <changefreq>daily</changefreq>
@@ -132,6 +127,16 @@
     </url>
     <url>
          <loc>https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/devices/</loc>
+         <lastmod>2023-08-17</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/devices/authentik/</loc>
+         <lastmod>2023-08-17</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/devices/proxmox/</loc>
          <lastmod>2023-08-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
