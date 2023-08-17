@@ -29,4 +29,4 @@ If you have any issues with the WiFi, network, or a hosted service, contact one 
 
 ## Anything Else
 
-If you've got a question about something not covered here, then just ask in [Slack in `#general`](https://leighhack.slack.com/archives/C0A9Y6H26) and someone should be able to guide you in the right direction.
+If you've got a question about something not covered here, then just ask in [Slack in `#general`](https://leighhack.slack.com/archives/C0A9Y6H26) or email [info@leighhack.org](mailto:info@leighhack.org) and someone should be able to guide you in the right direction.

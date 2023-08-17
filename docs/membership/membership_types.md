@@ -31,3 +31,7 @@ Family membership for 2 adults and children.
 **£10/day**
 
 A single day pass to access the space and facilities.
+
+## Corporate Sponsorship
+
+We also offer tailored packages for companies who wish to use the space or provide sponsorship. For further information contact the [directors](useful_contacts.md#directors).
