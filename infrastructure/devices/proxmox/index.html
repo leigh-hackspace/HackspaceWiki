@@ -1200,6 +1200,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#hardware" class="md-nav__link">
+    Hardware
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-layout" class="md-nav__link">
+    Network Layout
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#storage-layout" class="md-nav__link">
+    Storage Layout
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#admin-tasks" class="md-nav__link">
     Admin Tasks
   </a>
@@ -1268,17 +1289,56 @@
 
 <h1 id="proxmox-clusters">Proxmox Clusters</h1>
 <p>Currently we have one operational Proxmox cluster, 'monster', which has enough CPU and Memory for anything we'll need in the hackspace.</p>
+<h2 id="hardware">Hardware</h2>
+<p>The cluster is made up of a single <a href="https://support.hpe.com/hpesc/public/docDisplay?docId=emr_na-c01800572">HP SL2x170z G6</a>, which has two blades it it, totalling 4 systems. Rough specs of each are:</p>
+<ul>
+<li>2 x <a href="https://www.intel.com/content/www/us/en/products/sku/37106/intel-xeon-processor-x5550-8m-cache-2-66-ghz-6-40-gts-intel-qpi/specifications.html">Intel® Xeon® Processor X5550</a></li>
+<li>64GB DDR3</li>
+<li>128GB local SSD</li>
+<li>2 x HP NC362i Gigabit Ethernet</li>
+<li>1 x Dedicated LO100 port</li>
+</ul>
+<h2 id="network-layout">Network Layout</h2>
+<p>All nodes, gateway, and the NAS are on <a href="../../network_layout/#shared-services---vlan-225">VLAN225</a>. The Proxmox nodes are connected via their 2nd ethernet port, which also has shared LO100 enabled on them.</p>
+<pre class="mermaid"><code>graph 
+    SWITCH1[Switch1 - VLAN225]
+    GW[GW]
+    MON1[Monster1 - Blade 1]
+    MON2[Monster2 - Blade 1]
+    MON3[Monster3 - Blade 2]
+    MON4[Monster4 - Blade 2]
+    NAS[NAS1 - NFS]
+
+    GW &lt;--&gt; SWITCH1
+    SWITCH1 &lt;--&gt; MON1
+    SWITCH1 &lt;--&gt; MON2
+    SWITCH1 &lt;--&gt; MON3
+    SWITCH1 &lt;--&gt; MON4
+    SWITCH1 &lt;--&gt; NAS</code></pre>
+<h2 id="storage-layout">Storage Layout</h2>
+<p>All nodes are connected via NFS to <code>/prox-monster-datastore</code> on NAS1.</p>
+<pre class="mermaid"><code>graph 
+    MON1[Monster1 - Blade 1]
+    MON2[Monster2 - Blade 1]
+    MON3[Monster3 - Blade 2]
+    MON4[Monster4 - Blade 2]
+    NAS[NAS1 - /prox-monster-datastore]
+
+    MON1 --&gt; NAS
+    MON2 --&gt; NAS
+    MON3 --&gt; NAS
+    MON4 --&gt; NAS</code></pre>
 <h2 id="admin-tasks">Admin Tasks</h2>
 <h3 id="allowing-users-access-to-the-cluster">Allowing users access to the Cluster</h3>
 <ul>
-<li>Login to https://monster.int.leighhack.org/ as a Infra member.</li>
+<li>Login to <a href="https://monster.int.leighhack.org/">https://monster.int.leighhack.org/</a> as a Infra member.</li>
 <li>Click on 'Datacenter (monster)' in the left menu.</li>
 <li>Goto Users and find the user that requires access.</li>
 <li>Either add them to the 'Infra', or 'Members' group as needed.</li>
 </ul>
 <h3 id="login-without-using-idleighhackorgauthentik">Login without using id.leighhack.org/Authentik</h3>
 <ul>
-<li>Go to https://monster.int.leighhack.org/</li>
+<li>Go to <a href="https://monster.int.leighhack.org/">https://monster.int.leighhack.org/</a></li>
 <li>On the login screen, select the dropdown and pick 'Linux PAM'</li>
 <li>Username is 'root', password is in the password manager.</li>
 </ul>
