@@ -2,7 +2,7 @@
 
 Authentik is the system we use to provide single sign-on and administration of users within the Hackspace
 
-https://id.leighhack.org/
+[https://id.leighhack.org/](https://id.leighhack.org/)
 
 ## Admin Tasks
 
