@@ -116,6 +116,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/mill_network_tc/</loc>
+         <lastmod>2023-08-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/network_layout/</loc>
          <lastmod>2023-08-18</lastmod>
          <changefreq>daily</changefreq>
@@ -141,7 +146,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/devices/pfsense/</loc>
+         <lastmod>2023-08-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/devices/proxmox/</loc>
+         <lastmod>2023-08-18</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/devices/qnap_nas/</loc>
          <lastmod>2023-08-18</lastmod>
          <changefreq>daily</changefreq>
     </url>

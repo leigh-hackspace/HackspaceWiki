@@ -1231,6 +1231,14 @@
             
           
         
+          
+            
+          
+        
+          
+            
+          
+        
       
       
         
@@ -1273,8 +1281,36 @@
   
   
     <li class="md-nav__item">
+      <a href="../devices/pfsense/" class="md-nav__link">
+        pfSense / Gateway
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../devices/authentik/" class="md-nav__link">
         Authentik
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devices/qnap_nas/" class="md-nav__link">
+        QNAP NAS
       </a>
     </li>
   
@@ -1350,7 +1386,7 @@
     SWITCH1[Switch 1] --&gt;|Port1 / en0| GW
     NAS1[NAS 1] --&gt; |Port44| SWITCH1
     ESX1[ESX 1] --&gt; |Port40/41/42| SWITCH1
-    LEIGHOOB[Leigh OOB] -.-&gt; |Port39| SWITCH1
+    LEIGHOOB[Leigh OOB] --&gt; |Port39| SWITCH1
     MINISWITCH[Mini Switch]
     end
 
@@ -1358,8 +1394,8 @@
     GW --&gt;|re0| MINISWITCH
     MINISWITCH --&gt; MILL
     GW -. L2TP via Mill Network .-&gt; AAISP
-    MILL[Mill Network] --&gt; MILLROUTER[Mill Router - Draytek] --&gt; INTERNET((Internet))
-    AAISP[Andrews Arnold] --&gt; INTERNET
+    MILL[Mill Network - VLAN 50] --&gt; MILLROUTER[Mill Router - Draytek] --&gt; INTERNET((Internet))
+    AAISP[Andrews Arnold] -.-&gt; INTERNET
 
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] --&gt;|Port3-24| SWITCH1
@@ -1532,9 +1568,19 @@
     WiFi --&gt; WIRED
     SHARED --&gt; AUTOMATION</code></pre>
 <h3 id="mill-network-vlan-50">Mill Network - VLAN '50'</h3>
-<p>Our outbound internet route, should be treated as untrusted due to relatively little control over devices in other businesses. Our port seems to be be on VLAN 50 on the Mill's switch infrastructure and is a 100mbps port. <code>192.168.20.1</code> is our gateway, which is a DrayTek 2865.</p>
-<p>The mill switch network and internet access is managed by Image Village, and the ISP is Awareness Software Limited (AS34931).</p>
-<p>IP Range: <code>192.168.20.0/24</code></p>
+<p>The mill provides internet access via a 100mbps internal network. It can be a bit unreliable but it works for our general usage. </p>
+<ul>
+<li>ISP: <a href="https://aware-soft.com/">Awareness Software Ltd</a> (AS34931)</li>
+<li>Mill Network Administrator: <a href="data@imagevillage.co.uk">Mark Nightingale</a>, Image Village.</li>
+</ul>
+<p>Access to the mill network is provided by a singular CAT5 delivered to the rear of the main space, just above where Rack1 is.</p>
+<ul>
+<li>VLAN: 50 (untagged)</li>
+<li>Subnet: <code>192.168.20.0/24</code></li>
+<li>Gateway: <code>192.168.20.1</code></li>
+<li>DHCP Enabled</li>
+</ul>
+<p>Usage is bound by the <a href="../mill_network_tc/">LBPT Tenant Network Agreement</a>.</p>
 <h3 id="shared-services-vlan-225">Shared Services - VLAN 225</h3>
 <p>Where the servers, routers, and other central bits are hosted.</p>
 <p>IP Range: <code>10.3.1.0/24</code></p>
@@ -1733,7 +1779,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 17, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 18, 2023</span>
       
         <br>
         Created:
