@@ -1,6 +1,6 @@
 # Hackspace State Switch
 
-The state switch is a physical switch located near the [Main Space](../../facilities/main_space.md) entrance doors. This small device provide a physical open/close indicator for the hackspace, and the status is made available via the Space API endpoint, Home Assistand, Slack bot, and website.
+The state switch is a physical switch located near the [Main Space](../../../facilities/main_space.md) entrance doors. This small device provide a physical open/close indicator for the hackspace, and the status is made available via the Space API endpoint, Home Assistand, Slack bot, and website.
 
 The device itself is a simple ESP8266 (A WeMoS D1-Mini clone with USB-C) with a RGB LED, and a rocker switch. It runs [ESPHome](https://esphome.io) and connects to our Home Assistant instance.
 

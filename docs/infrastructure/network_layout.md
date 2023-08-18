@@ -12,7 +12,7 @@ graph
     SWITCH1[Switch 1] -->|Port1 / en0| GW
     NAS1[NAS 1] --> |Port44| SWITCH1
     ESX1[ESX 1] --> |Port40/41/42| SWITCH1
-    LEIGHOOB[Leigh OOB] -.-> |Port39| SWITCH1
+    LEIGHOOB[Leigh OOB] --> |Port39| SWITCH1
     MINISWITCH[Mini Switch]
     end
 
@@ -20,8 +20,8 @@ graph
     GW -->|re0| MINISWITCH
     MINISWITCH --> MILL
     GW -. L2TP via Mill Network .-> AAISP
-    MILL[Mill Network] --> MILLROUTER[Mill Router - Draytek] --> INTERNET((Internet))
-    AAISP[Andrews Arnold] --> INTERNET
+    MILL[Mill Network - VLAN 50] --> MILLROUTER[Mill Router - Draytek] --> INTERNET((Internet))
+    AAISP[Andrews Arnold] -.-> INTERNET
     
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] -->|Port3-24| SWITCH1
@@ -87,11 +87,19 @@ graph LR
 
 ### Mill Network - VLAN '50'
 
-Our outbound internet route, should be treated as untrusted due to relatively little control over devices in other businesses. Our port seems to be be on VLAN 50 on the Mill's switch infrastructure and is a 100mbps port. `192.168.20.1` is our gateway, which is a DrayTek 2865.
+The mill provides internet access via a 100mbps internal network. It can be a bit unreliable but it works for our general usage. 
 
-The mill switch network and internet access is managed by Image Village, and the ISP is Awareness Software Limited (AS34931).
+* ISP: [Awareness Software Ltd](https://aware-soft.com/) (AS34931)
+* Mill Network Administrator: [Mark Nightingale](data@imagevillage.co.uk), Image Village.
 
-IP Range: `192.168.20.0/24`
+Access to the mill network is provided by a singular CAT5 delivered to the rear of the main space, just above where Rack1 is.
+
+* VLAN: 50 (untagged)
+* Subnet: `192.168.20.0/24`
+* Gateway: `192.168.20.1`
+* DHCP Enabled
+
+Usage is bound by the [LBPT Tenant Network Agreement](mill_network_tc.md).
 
 ### Shared Services - VLAN 225
 
