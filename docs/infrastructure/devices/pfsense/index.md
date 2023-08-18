@@ -9,7 +9,7 @@ We use pfSense as our router/gateway for the hackspace systems.
 The mill provides internet access via a 100mbps internal network. It can be a bit unreliable but it works for our general usage. 
 
 * ISP: [Awareness Software Ltd](https://aware-soft.com/) (AS34931)
-* Mill Network Administrator: [Mark Nightingale](data@imagevillage.co.uk), Image Village.
+* Mill Network Administrator: [Mark Nightingale](mailto:data@imagevillage.co.uk), Image Village.
 
 Access to the mill network is provided by a singular CAT5 delivered to the rear of the main space, just above where Rack1 is.
 

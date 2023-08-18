@@ -49,18 +49,16 @@ LBPT is committed to protecting the personal data of its tenants and ensuring co
 * 6.1. Tenants must promptly report any suspected or confirmed security incidents, data breaches, or unauthorized access to LBPT's network administrators.
 * 6.2. Report security incidents to the following contact:
 
-data@imagevillage.co.uk
-
-Mark Nightingale – Network Systems Administrator
-
-Image Village | Floor 3.4 | Spinners Mill | Park Lane | Leigh | WN7 2LB
+* data@imagevillage.co.uk
+* Mark Nightingale – Network Systems Administrator
+* Image Village | Floor 3.4 | Spinners Mill | Park Lane | Leigh | WN7 2LB
 
 
 ## 7. Policy Compliance and Enforcement
 * 7.1. Non-compliance with this policy and/or the tenancy terms of service may result in sanctions, including temporary or permanent suspension of network access privileges, as determined by LBPT.
 * 7.2. LBPT reserves the right to amend this policy as required to reflect changes in technology, legal requirements, or business needs.
 
-Tenants acknowledge that they have read, understood, and agree to comply with the tenants terms of service as outlined in section 4. Failure to comply may result in further actions, as outlined in section 7 of this policy. 
+Tenants acknowledge that they have read, understood, and agree to comply with the tenants terms of service as outlined in [section 4](#4-tenant-terms-of-service). Failure to comply may result in further actions, as outlined in section 7 of this policy. 
 
 Any tenant who disagrees with the terms outlined in this policy are NOT required to sign this document and understand non-compliance with these terms means LBPT will NOT provide access to their network, any existing network service(s) (if active) will be terminated immediately.
 
