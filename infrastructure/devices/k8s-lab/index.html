@@ -1393,15 +1393,16 @@
 <h3 id="installed-and-working">Installed and working</h3>
 <ul>
 <li>OIDC single sign-on with <code>id.leighhack.org</code> (see <a href="#authentication">Authentication</a>)</li>
-<li>NFS based PVs - works well for everything bar SQLite driven applications.</li>
+<li>NFS-backed PVs - works well for all applications bar ones that use SQLite.</li>
 </ul>
 <h3 id="coming-soon">Coming Soon</h3>
 <ul>
-<li>Traefik and HAProxy based Ingress at <code>*.lab.leighhack.org</code></li>
+<li>MetalLB-based <code>LoadBalancer</code> Service types.</li>
+<li>Traefik-based <code>Ingress</code> support with mapping to <code>*.lab.leighhack.org</code></li>
 </ul>
 <h2 id="permissions">Permissions</h2>
-<p>By default, all members should have read permissions to the cluster. <code>Infra</code> members are cluster admins. </p>
-<p>If you require write access, contact <a href="https://wiki.leighhack.org/membership/useful_contacts/#tech-infrastructure">Infra</a>.</p>
+<p>By default, all members should have read permissions to the entire cluster. <code>Infra</code> members are cluster admins. </p>
+<p>Per-member namespaces with write access can be created via this repository (see <a href="https://github.com/leigh-hackspace/k8s-lab/tree/main/clusters/lab/members/nikdoof">nikdoof namespace</a> for an example).</p>
 <h2 id="authentication">Authentication</h2>
 <p>We use OIDC to authenticate via <code>id.leighhack.org</code></p>
 <h3 id="1-download-kubectl-and-your-preferred-clients">1. Download <code>kubectl</code> and your preferred clients</h3>
