@@ -5,17 +5,18 @@
 ### Installed and working
 
 * OIDC single sign-on with `id.leighhack.org` (see [Authentication](#authentication))
-* NFS based PVs - works well for everything bar SQLite driven applications.
+* NFS-backed PVs - works well for all applications bar ones that use SQLite.
 
 ### Coming Soon
 
-* Traefik and HAProxy based Ingress at `*.lab.leighhack.org`
+* MetalLB-based `LoadBalancer` Service types.
+* Traefik-based `Ingress` support with mapping to `*.lab.leighhack.org`
 
 ## Permissions
 
-By default, all members should have read permissions to the cluster. `Infra` members are cluster admins. 
+By default, all members should have read permissions to the entire cluster. `Infra` members are cluster admins. 
 
-If you require write access, contact [Infra](https://wiki.leighhack.org/membership/useful_contacts/#tech-infrastructure).
+Per-member namespaces with write access can be created via this repository (see [nikdoof namespace](https://github.com/leigh-hackspace/k8s-lab/tree/main/clusters/lab/members/nikdoof) for an example).
 
 ## Authentication
 
