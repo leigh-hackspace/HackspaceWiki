@@ -135,4 +135,5 @@ nav:
         - Authentik: infrastructure/devices/authentik/index.md
         - QNAP NAS: infrastructure/devices/qnap_nas/index.md
         - Proxmox Clusters: infrastructure/devices/proxmox/index.md
+        - Kubernetes Lab: infrastructure/devices/k8s-lab/index.md
         - Hackspace State Switch: infrastructure/devices/state_switch/index.md
