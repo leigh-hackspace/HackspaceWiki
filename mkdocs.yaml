@@ -101,6 +101,7 @@ nav:
       - Useful Contacts: membership/useful_contacts.md
   - Facilities:
       - facilities/index.md
+      - Useful Information: facilities/useful_information.md
       - Main Space: facilities/main_space.md
       - Pi Room: facilities/pi_room.md
       - Classroom: facilities/classroom.md
