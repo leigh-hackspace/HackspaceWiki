@@ -19,7 +19,7 @@
         <link rel="next" href="../vpn/">
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.5.2, mkdocs-material-9.1.3">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.1.3">
     
     
       
@@ -1412,20 +1412,22 @@
 
 <h1 id="network-layout">Network Layout</h1>
 <h2 id="physical-network-layout">Physical Network Layout</h2>
-<p>Correct as of 2023-06-22</p>
+<p>Correct as of 2023-10-02</p>
 <pre class="mermaid"><code>graph 
     subgraph Rack1
     GW[GW - pfSense] 
     AP[AP 1] --&gt;|Port43| SWITCH1
     SWITCH1[Switch 1] --&gt;|Port1 / en0| GW
     NAS1[NAS 1] --&gt; |Port44| SWITCH1
+    NAS2[NAS 2] --&gt; |Port??| SWITCH1
     ESX1[ESX 1] --&gt; |Port40/41/42| SWITCH1
+    MONSTER[Monster 2/3/4] --&gt; |Port??| SWITCH1
     LEIGHOOB[Leigh OOB] --&gt; |Port39| SWITCH1
     MINISWITCH[Mini Switch]
     end
 
     LEIGHOOB --&gt; MINISWITCH
-    GW --&gt;|re0| MINISWITCH
+    GW --&gt;|em3| MINISWITCH
     MINISWITCH --&gt; MILL
     GW -. L2TP via Mill Network .-&gt; AAISP
     MILL[Mill Network - VLAN 50] --&gt; MILLROUTER[Mill Router - Draytek] --&gt; INTERNET((Internet))
@@ -1447,6 +1449,7 @@
 
     subgraph Fabrication
     SWITCH3[Switch 3] --&gt;|Port34| SWITCH1
+    3DPRINTERS[3D Printer Pis] --&gt; |Port??| SWITCH3
     end</code></pre>
 <h2 id="hardware">Hardware</h2>
 <table>
@@ -1535,6 +1538,15 @@
 <td></td>
 </tr>
 <tr>
+<td>NAS 2</td>
+<td>HP</td>
+<td>Microserver G8</td>
+<td>NAS</td>
+<td>Rack 1</td>
+<td>Awaiting Installation</td>
+<td></td>
+</tr>
+<tr>
 <td>UPS</td>
 <td>APC</td>
 <td>???</td>
@@ -1563,7 +1575,7 @@
 </tr>
 <tr>
 <td>Mini Switch</td>
-<td>Gigabyte</td>
+<td>Netgear</td>
 <td>???</td>
 <td>L2 Switch</td>
 <td>Rack 1</td>
@@ -1657,6 +1669,11 @@
 <td>Rack 1</td>
 </tr>
 <tr>
+<td>NAS 2</td>
+<td><code>10.3.1.6</code></td>
+<td>Rack 1</td>
+</tr>
+<tr>
 <td>ESX 1</td>
 <td><code>10.3.1.10</code></td>
 <td>Rack 1</td>
@@ -1709,6 +1726,11 @@
 <tr>
 <td>Monster 4 LO100</td>
 <td><code>10.3.1.25</code></td>
+<td>Rack 1</td>
+</tr>
+<tr>
+<td>NAS 2 iLO</td>
+<td><code>10.3.1.26</code></td>
 <td>Rack 1</td>
 </tr>
 <tr>
@@ -1813,7 +1835,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 18, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 2, 2023</span>
       
         <br>
         Created:
