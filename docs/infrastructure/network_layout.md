@@ -2,7 +2,7 @@
 
 ## Physical Network Layout
 
-Correct as of 2023-06-22
+Correct as of 2023-10-02
 
 ```mermaid
 graph 
@@ -11,13 +11,15 @@ graph
     AP[AP 1] -->|Port43| SWITCH1
     SWITCH1[Switch 1] -->|Port1 / en0| GW
     NAS1[NAS 1] --> |Port44| SWITCH1
+    NAS2[NAS 2] --> |Port??| SWITCH1
     ESX1[ESX 1] --> |Port40/41/42| SWITCH1
+    MONSTER[Monster 2/3/4] --> |Port??| SWITCH1
     LEIGHOOB[Leigh OOB] --> |Port39| SWITCH1
     MINISWITCH[Mini Switch]
     end
 
     LEIGHOOB --> MINISWITCH
-    GW -->|re0| MINISWITCH
+    GW -->|em3| MINISWITCH
     MINISWITCH --> MILL
     GW -. L2TP via Mill Network .-> AAISP
     MILL[Mill Network - VLAN 50] --> MILLROUTER[Mill Router - Draytek] --> INTERNET((Internet))
@@ -39,6 +41,7 @@ graph
     
     subgraph Fabrication
     SWITCH3[Switch 3] -->|Port34| SWITCH1
+    3DPRINTERS[3D Printer Pis] --> |Port??| SWITCH3
     end
 ```
 
@@ -54,10 +57,11 @@ graph
 | AP 2         | Netgear      | WNR2000        | AP        | Pi Room     | Live                    |                                                                 |
 | AP 3         | Cisco        | RV110W         | AP        | Bar         | Live                    |                                                                 |
 | NAS 1        | QNAP         | TS-431+        | NAS       | Rack 1      | Live                    |                                                                 |
+| NAS 2        | HP           | Microserver G8 | NAS       | Rack 1      | Awaiting Installation   |                                                                 |
 | UPS          | APC          | ???            | UPS       | Rack 1      | Live                    |                                                                 |
 | ESX 1        | Dell         | R320           | Server    | Rack 1      | Live                    | ESXi Host                                                       |
 | Leigh OOB    | Raspberry Pi | 2 B+           | Server    | Rack 1      | Live                    | Gives us 'out of band' access to Hackspace network and devices  |
-| Mini Switch  | Gigabyte     | ???            | L2 Switch | Rack 1      | Live                    | Multiple ports on the Mill network, needs switching to Switch 1 |
+| Mini Switch  | Netgear      | ???            | L2 Switch | Rack 1      | Live                    | Multiple ports on the Mill network, needs switching to Switch 1 |
 | Blade Server | HP           | SL2x170z G6    | Server    | Rack 1      | Live                    | Proxmox Cluster 'Monster'                                       |
 
 ## L3 Layout / VLANs
@@ -123,6 +127,7 @@ This subnet does have DHCP enabled, but we encourage static assignments for crit
 | Switch 1          | `10.3.1.2`  | Rack 1                   |
 | Switch 3          | `10.3.1.4`  | Workshop / Fabrication   |
 | NAS 1             | `10.3.1.5`  | Rack 1                   |
+| NAS 2             | `10.3.1.6`  | Rack 1                   |
 | ESX 1             | `10.3.1.10` | Rack 1                   |
 | Proxmox 1         | `10.3.1.11` | Rack 1                   |
 | Proxmox 2         | `10.3.1.12` | Rack 1                   |
@@ -134,6 +139,7 @@ This subnet does have DHCP enabled, but we encourage static assignments for crit
 | Monster 2 LO100   | `10.3.1.23` | Rack 1                   |
 | Monster 3 LO100   | `10.3.1.24` | Rack 1                   |
 | Monster 4 LO100   | `10.3.1.25` | Rack 1                   |
+| NAS 2 iLO         | `10.3.1.26` | Rack 1                   |
 | Apps1             | `10.3.1.30` | ESX 1                    |
 | HP Laserjet P3015 | `10.3.1.50` | Pi Room 5/7              |
 | GW - VIP 1        | `10.3.1.60` | VIP for Internal HAProxy |
