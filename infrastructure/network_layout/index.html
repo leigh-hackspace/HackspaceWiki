@@ -969,10 +969,62 @@
   
   
   
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+      
+      
+        
+          
+            
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../facilities/social_space/">Social Space</a>
+          
+            <label for="__nav_3_11">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_11">
+          <span class="md-nav__icon md-icon"></span>
+          Social Space
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+          
+            
+              
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../../facilities/social_space/" class="md-nav__link">
-        Social Space
+      <a href="../../facilities/social_space/hosting_events/" class="md-nav__link">
+        Hosting an event
       </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1412,14 +1464,15 @@
 
 <h1 id="network-layout">Network Layout</h1>
 <h2 id="physical-network-layout">Physical Network Layout</h2>
-<p>Correct as of 2023-10-02</p>
+<p>Correct as of 2023-10-03</p>
 <pre class="mermaid"><code>graph 
     subgraph Rack1
     GW[GW - pfSense] 
     AP[AP 1] --&gt;|Port43| SWITCH1
     SWITCH1[Switch 1] --&gt;|Port1 / en0| GW
+    SWITCH2[Switch 2] -.-&gt; |Port??| SWITCH1
     NAS1[NAS 1] --&gt; |Port44| SWITCH1
-    NAS2[NAS 2] --&gt; |Port??| SWITCH1
+    NAS2[NAS 2] -.-&gt; |Port??| SWITCH1
     ESX1[ESX 1] --&gt; |Port40/41/42| SWITCH1
     MONSTER[Monster 2/3/4] --&gt; |Port??| SWITCH1
     LEIGHOOB[Leigh OOB] --&gt; |Port39| SWITCH1
@@ -1481,16 +1534,25 @@
 <td>L3 Switch</td>
 <td>Rack 1</td>
 <td>Live</td>
+<td>To be decommed</td>
+</tr>
+<tr>
+<td>Switch 1</td>
+<td>HP</td>
+<td>Procurve 2510-48G</td>
+<td>L2 Switch</td>
+<td>Rack 1</td>
+<td>Waiting to replace existing Switch 1</td>
 <td></td>
 </tr>
 <tr>
 <td>Switch 2</td>
-<td>Cisco</td>
-<td>Catalyst 3560G</td>
-<td>L3 Switch</td>
+<td>HP</td>
+<td>Procurve 2510-48G</td>
+<td>L2 Switch</td>
 <td>Rack 1</td>
 <td>Waiting to be installed</td>
-<td>Sandbox/Learning switch</td>
+<td></td>
 </tr>
 <tr>
 <td>Switch 3</td>
@@ -1659,6 +1721,11 @@
 <td>Rack 1</td>
 </tr>
 <tr>
+<td>Switch 2</td>
+<td><code>10.3.1.3</code></td>
+<td>Rack 1</td>
+</tr>
+<tr>
 <td>Switch 3</td>
 <td><code>10.3.1.4</code></td>
 <td>Workshop / Fabrication</td>
@@ -1679,22 +1746,22 @@
 <td>Rack 1</td>
 </tr>
 <tr>
-<td>Proxmox 1</td>
+<td>Monster 1</td>
 <td><code>10.3.1.11</code></td>
 <td>Rack 1</td>
 </tr>
 <tr>
-<td>Proxmox 2</td>
+<td>Monster 2</td>
 <td><code>10.3.1.12</code></td>
 <td>Rack 1</td>
 </tr>
 <tr>
-<td>Proxmox 3</td>
+<td>Monster 3</td>
 <td><code>10.3.1.13</code></td>
 <td>Rack 1</td>
 </tr>
 <tr>
-<td>Proxmox 4</td>
+<td>Monster 4</td>
 <td><code>10.3.1.14</code></td>
 <td>Rack 1</td>
 </tr>
@@ -1748,6 +1815,11 @@
 <td><code>10.3.1.60</code></td>
 <td>VIP for Internal HAProxy</td>
 </tr>
+<tr>
+<td>GW - VIP 2</td>
+<td><code>10.3.1.61</code></td>
+<td>VIP for K8s-Lab</td>
+</tr>
 </tbody>
 </table>
 <h3 id="wifi-vlan-226">WiFi - VLAN 226</h3>
@@ -1777,6 +1849,11 @@
 <td>AP3</td>
 <td><code>10.3.2.4</code></td>
 <td>Bar by the door</td>
+</tr>
+<tr>
+<td>AP4</td>
+<td><code>10.3.2.5</code></td>
+<td>Behind Rack 1</td>
 </tr>
 </tbody>
 </table>
@@ -1835,7 +1912,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 2, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 3, 2023</span>
       
         <br>
         Created:
