@@ -122,7 +122,9 @@ nav:
       - Electronics: facilities/electronics.md
       - Dark Room: facilities/dark_room.md
       - Crafts Space: facilities/crafts_space.md
-      - Social Space: facilities/social_space.md
+      - Social Space: 
+        - facilities/social_space/index.md
+        - Hosting an event: facilities/social_space/hosting_events.md
       - Artist Pods: facilities/artist_pods.md
   - Infrastructure:
       - infrastructure/index.md
