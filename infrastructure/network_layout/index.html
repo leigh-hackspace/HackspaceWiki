@@ -1464,15 +1464,16 @@
 
 <h1 id="network-layout">Network Layout</h1>
 <h2 id="physical-network-layout">Physical Network Layout</h2>
-<p>Correct as of 2023-10-03</p>
+<p>Correct as of 2023-10-05</p>
 <pre class="mermaid"><code>graph 
     subgraph Rack1
     GW[GW - pfSense] 
     AP[AP 1] --&gt;|Port43| SWITCH1
     SWITCH1[Switch 1] --&gt;|Port1 / en0| GW
-    SWITCH2[Switch 2] -.-&gt; |Port??| SWITCH1
+    SWITCH1N[New Switch 1] --&gt; |Port36| SWITCH1
+    SWITCH2[Switch 2] --&gt; |Port47/48| SWITCH1N
     NAS1[NAS 1] --&gt; |Port44| SWITCH1
-    NAS2[NAS 2] -.-&gt; |Port??| SWITCH1
+    NAS2[NAS 2] -.-&gt; |Port5/6/7| SWITCH1N
     ESX1[ESX 1] --&gt; |Port40/41/42| SWITCH1
     MONSTER[Monster 2/3/4] --&gt; |Port??| SWITCH1
     LEIGHOOB[Leigh OOB] --&gt; |Port39| SWITCH1
@@ -1537,13 +1538,13 @@
 <td>To be decommed</td>
 </tr>
 <tr>
-<td>Switch 1</td>
+<td><em>New</em> Switch 1</td>
 <td>HP</td>
 <td>Procurve 2510-48G</td>
 <td>L2 Switch</td>
 <td>Rack 1</td>
-<td>Waiting to replace existing Switch 1</td>
-<td></td>
+<td>Live</td>
+<td>For Rack 1 hardware</td>
 </tr>
 <tr>
 <td>Switch 2</td>
@@ -1551,8 +1552,8 @@
 <td>Procurve 2510-48G</td>
 <td>L2 Switch</td>
 <td>Rack 1</td>
-<td>Waiting to be installed</td>
-<td></td>
+<td>Live</td>
+<td>For wired clients in the rooms</td>
 </tr>
 <tr>
 <td>Switch 3</td>
@@ -1589,6 +1590,15 @@
 <td>Bar</td>
 <td>Live</td>
 <td></td>
+</tr>
+<tr>
+<td>AP 4</td>
+<td>Netgear</td>
+<td>???</td>
+<td>AP</td>
+<td>Behind Rack 1</td>
+<td>Live</td>
+<td>B/G Only network for old devices</td>
 </tr>
 <tr>
 <td>NAS 1</td>
@@ -1681,7 +1691,7 @@
 <li>ISP: <a href="https://aware-soft.com/">Awareness Software Ltd</a> (AS34931)</li>
 <li>Mill Network Administrator: <a href="mailto:data@imagevillage.co.uk">Mark Nightingale</a>, Image Village.</li>
 </ul>
-<p>Access to the mill network is provided by a singular CAT5 delivered to the rear of the main space, just above where Rack1 is.</p>
+<p>Access to the mill network is provided by a singular CAT5 delivered to the rear of the main space, just above where Rack 1 is.</p>
 <ul>
 <li>VLAN: 50 (untagged)</li>
 <li>Subnet: <code>192.168.20.0/24</code></li>
@@ -1738,6 +1748,11 @@
 <tr>
 <td>NAS 2</td>
 <td><code>10.3.1.6</code></td>
+<td>Rack 1</td>
+</tr>
+<tr>
+<td><em>New</em> Switch 1</td>
+<td><code>10.3.1.7</code></td>
 <td>Rack 1</td>
 </tr>
 <tr>
@@ -1912,7 +1927,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 3, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 5, 2023</span>
       
         <br>
         Created:
