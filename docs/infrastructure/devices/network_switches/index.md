@@ -4,65 +4,15 @@
 
 For **switch1**, check the password manager.
 
-For **switch2**, you can login using your [id.leighhack.org](https://id.leighhack.org) account if you're in the 'Infra' group. This will give you write permissions to the switch. This uses RADIUS to Authentik behind the scenes.
+For all managed switches you can login using your [id.leighhack.org](https://id.leighhack.org) account if you're in the 'Infra' group. This will give you write permissions to the switch. This uses RADIUS to Authentik behind the scenes.
 
-## Switch1
+## HP Switches
 
-Switch1 is a Cisco Catalyst 3560G. A 52 port switch that is the core of our network. Its located in Rack1.
+All managed switches in the space are HP Procurve switches. They're now supported under the 'Aruba' brand as 'HPE/Aruba' switches.
 
-### Enabling a port untagged on a VLAN
+Switch 1 and 2 are **2510-48G**, and Switch 3 is a **2824**
 
-Check the [network layout](../../network_layout.md) for the VLAN you need, most of the time for servers in the rack, then its `225`.
-
-* Login to the switch
-* Run `enable` to escalate to a privileged login
-* Run `conf t` to switch to config mode.
-* Configure the port as needed:
-
-For a singluar port:
-```
-interface Gi0/35
-switchport mode access
-switchport access vlan 225
-```
-
-
-For multiple ports at once:
-```
-interface range GigabitEthernet0/35 - 37
-switchport mode access
-switchport access vlan 225
-```
-
-* Enter `exit`
-* Test the port and connectivity
-* Once happy, run `write mem` to commit the change to storage.
-
-### Enabling a trunk port on multiple VLANs
-
-Check the [network layout](../../network_layout.md) for the VLANs the device needs.
-
-* Login to the switch
-* Run `enable` to escalate to a privileged login
-* Run `conf t` to switch to config mode.
-* Configure the port to be a trunk:
-
-```
-interface Gi0/35
-switchport mode trunk
-```
-
-* Optionally, define and limit the VLANs allowed: `switchport trunk allowed vlan 225,226,227`
-* Optionally, define the VLAN that untagged packets will go to: `switchport trunk native vlan 225`
-* Enter `exit`
-* Test the port and connectivity
-* Once happy, run `write mem` to commit the change to storage.
-
-
-
-## Switch2
-
-Switch2 is a HP Procurve 2824 Gigabit switch, it has full L2 and L3-lite managed features. We only make use of the L2 features. The device is located in the Fabrication area under the CAD desk, and is connected to Switch1 via a single CAT5 connection running at 100mbps (for some reason!). 
+While the 2824 is the older switch it offers L3-lite capabilities, that we don't use. The others are just standard L2 managed switches with the usual bells and whistles.
 
 ### Enabling a port untagged on a VLAN
 
