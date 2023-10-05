@@ -140,3 +140,4 @@ nav:
         - Proxmox Clusters: infrastructure/devices/proxmox/index.md
         - Kubernetes Lab: infrastructure/devices/k8s-lab/index.md
         - Hackspace State Switch: infrastructure/devices/state_switch/index.md
+        - Dashboard: infrastructure/devices/dashboard/index.md
