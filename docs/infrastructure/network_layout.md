@@ -2,7 +2,7 @@
 
 ## Physical Network Layout
 
-Correct as of 2023-10-03
+Correct as of 2023-10-05
 
 ```mermaid
 graph 
@@ -10,9 +10,10 @@ graph
     GW[GW - pfSense] 
     AP[AP 1] -->|Port43| SWITCH1
     SWITCH1[Switch 1] -->|Port1 / en0| GW
-    SWITCH2[Switch 2] -.-> |Port??| SWITCH1
+    SWITCH1N[New Switch 1] --> |Port36| SWITCH1
+    SWITCH2[Switch 2] --> |Port47/48| SWITCH1N
     NAS1[NAS 1] --> |Port44| SWITCH1
-    NAS2[NAS 2] -.-> |Port??| SWITCH1
+    NAS2[NAS 2] -.-> |Port5/6/7| SWITCH1N
     ESX1[ESX 1] --> |Port40/41/42| SWITCH1
     MONSTER[Monster 2/3/4] --> |Port??| SWITCH1
     LEIGHOOB[Leigh OOB] --> |Port39| SWITCH1
@@ -48,23 +49,24 @@ graph
 
 ## Hardware
 
-| Name         | Manf         | Model             | Type      | Location    | Status                               | Notes                                                           |
-| ------------ | ------------ | ----------------- | --------- | ----------- | ------------------------------------ | --------------------------------------------------------------- |
-| GW           | HP           | Unknown           | Router    | Rack 1      | Live                                 | HP desktop system running pfSense                               |
-| Switch 1     | Cisco        | Catalyst 3560G    | L3 Switch | Rack 1      | Live                                 | To be decommed                                                  |
-| Switch 1     | HP           | Procurve 2510-48G | L2 Switch | Rack 1      | Waiting to replace existing Switch 1 |
-| Switch 2     | HP           | Procurve 2510-48G | L2 Switch | Rack 1      | Waiting to be installed              |                                                                 |
-| Switch 3     | HP           | Procurve 2824     | L2 Switch | Fabrication | Live                                 | Switch for the fabrication area                                 |
-| AP 1         | Linksys      | WRT1900ACS        | AP        | Top of Rack | Live                                 | Uses stock firmware                                             |
-| AP 2         | Netgear      | WNR2000           | AP        | Pi Room     | Live                                 |                                                                 |
-| AP 3         | Cisco        | RV110W            | AP        | Bar         | Live                                 |                                                                 |
-| NAS 1        | QNAP         | TS-431+           | NAS       | Rack 1      | Live                                 |                                                                 |
-| NAS 2        | HP           | Microserver G8    | NAS       | Rack 1      | Awaiting Installation                |                                                                 |
-| UPS          | APC          | ???               | UPS       | Rack 1      | Live                                 |                                                                 |
-| ESX 1        | Dell         | R320              | Server    | Rack 1      | Live                                 | ESXi Host                                                       |
-| Leigh OOB    | Raspberry Pi | 2 B+              | Server    | Rack 1      | Live                                 | Gives us 'out of band' access to Hackspace network and devices  |
-| Mini Switch  | Netgear      | ???               | L2 Switch | Rack 1      | Live                                 | Multiple ports on the Mill network, needs switching to Switch 1 |
-| Blade Server | HP           | SL2x170z G6       | Server    | Rack 1      | Live                                 | Proxmox Cluster 'Monster'                                       |
+| Name           | Manf         | Model             | Type      | Location      | Status                | Notes                                                           |
+| -------------- | ------------ | ----------------- | --------- | ------------- | --------------------- | --------------------------------------------------------------- |
+| GW             | HP           | Unknown           | Router    | Rack 1        | Live                  | HP desktop system running pfSense                               |
+| Switch 1       | Cisco        | Catalyst 3560G    | L3 Switch | Rack 1        | Live                  | To be decommed                                                  |
+| _New_ Switch 1 | HP           | Procurve 2510-48G | L2 Switch | Rack 1        | Live                  | For Rack 1 hardware                                             |
+| Switch 2       | HP           | Procurve 2510-48G | L2 Switch | Rack 1        | Live                  | For wired clients in the rooms                                  |
+| Switch 3       | HP           | Procurve 2824     | L2 Switch | Fabrication   | Live                  | Switch for the fabrication area                                 |
+| AP 1           | Linksys      | WRT1900ACS        | AP        | Top of Rack   | Live                  | Uses stock firmware                                             |
+| AP 2           | Netgear      | WNR2000           | AP        | Pi Room       | Live                  |                                                                 |
+| AP 3           | Cisco        | RV110W            | AP        | Bar           | Live                  |                                                                 |
+| AP 4           | Netgear      | ???               | AP        | Behind Rack 1 | Live                  | B/G Only network for old devices                                |
+| NAS 1          | QNAP         | TS-431+           | NAS       | Rack 1        | Live                  |                                                                 |
+| NAS 2          | HP           | Microserver G8    | NAS       | Rack 1        | Awaiting Installation |                                                                 |
+| UPS            | APC          | ???               | UPS       | Rack 1        | Live                  |                                                                 |
+| ESX 1          | Dell         | R320              | Server    | Rack 1        | Live                  | ESXi Host                                                       |
+| Leigh OOB      | Raspberry Pi | 2 B+              | Server    | Rack 1        | Live                  | Gives us 'out of band' access to Hackspace network and devices  |
+| Mini Switch    | Netgear      | ???               | L2 Switch | Rack 1        | Live                  | Multiple ports on the Mill network, needs switching to Switch 1 |
+| Blade Server   | HP           | SL2x170z G6       | Server    | Rack 1        | Live                  | Proxmox Cluster 'Monster'                                       |
 
 ## L3 Layout / VLANs
 
@@ -98,7 +100,7 @@ The mill provides internet access via a 100mbps internal network. It can be a bi
 * ISP: [Awareness Software Ltd](https://aware-soft.com/) (AS34931)
 * Mill Network Administrator: [Mark Nightingale](mailto:data@imagevillage.co.uk), Image Village.
 
-Access to the mill network is provided by a singular CAT5 delivered to the rear of the main space, just above where Rack1 is.
+Access to the mill network is provided by a singular CAT5 delivered to the rear of the main space, just above where Rack 1 is.
 
 * VLAN: 50 (untagged)
 * Subnet: `192.168.20.0/24`
@@ -131,6 +133,7 @@ This subnet does have DHCP enabled, but we encourage static assignments for crit
 | Switch 3          | `10.3.1.4`  | Workshop / Fabrication   |
 | NAS 1             | `10.3.1.5`  | Rack 1                   |
 | NAS 2             | `10.3.1.6`  | Rack 1                   |
+| _New_ Switch 1    | `10.3.1.7`  | Rack 1                   |
 | ESX 1             | `10.3.1.10` | Rack 1                   |
 | Monster 1         | `10.3.1.11` | Rack 1                   |
 | Monster 2         | `10.3.1.12` | Rack 1                   |
