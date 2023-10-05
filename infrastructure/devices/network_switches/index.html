@@ -1196,6 +1196,10 @@
             
           
         
+          
+            
+          
+        
       
       
         
@@ -1265,11 +1269,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#switch1" class="md-nav__link">
-    Switch1
+  <a href="#hp-switches" class="md-nav__link">
+    HP Switches
   </a>
   
-    <nav class="md-nav" aria-label="Switch1">
+    <nav class="md-nav" aria-label="HP Switches">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1281,33 +1285,6 @@
         
           <li class="md-nav__item">
   <a href="#enabling-a-trunk-port-on-multiple-vlans" class="md-nav__link">
-    Enabling a trunk port on multiple VLANs
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#switch2" class="md-nav__link">
-    Switch2
-  </a>
-  
-    <nav class="md-nav" aria-label="Switch2">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#enabling-a-port-untagged-on-a-vlan_1" class="md-nav__link">
-    Enabling a port untagged on a VLAN
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#enabling-a-trunk-port-on-multiple-vlans_1" class="md-nav__link">
     Enabling a trunk port on multiple VLANs
   </a>
   
@@ -1411,6 +1388,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dashboard/" class="md-nav__link">
+        Dashboard
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1445,53 +1436,12 @@
 <h1 id="network-switches">Network Switches</h1>
 <h2 id="logging-in">Logging In</h2>
 <p>For <strong>switch1</strong>, check the password manager.</p>
-<p>For <strong>switch2</strong>, you can login using your <a href="https://id.leighhack.org">id.leighhack.org</a> account if you're in the 'Infra' group. This will give you write permissions to the switch. This uses RADIUS to Authentik behind the scenes.</p>
-<h2 id="switch1">Switch1</h2>
-<p>Switch1 is a Cisco Catalyst 3560G. A 52 port switch that is the core of our network. Its located in Rack1.</p>
+<p>For all managed switches you can login using your <a href="https://id.leighhack.org">id.leighhack.org</a> account if you're in the 'Infra' group. This will give you write permissions to the switch. This uses RADIUS to Authentik behind the scenes.</p>
+<h2 id="hp-switches">HP Switches</h2>
+<p>All managed switches in the space are HP Procurve switches. They're now supported under the 'Aruba' brand as 'HPE/Aruba' switches.</p>
+<p>Switch 1 and 2 are <strong>2510-48G</strong>, and Switch 3 is a <strong>2824</strong></p>
+<p>While the 2824 is the older switch it offers L3-lite capabilities, that we don't use. The others are just standard L2 managed switches with the usual bells and whistles.</p>
 <h3 id="enabling-a-port-untagged-on-a-vlan">Enabling a port untagged on a VLAN</h3>
-<p>Check the <a href="../../network_layout/">network layout</a> for the VLAN you need, most of the time for servers in the rack, then its <code>225</code>.</p>
-<ul>
-<li>Login to the switch</li>
-<li>Run <code>enable</code> to escalate to a privileged login</li>
-<li>Run <code>conf t</code> to switch to config mode.</li>
-<li>Configure the port as needed:</li>
-</ul>
-<p>For a singluar port:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>interface Gi0/35
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>switchport mode access
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>switchport access vlan 225
-</code></pre></div></p>
-<p>For multiple ports at once:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>interface range GigabitEthernet0/35 - 37
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>switchport mode access
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>switchport access vlan 225
-</code></pre></div></p>
-<ul>
-<li>Enter <code>exit</code></li>
-<li>Test the port and connectivity</li>
-<li>Once happy, run <code>write mem</code> to commit the change to storage.</li>
-</ul>
-<h3 id="enabling-a-trunk-port-on-multiple-vlans">Enabling a trunk port on multiple VLANs</h3>
-<p>Check the <a href="../../network_layout/">network layout</a> for the VLANs the device needs.</p>
-<ul>
-<li>Login to the switch</li>
-<li>Run <code>enable</code> to escalate to a privileged login</li>
-<li>Run <code>conf t</code> to switch to config mode.</li>
-<li>Configure the port to be a trunk:</li>
-</ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>interface Gi0/35
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>switchport mode trunk
-</code></pre></div>
-<ul>
-<li>Optionally, define and limit the VLANs allowed: <code>switchport trunk allowed vlan 225,226,227</code></li>
-<li>Optionally, define the VLAN that untagged packets will go to: <code>switchport trunk native vlan 225</code></li>
-<li>Enter <code>exit</code></li>
-<li>Test the port and connectivity</li>
-<li>Once happy, run <code>write mem</code> to commit the change to storage.</li>
-</ul>
-<h2 id="switch2">Switch2</h2>
-<p>Switch2 is a HP Procurve 2824 Gigabit switch, it has full L2 and L3-lite managed features. We only make use of the L2 features. The device is located in the Fabrication area under the CAD desk, and is connected to Switch1 via a single CAT5 connection running at 100mbps (for some reason!). </p>
-<h3 id="enabling-a-port-untagged-on-a-vlan_1">Enabling a port untagged on a VLAN</h3>
 <ul>
 <li>Login to the switch via telnet, using your  <a href="https://id.leighhack.org">id.leighhack.org</a> account.</li>
 <li>Run <code>conf</code></li>
@@ -1499,7 +1449,7 @@
 <li>Type <code>untagged 25</code> representing the port number, ranges can be specified e.g. <code>25-30</code></li>
 <li><code>exit</code>, <code>exit</code>, <code>wr mem</code></li>
 </ul>
-<h3 id="enabling-a-trunk-port-on-multiple-vlans_1">Enabling a trunk port on multiple VLANs</h3>
+<h3 id="enabling-a-trunk-port-on-multiple-vlans">Enabling a trunk port on multiple VLANs</h3>
 <ul>
 <li>Same as a untagged port, switch to each VLAN and use <code>tagged &lt;portid&gt;</code> rather than <code>untagged</code></li>
 </ul>
@@ -1509,7 +1459,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 18, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 5, 2023</span>
       
         <br>
         Created:

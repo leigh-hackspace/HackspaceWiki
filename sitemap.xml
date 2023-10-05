@@ -151,6 +151,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/devices/dashboard/</loc>
+         <lastmod>2023-10-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/devices/k8s-lab/</loc>
          <lastmod>2023-10-05</lastmod>
          <changefreq>daily</changefreq>
