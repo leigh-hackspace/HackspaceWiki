@@ -1467,27 +1467,33 @@
     MON2[Monster2 - Blade 1]
     MON3[Monster3 - Blade 2]
     MON4[Monster4 - Blade 2]
-    NAS[NAS1 - NFS]
+    NAS1[NAS1 - NFS]
+    NAS2[NAS2 - NFS]
 
     GW &lt;--&gt; SWITCH1
     SWITCH1 &lt;--&gt; MON1
     SWITCH1 &lt;--&gt; MON2
     SWITCH1 &lt;--&gt; MON3
     SWITCH1 &lt;--&gt; MON4
-    SWITCH1 &lt;--&gt; NAS</code></pre>
+    SWITCH1 &lt;--&gt; NAS1
+    SWITCH1 &lt;--&gt; NAS2</code></pre>
 <h2 id="storage-layout">Storage Layout</h2>
-<p>All nodes are connected via NFS to <code>/prox-monster-datastore</code> on NAS1.</p>
 <pre class="mermaid"><code>graph 
     MON1[Monster1 - Blade 1]
     MON2[Monster2 - Blade 1]
     MON3[Monster3 - Blade 2]
     MON4[Monster4 - Blade 2]
     NAS[NAS1 - /prox-monster-datastore]
+    NAS2[NAS2 - /mnt/sas-10k/proxmox-monster-ds1]
 
     MON1 --&gt; NAS
     MON2 --&gt; NAS
     MON3 --&gt; NAS
-    MON4 --&gt; NAS</code></pre>
+    MON4 --&gt; NAS
+    MON1 --&gt; NAS2
+    MON2 --&gt; NAS2
+    MON3 --&gt; NAS2
+    MON4 --&gt; NAS2</code></pre>
 <h2 id="admin-tasks">Admin Tasks</h2>
 <h3 id="allowing-users-access-to-the-cluster">Allowing users access to the Cluster</h3>
 <ul>
@@ -1508,7 +1514,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 17, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 8, 2023</span>
       
         <br>
         Created:
