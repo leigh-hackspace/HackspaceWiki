@@ -24,19 +24,19 @@ graph
     MON2[Monster2 - Blade 1]
     MON3[Monster3 - Blade 2]
     MON4[Monster4 - Blade 2]
-    NAS[NAS1 - NFS]
+    NAS1[NAS1 - NFS]
+    NAS2[NAS2 - NFS]
 
     GW <--> SWITCH1
     SWITCH1 <--> MON1
     SWITCH1 <--> MON2
     SWITCH1 <--> MON3
     SWITCH1 <--> MON4
-    SWITCH1 <--> NAS
+    SWITCH1 <--> NAS1
+    SWITCH1 <--> NAS2
 ```
 
 ## Storage Layout
-
-All nodes are connected via NFS to `/prox-monster-datastore` on NAS1.
 
 ```mermaid
 graph 
@@ -45,11 +45,16 @@ graph
     MON3[Monster3 - Blade 2]
     MON4[Monster4 - Blade 2]
     NAS[NAS1 - /prox-monster-datastore]
+    NAS2[NAS2 - /mnt/sas-10k/proxmox-monster-ds1]
 
     MON1 --> NAS
     MON2 --> NAS
     MON3 --> NAS
     MON4 --> NAS
+    MON1 --> NAS2
+    MON2 --> NAS2
+    MON3 --> NAS2
+    MON4 --> NAS2
 ```
 
 
