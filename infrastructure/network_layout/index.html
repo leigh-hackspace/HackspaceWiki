@@ -1221,6 +1221,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#storage-vlan-231" class="md-nav__link">
+    Storage - VLAN 231
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#openvpn" class="md-nav__link">
     OpenVPN
   </a>
@@ -1482,19 +1489,19 @@
 
 <h1 id="network-layout">Network Layout</h1>
 <h2 id="physical-network-layout">Physical Network Layout</h2>
-<p>Correct as of 2023-10-05</p>
+<p>Correct as of 2023-10-08</p>
 <pre class="mermaid"><code>graph 
     subgraph Rack1
     GW[GW - pfSense] 
-    AP[AP 1] --&gt;|Port43| SWITCH1
-    SWITCH1[Switch 1] --&gt;|Port1 / en0| GW
-    SWITCH1N[New Switch 1] --&gt; |Port36| SWITCH1
-    SWITCH2[Switch 2] --&gt; |Port47/48| SWITCH1N
-    NAS1[NAS 1] --&gt; |Port44| SWITCH1
-    NAS2[NAS 2] -.-&gt; |Port5/6/7| SWITCH1N
-    ESX1[ESX 1] --&gt; |Port40/41/42| SWITCH1
-    MONSTER[Monster 2/3/4] --&gt; |Port??| SWITCH1
-    LEIGHOOB[Leigh OOB] --&gt; |Port39| SWITCH1
+    AP[AP 1] --&gt;|Port20| SWITCH1
+    SWITCH1[Switch 1] --&gt;|Port1 / em0-1| GW
+    SWITCH2[Switch 2] --&gt; |Port47/48| SWITCH1
+    NAS1[NAS 1] --&gt; |Port3| SWITCH1
+    NAS2[NAS 2] --&gt; |Port5/6/7| SWITCH1
+    ESX1[ESX 1] --&gt; |Port8/9/10| SWITCH1
+    MONSTER[Monster 1/2/3/4] --&gt; |Port11-18| SWITCH1
+    LEIGHOOB[Leigh OOB] --&gt; |Port19| SWITCH1
+    AP4[AP4 - B/G] --&gt; |Port22| SWITCH1
     MINISWITCH[Mini Switch]
     end
 
@@ -1506,22 +1513,22 @@
     AAISP[Andrews Arnold] -.-&gt; INTERNET
 
     subgraph Pi Room
-    PIROOMPC[Pi Room PCs] --&gt;|Port3-24| SWITCH1
-    PRINTERS[Printers] --&gt;|Port48| SWITCH1
-    PIROOMAP[AP 2] --&gt; |Port47| SWITCH1
+    PIROOMPC[Pi Room PCs] --&gt;|Port1-42| SWITCH2
+    PRINTERS[HP Printer] --&gt;|Port44| SWITCH2
+    PIROOMAP[AP 2] --&gt; |Port43| SWITCH1
     end
 
     subgraph Classroom
-    CLASSROOMPC[Class Room PCs] --&gt;|Port25-26| SWITCH1
+    CLASSROOMPC[Class Room PCs] --&gt;|Port1-42| SWITCH2
     end
 
     subgraph Bar
-    AP3[AP3] --&gt;|Port33| SWITCH1
+    AP3[AP3] --&gt;|Port22| SWITCH1
     end
 
     subgraph Fabrication
-    SWITCH3[Switch 3] --&gt;|Port34| SWITCH1
-    3DPRINTERS[3D Printer Pis] --&gt; |Port??| SWITCH3
+    SWITCH3[Switch 3] --&gt;|Port1 / Port46| SWITCH1
+    3DPRINTERS[3D Printer Pis] --&gt; |Port2-10| SWITCH3
     end</code></pre>
 <h2 id="hardware">Hardware</h2>
 <table>
@@ -1548,15 +1555,6 @@
 </tr>
 <tr>
 <td>Switch 1</td>
-<td>Cisco</td>
-<td>Catalyst 3560G</td>
-<td>L3 Switch</td>
-<td>Rack 1</td>
-<td>Live</td>
-<td>To be decommed</td>
-</tr>
-<tr>
-<td><em>New</em> Switch 1</td>
 <td>HP</td>
 <td>Procurve 2510-48G</td>
 <td>L2 Switch</td>
@@ -1633,7 +1631,7 @@
 <td>Microserver G8</td>
 <td>NAS</td>
 <td>Rack 1</td>
-<td>Awaiting Installation</td>
+<td>Live</td>
 <td></td>
 </tr>
 <tr>
@@ -1691,10 +1689,14 @@
     WiFi[WiFi - VLAN 226]
     WIRED[Wired - VLAN 227]
     AUTOMATION[Automation VLAN 229]
+    DMZ[DMZ - VLAN 230]
+    STORAGE[Storage - VLAN 231]
+
+    DMZ &lt;--&gt; INTERNET
     SHARED --&gt; INTERNET
     WIRED --&gt; INTERNET
     WiFi --&gt; INTERNET
-    INTERNET &lt;--&gt; DMZ[DMZ - VLAN 230]
+
     SHARED --&gt; DMZ
     WIRED --&gt; DMZ
     WiFi --&gt; DMZ
@@ -1934,6 +1936,51 @@
 </tr>
 </tbody>
 </table>
+<h3 id="storage-vlan-231">Storage - VLAN 231</h3>
+<p>Non-routed VLAN for VM hosts to connect to storage devices either via iSCSI or NFS, to keep that main broadcast traffic off the main subnets.</p>
+<p><strong>Currently not implemented</strong></p>
+<p>IP Range: <code>10.254.254.0/24</code></p>
+<table>
+<thead>
+<tr>
+<th>Device Name</th>
+<th>IP Address</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nas02</code></td>
+<td><code>10.254.254.2</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>monster1</code></td>
+<td><code>10.254.254.11</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>monster2</code></td>
+<td><code>10.254.254.12</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>monster3</code></td>
+<td><code>10.254.254.13</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>monster4</code></td>
+<td><code>10.254.254.14</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>esx1</code></td>
+<td><code>10.254.254.15</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="openvpn">OpenVPN</h3>
 <p>The pfSense has a OpenVPN server, this allocates IPs in the <code>10.3.254.0/24</code> range and is available as a normal interface on pfSense, but it doesn't have a VLAN assigned to it.</p>
 <h3 id="oob-access">OOB Access</h3>
@@ -1945,7 +1992,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 5, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 8, 2023</span>
       
         <br>
         Created:
