@@ -136,7 +136,6 @@ This subnet does have DHCP enabled, but we encourage static assignments for crit
 | Switch 3          | `10.3.1.4`  | Workshop / Fabrication   |
 | NAS 1             | `10.3.1.5`  | Rack 1                   |
 | NAS 2             | `10.3.1.6`  | Rack 1                   |
-| _New_ Switch 1    | `10.3.1.7`  | Rack 1                   |
 | ESX 1             | `10.3.1.10` | Rack 1                   |
 | Monster 1         | `10.3.1.11` | Rack 1                   |
 | Monster 2         | `10.3.1.12` | Rack 1                   |
