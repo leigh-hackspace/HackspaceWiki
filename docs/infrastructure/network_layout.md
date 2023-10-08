@@ -2,21 +2,21 @@
 
 ## Physical Network Layout
 
-Correct as of 2023-10-05
+Correct as of 2023-10-08
 
 ```mermaid
 graph 
     subgraph Rack1
     GW[GW - pfSense] 
-    AP[AP 1] -->|Port43| SWITCH1
-    SWITCH1[Switch 1] -->|Port1 / en0| GW
-    SWITCH1N[New Switch 1] --> |Port36| SWITCH1
-    SWITCH2[Switch 2] --> |Port47/48| SWITCH1N
-    NAS1[NAS 1] --> |Port44| SWITCH1
-    NAS2[NAS 2] -.-> |Port5/6/7| SWITCH1N
-    ESX1[ESX 1] --> |Port40/41/42| SWITCH1
-    MONSTER[Monster 2/3/4] --> |Port??| SWITCH1
-    LEIGHOOB[Leigh OOB] --> |Port39| SWITCH1
+    AP[AP 1] -->|Port20| SWITCH1
+    SWITCH1[Switch 1] -->|Port1 / em0-1| GW
+    SWITCH2[Switch 2] --> |Port47/48| SWITCH1
+    NAS1[NAS 1] --> |Port3| SWITCH1
+    NAS2[NAS 2] --> |Port5/6/7| SWITCH1
+    ESX1[ESX 1] --> |Port8/9/10| SWITCH1
+    MONSTER[Monster 1/2/3/4] --> |Port11-18| SWITCH1
+    LEIGHOOB[Leigh OOB] --> |Port19| SWITCH1
+    AP4[AP4 - B/G] --> |Port22| SWITCH1
     MINISWITCH[Mini Switch]
     end
 
@@ -28,45 +28,44 @@ graph
     AAISP[Andrews Arnold] -.-> INTERNET
     
     subgraph Pi Room
-    PIROOMPC[Pi Room PCs] -->|Port3-24| SWITCH1
-    PRINTERS[Printers] -->|Port48| SWITCH1
-    PIROOMAP[AP 2] --> |Port47| SWITCH1
+    PIROOMPC[Pi Room PCs] -->|Port1-42| SWITCH2
+    PRINTERS[HP Printer] -->|Port44| SWITCH2
+    PIROOMAP[AP 2] --> |Port43| SWITCH1
     end
 
     subgraph Classroom
-    CLASSROOMPC[Class Room PCs] -->|Port25-26| SWITCH1
+    CLASSROOMPC[Class Room PCs] -->|Port1-42| SWITCH2
     end
     
     subgraph Bar
-    AP3[AP3] -->|Port33| SWITCH1
+    AP3[AP3] -->|Port22| SWITCH1
     end
     
     subgraph Fabrication
-    SWITCH3[Switch 3] -->|Port34| SWITCH1
-    3DPRINTERS[3D Printer Pis] --> |Port??| SWITCH3
+    SWITCH3[Switch 3] -->|Port1 / Port46| SWITCH1
+    3DPRINTERS[3D Printer Pis] --> |Port2-10| SWITCH3
     end
 ```
 
 ## Hardware
 
-| Name           | Manf         | Model             | Type      | Location      | Status                | Notes                                                           |
-| -------------- | ------------ | ----------------- | --------- | ------------- | --------------------- | --------------------------------------------------------------- |
-| GW             | HP           | Unknown           | Router    | Rack 1        | Live                  | HP desktop system running pfSense                               |
-| Switch 1       | Cisco        | Catalyst 3560G    | L3 Switch | Rack 1        | Live                  | To be decommed                                                  |
-| _New_ Switch 1 | HP           | Procurve 2510-48G | L2 Switch | Rack 1        | Live                  | For Rack 1 hardware                                             |
-| Switch 2       | HP           | Procurve 2510-48G | L2 Switch | Rack 1        | Live                  | For wired clients in the rooms                                  |
-| Switch 3       | HP           | Procurve 2824     | L2 Switch | Fabrication   | Live                  | Switch for the fabrication area                                 |
-| AP 1           | Linksys      | WRT1900ACS        | AP        | Top of Rack   | Live                  | Uses stock firmware                                             |
-| AP 2           | Netgear      | WNR2000           | AP        | Pi Room       | Live                  |                                                                 |
-| AP 3           | Cisco        | RV110W            | AP        | Bar           | Live                  |                                                                 |
-| AP 4           | Netgear      | ???               | AP        | Behind Rack 1 | Live                  | B/G Only network for old devices                                |
-| NAS 1          | QNAP         | TS-431+           | NAS       | Rack 1        | Live                  |                                                                 |
-| NAS 2          | HP           | Microserver G8    | NAS       | Rack 1        | Awaiting Installation |                                                                 |
-| UPS            | APC          | ???               | UPS       | Rack 1        | Live                  |                                                                 |
-| ESX 1          | Dell         | R320              | Server    | Rack 1        | Live                  | ESXi Host                                                       |
-| Leigh OOB      | Raspberry Pi | 2 B+              | Server    | Rack 1        | Live                  | Gives us 'out of band' access to Hackspace network and devices  |
-| Mini Switch    | Netgear      | ???               | L2 Switch | Rack 1        | Live                  | Multiple ports on the Mill network, needs switching to Switch 1 |
-| Blade Server   | HP           | SL2x170z G6       | Server    | Rack 1        | Live                  | Proxmox Cluster 'Monster'                                       |
+| Name         | Manf         | Model             | Type      | Location      | Status | Notes                                                           |
+| ------------ | ------------ | ----------------- | --------- | ------------- | ------ | --------------------------------------------------------------- |
+| GW           | HP           | Unknown           | Router    | Rack 1        | Live   | HP desktop system running pfSense                               |
+| Switch 1     | HP           | Procurve 2510-48G | L2 Switch | Rack 1        | Live   | For Rack 1 hardware                                             |
+| Switch 2     | HP           | Procurve 2510-48G | L2 Switch | Rack 1        | Live   | For wired clients in the rooms                                  |
+| Switch 3     | HP           | Procurve 2824     | L2 Switch | Fabrication   | Live   | Switch for the fabrication area                                 |
+| AP 1         | Linksys      | WRT1900ACS        | AP        | Top of Rack   | Live   | Uses stock firmware                                             |
+| AP 2         | Netgear      | WNR2000           | AP        | Pi Room       | Live   |                                                                 |
+| AP 3         | Cisco        | RV110W            | AP        | Bar           | Live   |                                                                 |
+| AP 4         | Netgear      | ???               | AP        | Behind Rack 1 | Live   | B/G Only network for old devices                                |
+| NAS 1        | QNAP         | TS-431+           | NAS       | Rack 1        | Live   |                                                                 |
+| NAS 2        | HP           | Microserver G8    | NAS       | Rack 1        | Live   |                                                                 |
+| UPS          | APC          | ???               | UPS       | Rack 1        | Live   |                                                                 |
+| ESX 1        | Dell         | R320              | Server    | Rack 1        | Live   | ESXi Host                                                       |
+| Leigh OOB    | Raspberry Pi | 2 B+              | Server    | Rack 1        | Live   | Gives us 'out of band' access to Hackspace network and devices  |
+| Mini Switch  | Netgear      | ???               | L2 Switch | Rack 1        | Live   | Multiple ports on the Mill network, needs switching to Switch 1 |
+| Blade Server | HP           | SL2x170z G6       | Server    | Rack 1        | Live   | Proxmox Cluster 'Monster'                                       |
 
 ## L3 Layout / VLANs
 
@@ -79,10 +78,14 @@ graph LR
     WiFi[WiFi - VLAN 226]
     WIRED[Wired - VLAN 227]
     AUTOMATION[Automation VLAN 229]
+    DMZ[DMZ - VLAN 230]
+    STORAGE[Storage - VLAN 231]
+
+    DMZ <--> INTERNET
     SHARED --> INTERNET
     WIRED --> INTERNET
     WiFi --> INTERNET
-    INTERNET <--> DMZ[DMZ - VLAN 230]
+
     SHARED --> DMZ
     WIRED --> DMZ
     WiFi --> DMZ
@@ -195,6 +198,23 @@ IP Range: `81.187.195.16/29`
 
 | Device Name | IP Address | Location |
 | ----------- | ---------- | -------- |
+
+### Storage - VLAN 231
+
+Non-routed VLAN for VM hosts to connect to storage devices either via iSCSI or NFS, to keep that main broadcast traffic off the main subnets.
+
+**Currently not implemented**
+
+IP Range: `10.254.254.0/24`
+
+| Device Name | IP Address      | Location |
+| ----------- | --------------- | -------- |
+| `nas02`     | `10.254.254.2`  |          |
+| `monster1`  | `10.254.254.11` |          |
+| `monster2`  | `10.254.254.12` |          |
+| `monster3`  | `10.254.254.13` |          |
+| `monster4`  | `10.254.254.14` |          |
+| `esx1`      | `10.254.254.15` |          |
 
 ### OpenVPN
 
