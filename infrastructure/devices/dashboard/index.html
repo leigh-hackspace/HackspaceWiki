@@ -1427,7 +1427,8 @@
 <p>A snap that bundles together a simline Webkit browser with some very basic configuration options. All it needs is connection to a Wayland environment and the URL to load.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a># snap install wpe-webkit-mir-kiosk
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a># snap connect wpe-webkit-mir-kiosk ubuntu-frame:wayland
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a># snap set wpe-webkit-mir-kiosk url=http://localhost:9400/receiver
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a># snap connect wpe-webkit-mir-kiosk:system-observe
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a># snap set wpe-webkit-mir-kiosk url=http://localhost:9400/receiver
 </code></pre></div>
 <h2 id="dashkiosk">DashKiosk</h2>
 <p><a href="http://dashboard.int.leighhack.org:9400/">Management interface</a></p>
@@ -1439,7 +1440,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 5, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 21, 2023</span>
       
         <br>
         Created:
