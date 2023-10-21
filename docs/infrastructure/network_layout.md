@@ -149,7 +149,11 @@ This subnet does have DHCP enabled, but we encourage static assignments for crit
 | Monster 4 LO100   | `10.3.1.25` | Rack 1                   |
 | NAS 2 iLO         | `10.3.1.26` | Rack 1                   |
 | Apps1             | `10.3.1.30` | ESX 1                    |
-| Authentik         | `10.3.1.31` | Monster
+| MX1               | `10.3.1.31` | Monster                  |
+| k8s-lab-01        | `10.3.1.32` | Monster                  |
+| k8s-lab-02        | `10.3.1.33` | Monster                  |
+| k8s-lab-03        | `10.3.1.34` | Monster                  |
+| Authentik         | `10.3.1.35` | Monster                  |
 | HP Laserjet P3015 | `10.3.1.50` | Pi Room 5/7              |
 | GW - VIP 1        | `10.3.1.60` | VIP for Internal HAProxy |
 | GW - VIP 2        | `10.3.1.61` | VIP for K8s-Lab          |
