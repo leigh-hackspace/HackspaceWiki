@@ -153,7 +153,8 @@ This subnet does have DHCP enabled, but we encourage static assignments for crit
 | k8s-lab-01        | `10.3.1.32` | Monster                  |
 | k8s-lab-02        | `10.3.1.33` | Monster                  |
 | k8s-lab-03        | `10.3.1.34` | Monster                  |
-| Authentik         | `10.3.1.35` | Monster                  |
+| Cobalt RAQ3       | `10.3.1.35` | Monster                  |
+| Authentik         | `10.3.1.36` | Monster                  |
 | HP Laserjet P3015 | `10.3.1.50` | Pi Room 5/7              |
 | GW - VIP 1        | `10.3.1.60` | VIP for Internal HAProxy |
 | GW - VIP 2        | `10.3.1.61` | VIP for K8s-Lab          |
