@@ -35,6 +35,7 @@ A snap that bundles together a simline Webkit browser with some very basic confi
 ```
 # snap install wpe-webkit-mir-kiosk
 # snap connect wpe-webkit-mir-kiosk ubuntu-frame:wayland
+# snap connect wpe-webkit-mir-kiosk:system-observe
 # snap set wpe-webkit-mir-kiosk url=http://localhost:9400/receiver
 ```
 
