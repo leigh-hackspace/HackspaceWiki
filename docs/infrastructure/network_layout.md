@@ -2,7 +2,7 @@
 
 ## Physical Network Layout
 
-Correct as of 2023-10-08
+Correct as of 2023-10-23
 
 ```mermaid
 graph 
@@ -20,13 +20,19 @@ graph
     MINISWITCH[Mini Switch]
     end
 
+    subgraph Mill
+    MILL[Mill Network - VLAN 50] --> MILLROUTER[Mill Router - Draytek]
+    end
+
+    MILLROUTER --> INTERNET((Internet))
+    AAISP[Andrews Arnold] --> INTERNET
+
+    SWITCH1 -.->|Port45 - To be configured| MILL
     LEIGHOOB --> MINISWITCH
     GW -->|em3| MINISWITCH
     MINISWITCH --> MILL
     GW -. L2TP via Mill Network .-> AAISP
-    MILL[Mill Network - VLAN 50] --> MILLROUTER[Mill Router - Draytek] --> INTERNET((Internet))
-    AAISP[Andrews Arnold] -.-> INTERNET
-    
+
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] -->|Port1-42| SWITCH2
     PRINTERS[HP Printer] -->|Port44| SWITCH2
@@ -43,7 +49,9 @@ graph
     
     subgraph Fabrication
     SWITCH3[Switch 3] -->|Port1 / Port46| SWITCH1
-    3DPRINTERS[3D Printer Pis] --> |Port2-10| SWITCH3
+    3DPRINTERS[3D Printer Pis] --> |Port2-4| SWITCH3
+    LASER[Laser-1] --> |Port5| SWITCH3
+    CNC[CNC-1]
     end
 ```
 
@@ -155,6 +163,7 @@ This subnet does have DHCP enabled, but we encourage static assignments for crit
 | k8s-lab-03        | `10.3.1.34` | Monster                  |
 | Cobalt RAQ3       | `10.3.1.35` | Monster                  |
 | Authentik         | `10.3.1.36` | Monster                  |
+| Apps2             | `10.3.1.36` | Monster                  |
 | HP Laserjet P3015 | `10.3.1.50` | Pi Room 5/7              |
 | GW - VIP 1        | `10.3.1.60` | VIP for Internal HAProxy |
 | GW - VIP 2        | `10.3.1.61` | VIP for K8s-Lab          |
