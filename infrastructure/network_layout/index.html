@@ -1489,7 +1489,7 @@
 
 <h1 id="network-layout">Network Layout</h1>
 <h2 id="physical-network-layout">Physical Network Layout</h2>
-<p>Correct as of 2023-10-08</p>
+<p>Correct as of 2023-10-23</p>
 <pre class="mermaid"><code>graph 
     subgraph Rack1
     GW[GW - pfSense] 
@@ -1505,12 +1505,18 @@
     MINISWITCH[Mini Switch]
     end
 
+    subgraph Mill
+    MILL[Mill Network - VLAN 50] --&gt; MILLROUTER[Mill Router - Draytek]
+    end
+
+    MILLROUTER --&gt; INTERNET((Internet))
+    AAISP[Andrews Arnold] --&gt; INTERNET
+
+    SWITCH1 -.-&gt;|Port45 - To be configured| MILL
     LEIGHOOB --&gt; MINISWITCH
     GW --&gt;|em3| MINISWITCH
     MINISWITCH --&gt; MILL
     GW -. L2TP via Mill Network .-&gt; AAISP
-    MILL[Mill Network - VLAN 50] --&gt; MILLROUTER[Mill Router - Draytek] --&gt; INTERNET((Internet))
-    AAISP[Andrews Arnold] -.-&gt; INTERNET
 
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] --&gt;|Port1-42| SWITCH2
@@ -1528,7 +1534,9 @@
 
     subgraph Fabrication
     SWITCH3[Switch 3] --&gt;|Port1 / Port46| SWITCH1
-    3DPRINTERS[3D Printer Pis] --&gt; |Port2-10| SWITCH3
+    3DPRINTERS[3D Printer Pis] --&gt; |Port2-4| SWITCH3
+    LASER[Laser-1] --&gt; |Port5| SWITCH3
+    CNC[CNC-1]
     end</code></pre>
 <h2 id="hardware">Hardware</h2>
 <table>
@@ -1866,6 +1874,11 @@
 <td>Monster</td>
 </tr>
 <tr>
+<td>Apps2</td>
+<td><code>10.3.1.36</code></td>
+<td>Monster</td>
+</tr>
+<tr>
 <td>HP Laserjet P3015</td>
 <td><code>10.3.1.50</code></td>
 <td>Pi Room 5/7</td>
@@ -2017,7 +2030,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 21, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 23, 2023</span>
       
         <br>
         Created:
