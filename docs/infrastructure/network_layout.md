@@ -88,6 +88,7 @@ graph LR
     AUTOMATION[Automation VLAN 229]
     DMZ[DMZ - VLAN 230]
     STORAGE[Storage - VLAN 231]
+    ADLAB[AD Lab - VLAN 232]
 
     DMZ <--> INTERNET
     SHARED --> INTERNET
@@ -229,6 +230,14 @@ IP Range: `10.254.254.0/24`
 | `monster3`  | `10.254.254.13` |          |
 | `monster4`  | `10.254.254.14` |          |
 | `esx1`      | `10.254.254.15` |          |
+
+### AD Lab - VLAN 232
+
+IP Range: `192.168.10.0/24`
+
+A non-routed VLAN for our Active Directory lab - [GOAD]([https://](https://github.com/leigh-hackspace/GOAD)
+
+Consult the GOAD documentation for the breakdown of systems within the environment.
 
 ### OpenVPN
 
