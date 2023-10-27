@@ -13,9 +13,9 @@ Both are located in the corner of the [Pi Room](../facilities/pi_room.md). Repla
 
 ## NAS Storage
 
-We have a 4TB NAS storage system running as RAID-10, while it should give a reasonable amount of reliability we provide absolutely no guarantees regarding data security and provide *no backups*.
+We have a 10TB NAS storage system running as RAIDZ1, while it should give a reasonable amount of reliability we provide absolutely no guarantees regarding data security and provide *no backups*.
 
-The NAS storage is available via NFS, we can't offer CIFS/SMB due to it not working correctly on the QNAP device for guest access.
+The NAS storage is available via NFS, we can't offer private CIFS/SMB access, only guest access.
 
 If you have a specific requirement for a private share, contact [infra](../membership/useful_contacts.md#tech-infrastructure).
 
@@ -24,6 +24,7 @@ If you have a specific requirement for a private share, contact [infra](../membe
 Filestore is a generic, web accessible filestore system that is available on all segments of the network. Any files stored in this location are scanned with ClamAV, and anything identified as problematic will be automatically quarantined. If you have any issues then contact [infra](../membership/useful_contacts.md#tech-infrastructure).
 
 * [http://filestore.int.leighhack.org](http://filestore.int.leighhack.org)
+* [smb://guest:guest@nas2.int.leighhack.org/filestore](smb://guest:guest@nas2.int.leighhack.org/filestore)
 
 ## Outbound Mailserver
 
@@ -44,7 +45,7 @@ Port: `1883`
 
 ## Prometheus
 
-A internal Prometheus instance is available at `http://apps1.int.leighhack.org:9090`. If you wish to have it scrape any internal services then drop a message to the Infra team.
+A internal Prometheus instance is available at `http://apps1.int.leighhack.org:9090`. If you wish to have it scrape any internal services then drop a message to the [infra](../membership/useful_contacts.md#tech-infrastructure) team.
 
 ## Grafana
 
@@ -52,4 +53,6 @@ Grafana dashboarding is available at [http://grafana.int.leighhack.org](http://g
 
 ## Member VMs
 
-We are able to provision VMs for members to use, on request. For further information contact [infra](../membership/useful_contacts.md#tech-infrastructure).
+Members can create VMs on our 'monster' Proxmox host. Permissions should be setup correctly for members to self service via the [Proxmox portal](https://monster.int.leighhack.org).
+
+For further information contact [infra](../membership/useful_contacts.md#tech-infrastructure).
