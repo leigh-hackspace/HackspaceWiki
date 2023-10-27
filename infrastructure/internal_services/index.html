@@ -1463,13 +1463,14 @@
 </ul>
 <p>Both are located in the corner of the <a href="../../facilities/pi_room/">Pi Room</a>. Replacement cartridges/toner are available, if they need replacing then contact <a href="../../membership/useful_contacts/#tech-infrastructure">infra</a> or one of the <a href="../../membership/useful_contacts/#directors">directors</a>.</p>
 <h2 id="nas-storage">NAS Storage</h2>
-<p>We have a 4TB NAS storage system running as RAID-10, while it should give a reasonable amount of reliability we provide absolutely no guarantees regarding data security and provide <em>no backups</em>.</p>
-<p>The NAS storage is available via NFS, we can't offer CIFS/SMB due to it not working correctly on the QNAP device for guest access.</p>
+<p>We have a 10TB NAS storage system running as RAIDZ1, while it should give a reasonable amount of reliability we provide absolutely no guarantees regarding data security and provide <em>no backups</em>.</p>
+<p>The NAS storage is available via NFS, we can't offer private CIFS/SMB access, only guest access.</p>
 <p>If you have a specific requirement for a private share, contact <a href="../../membership/useful_contacts/#tech-infrastructure">infra</a>.</p>
 <h2 id="filestore">Filestore</h2>
 <p>Filestore is a generic, web accessible filestore system that is available on all segments of the network. Any files stored in this location are scanned with ClamAV, and anything identified as problematic will be automatically quarantined. If you have any issues then contact <a href="../../membership/useful_contacts/#tech-infrastructure">infra</a>.</p>
 <ul>
 <li><a href="http://filestore.int.leighhack.org">http://filestore.int.leighhack.org</a></li>
+<li><a href="smb://guest:guest@nas2.int.leighhack.org/filestore">smb://guest:guest@nas2.int.leighhack.org/filestore</a></li>
 </ul>
 <h2 id="outbound-mailserver">Outbound Mailserver</h2>
 <p><code>mx1.int.leighhack.org</code> has been configured as an outbound email server relay for the internal hackspace systems, configured with all mod-cons such as SPF and DKIM so mail should arrive at their destination when the downstream systems are configured correctly.</p>
@@ -1484,18 +1485,19 @@
 <p>Hostname: <code>mqtt.int.leighhack.org</code>
 Port: <code>1883</code></p>
 <h2 id="prometheus">Prometheus</h2>
-<p>A internal Prometheus instance is available at <code>http://apps1.int.leighhack.org:9090</code>. If you wish to have it scrape any internal services then drop a message to the Infra team.</p>
+<p>A internal Prometheus instance is available at <code>http://apps1.int.leighhack.org:9090</code>. If you wish to have it scrape any internal services then drop a message to the <a href="../../membership/useful_contacts/#tech-infrastructure">infra</a> team.</p>
 <h2 id="grafana">Grafana</h2>
 <p>Grafana dashboarding is available at <a href="http://grafana.int.leighhack.org">http://grafana.int.leighhack.org</a>.</p>
 <h2 id="member-vms">Member VMs</h2>
-<p>We are able to provision VMs for members to use, on request. For further information contact <a href="../../membership/useful_contacts/#tech-infrastructure">infra</a>.</p>
+<p>Members can create VMs on our 'monster' Proxmox host. Permissions should be setup correctly for members to self service via the <a href="https://monster.int.leighhack.org">Proxmox portal</a>.</p>
+<p>For further information contact <a href="../../membership/useful_contacts/#tech-infrastructure">infra</a>.</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 3, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 27, 2023</span>
       
         <br>
         Created:
