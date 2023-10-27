@@ -235,7 +235,7 @@ IP Range: `10.254.254.0/24`
 
 IP Range: `192.168.10.0/24`
 
-A non-routed VLAN for our Active Directory lab - [GOAD]([https://](https://github.com/leigh-hackspace/GOAD)
+A non-routed VLAN for our Active Directory lab - [GOAD](https://github.com/leigh-hackspace/GOAD)
 
 Consult the GOAD documentation for the breakdown of systems within the environment.
 
