@@ -1228,6 +1228,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ad-lab-vlan-232" class="md-nav__link">
+    AD Lab - VLAN 232
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#openvpn" class="md-nav__link">
     OpenVPN
   </a>
@@ -1699,6 +1706,7 @@
     AUTOMATION[Automation VLAN 229]
     DMZ[DMZ - VLAN 230]
     STORAGE[Storage - VLAN 231]
+    ADLAB[AD Lab - VLAN 232]
 
     DMZ &lt;--&gt; INTERNET
     SHARED --&gt; INTERNET
@@ -2019,6 +2027,10 @@
 </tr>
 </tbody>
 </table>
+<h3 id="ad-lab-vlan-232">AD Lab - VLAN 232</h3>
+<p>IP Range: <code>192.168.10.0/24</code></p>
+<p>A non-routed VLAN for our Active Directory lab - [GOAD](<a href="https://github.com/leigh-hackspace/GOAD">https://</a></p>
+<p>Consult the GOAD documentation for the breakdown of systems within the environment.</p>
 <h3 id="openvpn">OpenVPN</h3>
 <p>The pfSense has a OpenVPN server, this allocates IPs in the <code>10.3.254.0/24</code> range and is available as a normal interface on pfSense, but it doesn't have a VLAN assigned to it.</p>
 <h3 id="oob-access">OOB Access</h3>
@@ -2030,7 +2042,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 23, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 27, 2023</span>
       
         <br>
         Created:
