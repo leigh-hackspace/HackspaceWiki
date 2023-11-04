@@ -64,7 +64,7 @@ graph
 | Switch 2     | HP           | Procurve 2510-48G       | L2 Switch | Rack 1        | Live   | For wired clients in the rooms                                  |
 | Switch 3     | HP           | Procurve 2824           | L2 Switch | Fabrication   | Live   | Switch for the fabrication area                                 |
 | AP 1         | Linksys      | WRT1900ACS              | AP        | Top of Rack   | Live   | Uses stock firmware                                             |
-| AP 2         | Netgear      | WNR2000                 | AP        | Pi Room       | Live   |                                                                 |
+| AP 2         | BT           | Business Hub 5 Type A   | AP        | Pi Room       | Live   |                                                                 |
 | AP 3         | Cisco        | RV110W                  | AP        | Bar           | Live   |                                                                 |
 | AP 4         | Linksys      | Wireless-G ADSL Gateway | AP        | Behind Rack 1 | Live   | B/G Only network for old devices                                |
 | NAS 1        | QNAP         | TS-431+                 | NAS       | Rack 1        | Live   |                                                                 |
