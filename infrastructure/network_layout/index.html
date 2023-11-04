@@ -1496,7 +1496,7 @@
 
 <h1 id="network-layout">Network Layout</h1>
 <h2 id="physical-network-layout">Physical Network Layout</h2>
-<p>Correct as of 2023-10-23</p>
+<p>Correct as of 2023-11-04</p>
 <pre class="mermaid"><code>graph 
     subgraph Rack1
     GW[GW - pfSense] 
@@ -1508,7 +1508,7 @@
     ESX1[ESX 1] --&gt; |Port8/9/10| SWITCH1
     MONSTER[Monster 1/2/3/4] --&gt; |Port11-18| SWITCH1
     LEIGHOOB[Leigh OOB] --&gt; |Port19| SWITCH1
-    AP4[AP4 - B/G] --&gt; |Port22| SWITCH1
+    AP4[AP4 - B/G] --&gt; |Port21| SWITCH1
     MINISWITCH[Mini Switch]
     end
 
@@ -1520,7 +1520,7 @@
     AAISP[Andrews Arnold] --&gt; INTERNET
 
     SWITCH1 -.-&gt;|Port45 - To be configured| MILL
-    LEIGHOOB --&gt; MINISWITCH
+    LEIGHOOB --&gt;|eth1| MINISWITCH
     GW --&gt;|em3| MINISWITCH
     MINISWITCH --&gt; MILL
     GW -. L2TP via Mill Network .-&gt; AAISP
@@ -1528,7 +1528,7 @@
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] --&gt;|Port1-42| SWITCH2
     PRINTERS[HP Printer] --&gt;|Port44| SWITCH2
-    PIROOMAP[AP 2] --&gt; |Port43| SWITCH1
+    PIROOMAP[AP 2] --&gt; |Port43| SWITCH2
     end
 
     subgraph Classroom
@@ -2042,7 +2042,7 @@
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 27, 2023</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">November 4, 2023</span>
       
         <br>
         Created:
