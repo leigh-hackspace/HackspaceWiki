@@ -2,7 +2,7 @@
 
 ## Physical Network Layout
 
-Correct as of 2023-10-23
+Correct as of 2023-11-04
 
 ```mermaid
 graph 
@@ -16,7 +16,7 @@ graph
     ESX1[ESX 1] --> |Port8/9/10| SWITCH1
     MONSTER[Monster 1/2/3/4] --> |Port11-18| SWITCH1
     LEIGHOOB[Leigh OOB] --> |Port19| SWITCH1
-    AP4[AP4 - B/G] --> |Port22| SWITCH1
+    AP4[AP4 - B/G] --> |Port21| SWITCH1
     MINISWITCH[Mini Switch]
     end
 
@@ -28,7 +28,7 @@ graph
     AAISP[Andrews Arnold] --> INTERNET
 
     SWITCH1 -.->|Port45 - To be configured| MILL
-    LEIGHOOB --> MINISWITCH
+    LEIGHOOB -->|eth1| MINISWITCH
     GW -->|em3| MINISWITCH
     MINISWITCH --> MILL
     GW -. L2TP via Mill Network .-> AAISP
@@ -36,7 +36,7 @@ graph
     subgraph Pi Room
     PIROOMPC[Pi Room PCs] -->|Port1-42| SWITCH2
     PRINTERS[HP Printer] -->|Port44| SWITCH2
-    PIROOMAP[AP 2] --> |Port43| SWITCH1
+    PIROOMAP[AP 2] --> |Port43| SWITCH2
     end
 
     subgraph Classroom
