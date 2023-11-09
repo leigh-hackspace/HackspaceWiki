@@ -4,9 +4,9 @@ We have 3 printers available for all members to use after training.
 
 All printers are networked, and we ask that you use the linked [OctoPrint](https://octoprint.org/) server when printing your files.
 
-[PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/) profiles are linked for each printer.
+CAD-1 is available for you to design, slice and print your models. [PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/) is pre-configured for all the printers.
 
-CAD-1 is available for you to design, slice and print your models.
+If you want to use PrusaSlicer on your own system then the profiles are linked below for each printer. If you're only going to use the hackspace's printers you can save time and download a [packaged version](config/PrusaSlicer.zip) of CAD-1's configuration to use on your own system. 
 
 > You are responsible for ensuring the safe operation of printers.  
 > Do not leave the printers unattended for prolonged periods of 
@@ -14,8 +14,7 @@ CAD-1 is available for you to design, slice and print your models.
 > If you are in doubt about the operation of the printers, please ask, and 
 > someone will be happy to help.
 
-
-Workflow:
+## Workflow
 
 There's a number of repeatable steps to printing on our printers.  
 We're hoping that everyone can follow them and have a consistent experience.
