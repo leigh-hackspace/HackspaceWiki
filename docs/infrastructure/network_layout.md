@@ -145,12 +145,12 @@ This subnet does have DHCP enabled, but we encourage static assignments for crit
 | Switch 3          | `10.3.1.4`  | Workshop / Fabrication   |
 | NAS 1             | `10.3.1.5`  | Rack 1                   |
 | NAS 2             | `10.3.1.6`  | Rack 1                   |
-| ESX 1             | `10.3.1.10` | Rack 1                   |
+| Monster 5         | `10.3.1.10` | Rack 1                   |
 | Monster 1         | `10.3.1.11` | Rack 1                   |
 | Monster 2         | `10.3.1.12` | Rack 1                   |
 | Monster 3         | `10.3.1.13` | Rack 1                   |
 | Monster 4         | `10.3.1.14` | Rack 1                   |
-| ESX 1 iDRAC       | `10.3.1.20` | Rack 1                   |
+| Monster 5 iDRAC   | `10.3.1.20` | Rack 1                   |
 | Leigh OOB         | `10.3.1.21` | Rack 1                   |
 | Monster 1 LO100   | `10.3.1.22` | Rack 1                   |
 | Monster 2 LO100   | `10.3.1.23` | Rack 1                   |
@@ -164,7 +164,7 @@ This subnet does have DHCP enabled, but we encourage static assignments for crit
 | k8s-lab-03        | `10.3.1.34` | Monster                  |
 | Cobalt RAQ3       | `10.3.1.35` | Monster                  |
 | Authentik         | `10.3.1.36` | Monster                  |
-| Apps2             | `10.3.1.36` | Monster                  |
+| RTSP              | `10.3.1.37` | Monster                  |
 | HP Laserjet P3015 | `10.3.1.50` | Pi Room 5/7              |
 | GW - VIP 1        | `10.3.1.60` | VIP for Internal HAProxy |
 | GW - VIP 2        | `10.3.1.61` | VIP for K8s-Lab          |
@@ -175,14 +175,20 @@ WiFi users, General open access to the internet and internal services.
 
 IP Range: `10.3.2.0/24`
 
-DHCP enabled, `10.3.2.11 - 10.3.2.254`
+DHCP enabled, `10.3.2.21 - 10.3.2.254`
 
-| Device Name | IP Address | Location                |
-| ----------- | ---------- | ----------------------- |
-| AP1         | `10.3.2.2` | On top of Rack 1        |
-| AP2         | `10.3.2.3` | Pi Room behind Printers |
-| AP3         | `10.3.2.4` | Bar by the door         |
-| AP4         | `10.3.2.5` | Behind Rack 1           |
+| Device Name | IP Address  | Location                |
+| ----------- | ----------- | ----------------------- |
+| AP1         | `10.3.2.2`  | On top of Rack 1        |
+| AP2         | `10.3.2.3`  | Pi Room behind Printers |
+| AP3         | `10.3.2.4`  | Bar by the door         |
+| AP4         | `10.3.2.5`  | Behind Rack 1           |
+| Cam1        | `10.3.2.6`  | Rack 1                  |
+| Cam2        | `10.3.2.7`  | Defunct                 |
+| Cam3        | `10.3.2.8`  | Social Space            |
+| Cam4        | `10.3.2.9`  | Main Space              |
+| Cam5        | `10.3.2.10` | Main Space              |
+| Cam6        | `10.3.2.11` | Main Space              |
 
 ### Wired - VLAN 227
 
@@ -211,8 +217,9 @@ Used for internet facing services, all systems are allocated addresses within th
 
 IP Range: `81.187.195.16/29`
 
-| Device Name | IP Address | Location |
-| ----------- | ---------- | -------- |
+| Device Name | IP Address      | Location |
+| ----------- | --------------- | -------- |
+| GW          | `81.187.195.17` | Rack 1   |
 
 ### Storage - VLAN 231
 
