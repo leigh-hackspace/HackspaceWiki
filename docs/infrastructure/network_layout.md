@@ -90,19 +90,21 @@ graph LR
     STORAGE[Storage - VLAN 231]
     ADLAB[AD Lab - VLAN 232]
 
-    DMZ <--> INTERNET
     SHARED --> INTERNET
-    WIRED --> INTERNET
-    WiFi --> INTERNET
-
     SHARED --> DMZ
-    WIRED --> DMZ
-    WiFi --> DMZ
-    
-    WiFi --> SHARED
-    WIRED --> SHARED
-    WiFi --> WIRED
     SHARED --> AUTOMATION
+    SHARED <--> WiFi
+    SHARED <--> WIRED
+
+    DMZ <--> INTERNET
+
+    WIRED --> DMZ
+    WIRED --> INTERNET
+
+    WiFi --> DMZ
+    WiFi --> INTERNET
+    WiFi <--> WIRED
+
 ```
 
 ### Mill Network - VLAN '1'
