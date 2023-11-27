@@ -1496,12 +1496,12 @@
 
 <h1 id="network-layout">Network Layout</h1>
 <h2 id="physical-network-layout">Physical Network Layout</h2>
-<p>Correct as of 2023-11-04</p>
+<p>Correct as of 2023-11-27</p>
 <pre class="mermaid"><code>graph 
     subgraph Rack1
     GW[GW - pfSense] 
     AP[AP 1] --&gt;|Port20| SWITCH1
-    SWITCH1[Switch 1] --&gt;|Port1 / em0-1| GW
+    SWITCH1[Switch 1] --&gt;|Port1 / em0| GW
     SWITCH2[Switch 2] --&gt; |Port47/48| SWITCH1
     NAS1[NAS 1] --&gt; |Port3| SWITCH1
     NAS2[NAS 2] --&gt; |Port5/6/7| SWITCH1
