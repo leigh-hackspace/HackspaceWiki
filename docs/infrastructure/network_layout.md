@@ -105,7 +105,7 @@ graph LR
     SHARED --> AUTOMATION
 ```
 
-### Mill Network - VLAN '50'
+### Mill Network - VLAN '1'
 
 The mill provides internet access via a 100mbps internal network. It can be a bit unreliable but it works for our general usage. 
 
@@ -114,7 +114,7 @@ The mill provides internet access via a 100mbps internal network. It can be a bi
 
 Access to the mill network is provided by a singular CAT5 delivered to the rear of the main space, just above where Rack 1 is.
 
-* VLAN: 50 (untagged)
+* VLAN: 1 (untagged)
 * Subnet: `192.168.20.0/24`
 * Gateway: `192.168.20.1`
 * DHCP Enabled
