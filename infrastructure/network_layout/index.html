@@ -1708,19 +1708,21 @@
     STORAGE[Storage - VLAN 231]
     ADLAB[AD Lab - VLAN 232]
 
-    DMZ &lt;--&gt; INTERNET
     SHARED --&gt; INTERNET
-    WIRED --&gt; INTERNET
-    WiFi --&gt; INTERNET
-
     SHARED --&gt; DMZ
-    WIRED --&gt; DMZ
-    WiFi --&gt; DMZ
+    SHARED --&gt; AUTOMATION
+    SHARED &lt;--&gt; WiFi
+    SHARED &lt;--&gt; WIRED
 
-    WiFi --&gt; SHARED
-    WIRED --&gt; SHARED
-    WiFi --&gt; WIRED
-    SHARED --&gt; AUTOMATION</code></pre>
+    DMZ &lt;--&gt; INTERNET
+
+    WIRED --&gt; DMZ
+    WIRED --&gt; INTERNET
+
+    WiFi --&gt; DMZ
+    WiFi --&gt; INTERNET
+    WiFi &lt;--&gt; WIRED
+</code></pre>
 <h3 id="mill-network-vlan-1">Mill Network - VLAN '1'</h3>
 <p>The mill provides internet access via a 100mbps internal network. It can be a bit unreliable but it works for our general usage. </p>
 <ul>
