@@ -2,14 +2,14 @@
 
 ## Physical Network Layout
 
-Correct as of 2023-11-04
+Correct as of 2023-11-27
 
 ```mermaid
 graph 
     subgraph Rack1
     GW[GW - pfSense] 
     AP[AP 1] -->|Port20| SWITCH1
-    SWITCH1[Switch 1] -->|Port1 / em0-1| GW
+    SWITCH1[Switch 1] -->|Port1 / em0| GW
     SWITCH2[Switch 2] --> |Port47/48| SWITCH1
     NAS1[NAS 1] --> |Port3| SWITCH1
     NAS2[NAS 2] --> |Port5/6/7| SWITCH1
