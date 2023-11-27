@@ -70,7 +70,7 @@ graph
 | NAS 1        | QNAP         | TS-431+                 | NAS       | Rack 1        | Live   |                                                                 |
 | NAS 2        | HP           | Microserver G8          | NAS       | Rack 1        | Live   |                                                                 |
 | UPS          | APC          | ???                     | UPS       | Rack 1        | Live   |                                                                 |
-| ESX 1        | Dell         | R320                    | Server    | Rack 1        | Live   | ESXi Host                                                       |
+| Monster 5    | Dell         | R320                    | Server    | Rack 1        | Live   | Proxmox Cluster 'Monster'                                       |
 | Leigh OOB    | Raspberry Pi | 2 B+                    | Server    | Rack 1        | Live   | Gives us 'out of band' access to Hackspace network and devices  |
 | Mini Switch  | Netgear      | ???                     | L2 Switch | Rack 1        | Live   | Multiple ports on the Mill network, needs switching to Switch 1 |
 | Blade Server | HP           | SL2x170z G6             | Server    | Rack 1        | Live   | Proxmox Cluster 'Monster'                                       |
