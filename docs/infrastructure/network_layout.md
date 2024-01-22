@@ -167,6 +167,7 @@ This subnet does have DHCP enabled, but we encourage static assignments for crit
 | Cobalt RAQ3       | `10.3.1.35` | Monster                  |
 | Authentik         | `10.3.1.36` | Monster                  |
 | RTSP              | `10.3.1.37` | Monster                  |
+| Discourse         | `10.3.1.38` | Monster                  |
 | HP Laserjet P3015 | `10.3.1.50` | Pi Room 5/7              |
 | GW - VIP 1        | `10.3.1.60` | VIP for Internal HAProxy |
 | GW - VIP 2        | `10.3.1.61` | VIP for K8s-Lab          |
