@@ -8,6 +8,7 @@ name: Docs - Publish
     paths:
       - docs/**
       - mkdocs.yaml
+      - requirements-docs.txt
 jobs:
   build:
     runs-on: ubuntu-latest
