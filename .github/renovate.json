@@ -1,5 +1,7 @@
 {
     "extends": [
-        "config:base"
+        "config:base",
+        "github>leigh-hackspace/renovate-config:python",
+        "github>leigh-hackspace/renovate-config:mkdocs"
     ]
 }
