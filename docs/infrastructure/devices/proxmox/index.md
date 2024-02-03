@@ -24,6 +24,7 @@ graph
     MON2[Monster2 - Blade 1]
     MON3[Monster3 - Blade 2]
     MON4[Monster4 - Blade 2]
+    MON5[Monster5 - R320]
     NAS1[NAS1 - NFS]
     NAS2[NAS2 - NFS]
 
@@ -32,6 +33,7 @@ graph
     SWITCH1 <--> MON2
     SWITCH1 <--> MON3
     SWITCH1 <--> MON4
+    SWITCH1 <--> MON5
     SWITCH1 <--> NAS1
     SWITCH1 <--> NAS2
 ```
@@ -44,6 +46,7 @@ graph
     MON2[Monster2 - Blade 1]
     MON3[Monster3 - Blade 2]
     MON4[Monster4 - Blade 2]
+    MON5[Monster5 - R320]
     NAS[NAS1 - /prox-monster-datastore]
     NAS2[NAS2 - /mnt/sas-10k/proxmox-monster-ds1]
 
@@ -51,10 +54,12 @@ graph
     MON2 --> NAS
     MON3 --> NAS
     MON4 --> NAS
+    MON5 --> NAS
     MON1 --> NAS2
     MON2 --> NAS2
     MON3 --> NAS2
     MON4 --> NAS2
+    MON5 --> NAS2
 ```
 
 
