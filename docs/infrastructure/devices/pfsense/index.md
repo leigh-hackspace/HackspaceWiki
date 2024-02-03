@@ -13,7 +13,7 @@ The mill provides internet access via a 100mbps internal network. It can be a bi
 
 Access to the mill network is provided by a singular CAT5 delivered to the rear of the main space, just above where Rack1 is.
 
-* VLAN: 50 (untagged)
+* VLAN: 1 (untagged)
 * Subnet: `192.168.20.0/24`
 * Gateway: `192.168.20.1`
 * DHCP Enabled
@@ -24,7 +24,7 @@ Usage is bound by the [LBPT Tenant Network Agreement](../../mill_network_tc.md).
 
 ### Hackspace Connectivity
 
-Our internet connection uses the mill's shared network, but we have a [Business L2TP](https://www.aa.net.uk/broadband/l2tp-service/) 'VPN' to [Andrew Arnold](https://www.aa.net.uk/), who provide us with 600Mb/sec, 10TB/month, and a /29 block of IPv4 and a /48 IPv6.
+Our internet connection uses the mill's shared network, but we have a [Business L2TP](https://www.aa.net.uk/broadband/l2tp-service/) 'VPN' to [Andrew Arnold](https://www.aa.net.uk/), who provide us with 600Mb/sec, 10TB/month, and a `/29` block of IPv4 and a `/48` IPv6.
 
 * Line ID: lhc1@a
 * Account ID: A8***0A
