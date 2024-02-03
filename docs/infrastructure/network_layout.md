@@ -2,8 +2,6 @@
 
 ## Physical Network Layout
 
-Correct as of 2023-11-27
-
 ```mermaid
 graph 
     subgraph Rack1
@@ -13,21 +11,20 @@ graph
     SWITCH2[Switch 2] --> |Port47/48| SWITCH1
     NAS1[NAS 1] --> |Port3| SWITCH1
     NAS2[NAS 2] --> |Port5/6/7| SWITCH1
-    ESX1[ESX 1] --> |Port8/9/10| SWITCH1
-    MONSTER[Monster 1/2/3/4] --> |Port11-18| SWITCH1
+    ESX1[Monster 5] --> |Port8/9/10| SWITCH1
+    MONSTER[Monster 1/2/3/4/] --> |Port11-18| SWITCH1
     LEIGHOOB[Leigh OOB] --> |Port19| SWITCH1
     AP4[AP4 - B/G] --> |Port21| SWITCH1
-    MINISWITCH[Mini Switch]
+    MINISWITCH[Netgear Switch]
     end
 
     subgraph Mill
-    MILL[Mill Network - VLAN 50] --> MILLROUTER[Mill Router - Draytek]
+    MILL[Mill Network - VLAN 1] --> MILLROUTER[Mill Router - Draytek]
     end
 
     MILLROUTER --> INTERNET((Internet))
     AAISP[Andrews Arnold] --> INTERNET
 
-    SWITCH1 -.->|Port45 - To be configured| MILL
     LEIGHOOB -->|eth1| MINISWITCH
     GW -->|em3| MINISWITCH
     MINISWITCH --> MILL
@@ -64,12 +61,12 @@ graph
 | Switch 2     | HP           | Procurve 2510-48G       | L2 Switch | Rack 1        | Live   | For wired clients in the rooms                                  |
 | Switch 3     | HP           | Procurve 2824           | L2 Switch | Fabrication   | Live   | Switch for the fabrication area                                 |
 | AP 1         | Linksys      | WRT1900ACS              | AP        | Top of Rack   | Live   | Uses stock firmware                                             |
-| AP 2         | BT           | Business Hub 5 Type A   | AP        | Pi Room       | Live   |                                                                 |
-| AP 3         | Cisco        | RV110W                  | AP        | Bar           | Live   |                                                                 |
+| AP 2         | BT           | Business Hub 5 Type A   | AP        | Pi Room       | Live   | Uses stock firmware (supports OpenWRT)                          |
+| AP 3         | Cisco        | RV110W                  | AP        | Bar           | Live   | Uses stock firmware                                             |
 | AP 4         | Linksys      | Wireless-G ADSL Gateway | AP        | Behind Rack 1 | Live   | B/G Only network for old devices                                |
 | NAS 1        | QNAP         | TS-431+                 | NAS       | Rack 1        | Live   |                                                                 |
 | NAS 2        | HP           | Microserver G8          | NAS       | Rack 1        | Live   |                                                                 |
-| UPS          | APC          | ???                     | UPS       | Rack 1        | Live   |                                                                 |
+| UPS          | APC          | ???                     | UPS       | Rack 1        | Live   | Powers the NAS systems only                                     |
 | Monster 5    | Dell         | R320                    | Server    | Rack 1        | Live   | Proxmox Cluster 'Monster'                                       |
 | Leigh OOB    | Raspberry Pi | 2 B+                    | Server    | Rack 1        | Live   | Gives us 'out of band' access to Hackspace network and devices  |
 | Mini Switch  | Netgear      | ???                     | L2 Switch | Rack 1        | Live   | Multiple ports on the Mill network, needs switching to Switch 1 |
