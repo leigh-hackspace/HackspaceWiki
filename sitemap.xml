@@ -221,6 +221,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/projects/</loc>
+         <lastmod>2024-02-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://leigh-hackspace.github.io/HackspaceWiki/projects/aliexpress_p8/</loc>
+         <lastmod>2024-02-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://leigh-hackspace.github.io/HackspaceWiki/welcome/location/</loc>
          <lastmod>2024-02-03</lastmod>
          <changefreq>daily</changefreq>
