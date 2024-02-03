@@ -1,4 +1,4 @@
-# Hackspace State Switch
+# Hackspace State Switch v1
 
 The state switch is a physical switch located near the [Main Space](../../../facilities/main_space.md) entrance doors. This small device provide a physical open/close indicator for the hackspace, and the status is made available via the Space API endpoint, Home Assistand, Slack bot, and website.
 

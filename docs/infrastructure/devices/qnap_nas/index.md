@@ -29,4 +29,4 @@ Samba/CIFS has been disabled as it doesn't work correctly with the LDAP server t
 * In the combo box, switch to 'NFS permissions'
 * Create the NFS permissions as needed.
 
-ALL_SQUASH and ROOT_SQUASH have some weird side-effects after saving the settings, so go back and check that the values are correct after savings, sometimes they don't work.
+`ALL_SQUASH` and `ROOT_SQUASH` have some weird side-effects after saving the settings, so go back and check that the values are correct after savings, sometimes they don't work.
