@@ -13,12 +13,12 @@ It is also known as:
 
 ## Hardware Specs
 
-* Intel N100 Alder Lake Processor (4 E-Cores, 6W TDP)
+* Intel [N100 Alder Lake](https://ark.intel.com/content/www/us/en/ark/products/231803/intel-processor-n100-6m-cache-up-to-3-40-ghz.html) Processor (4 E-Cores, 6W TDP)
 * 12GB LPDDR5 RAM
-* Realtek 8852BE WiFi 6 
-* Realtek 8111 Gigabit Ethernet
-* Realtek ACL269 Audio
-* Intel UHD Graphics (Alder Lake-N GT1) with 32 execution units
+* [Realtek 8852BE](https://techinfodepot.shoutwiki.com/wiki/Realtek_RTL8852BE_Combo_Module) WiFi 6 
+* Realtek 8111 Gigabit Ethernet ([Datasheet](specs/RTL8111.PDF))
+* Realtek ACL269 Audio ([Datasheet](specs/ALC269_RealtekMicroelectronics.pdf))
+* Intel UHD Graphics (Alder Lake-N GT1) with 24 execution units
 * 1280x800 touchscreen 8 inch display ([Datasheet](specs/lcd_panel.pdf))
 * 2242 M.2 slot with PCIe Gen 3x4
 * 1 x USB 3.1 type A port
