@@ -1,14 +1,17 @@
 # AliExpress 'P8' Laptop
 
-The P8 laptop is a miniature OEM laptop that is available on AliExpress under many different names. The device itself has no identifying branding outside of the model 'P8' 
+The P8 laptop is a miniature OEM laptop that is available on AliExpress under many different names. The device itself has no identifying branding outside of the model 'P8'.
+
+It seems to relate to FCC ID [2A8WM-P8](https://fcc.report/FCC-ID/2A8WM-P8) by [Shenzhen Anxin Taihe Technology Co., Ltd](https://sz-botu.en.alibaba.com), which is the parent of Koosmile.
 
 It is also known as: 
 
-* Topton P8 - https://www.toptonpc.com (this could be the OEM itself)
+* Koosmile P8
+* Topton P8 - https://www.toptonpc.com
 * Meenhong P8 2-in-1 Laptop
 * Crelander P8 Pocket mini Laptop
 
-## Specs
+## Hardware Specs
 
 * Intel N100 Alder Lake Processor (4 E-Cores, 6W TDP)
 * 12GB LPDDR5 RAM
@@ -37,9 +40,10 @@ A driver package is available for the device: (link soon)
 
 Working distributions:
 
-* PopOS - Tested and used by Chris D
-* Arch Linux - Boots to the installer (see [Workarounds](#workarounds))
-* NixOS - Boots to the installer (see [Workarounds](#workarounds))
+* PopOS
+* Arch Linux 
+* NixOS - Current release is missing the WiFi drivers
+* Ubuntu 23.01
 
 ## Workarounds
 
@@ -47,7 +51,7 @@ Working distributions:
 
 [Issue tracker](https://gitlab.freedesktop.org/drm/intel/-/issues/9063)
 
-This is due to the text-mode modeset being wrong for the display. To disable modesetting at boot add the following to the kernel command line:
+This is due to the modeset being wrong for the display (the values provided by the VBIOS seem to be wrong). To disable modesetting at boot add the following to the kernel command line:
 
 `i915.modeset=0`
 
