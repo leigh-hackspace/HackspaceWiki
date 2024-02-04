@@ -16,13 +16,49 @@ It is also known as:
 * Realtek 8111 Gigabit Ethernet
 * Realtek ACL269 Audio
 * Intel UHD Graphics (Alder Lake-N GT1) with 32 execution units
-* 1280x800 touchscreen 8 inch display
+* 1280x800 touchscreen 8 inch display ([Datasheet](specs/lcd_panel.pdf))
 * 2242 M.2 slot with PCIe Gen 3x4
-* 1 x USB 3.1 port
-* 1 x USB 3 type C port
+* 1 x USB 3.1 type A port
+* 1 x USB 3.2 Gen 1 type C port
+
+Thunderbolt is mentioned in the AMI BIOS, but the original listing for the device doesn't. Some Alder Lake processors support Thunderbolt on the CPU, but it looks like the N series doesn't.
+
+* [HWInfo Report](hwinfo.html)
 
 ## OS Support
 
-* Windows 10
-* Windows 11
-* Linux 5.? onwards
+### Windows
+
+The device has drivers for Windows 10 and 11, a fresh installation of Windows 11 will boot and operate correctly but the Intel UHD graphics will only operate at 800x600, non-rotated.
+
+A driver package is available for the device: (link soon)
+
+### Linux
+
+Working distributions:
+
+* PopOS - Tested and used by Chris D
+* Arch Linux - Boots to the installer (see [Workarounds](#workarounds))
+* NixOS - Boots to the installer (see [Workarounds](#workarounds))
+
+## Workarounds
+
+### In-built screen is blank after booting a Linux kernel
+
+[Issue tracker](https://gitlab.freedesktop.org/drm/intel/-/issues/9063)
+
+This is due to the text-mode modeset being wrong for the display. To disable modesetting at boot add the following to the kernel command line:
+
+`i915.modeset=0`
+
+This will disable the iGPU for use in X/Wayland, so useful for getting to the installer of some distributions.
+
+### The screen is not rotated in Linux
+
+As root:
+
+````
+echo 1 > /sys/class/graphics/fbcon/rotate_all
+````
+
+X/Wayland can be done with Xrandr
