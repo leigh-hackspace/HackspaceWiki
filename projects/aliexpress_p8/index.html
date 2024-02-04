@@ -1837,6 +1837,63 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="OS Support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Windows
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#workarounds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Workarounds
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Workarounds">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-built-screen-is-blank-after-booting-a-linux-kernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      In-built screen is blank after booting a Linux kernel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-screen-is-not-rotated-in-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      The screen is not rotated in Linux
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1889,17 +1946,37 @@
 <li>Realtek 8111 Gigabit Ethernet</li>
 <li>Realtek ACL269 Audio</li>
 <li>Intel UHD Graphics (Alder Lake-N GT1) with 32 execution units</li>
-<li>1280x800 touchscreen 8 inch display</li>
+<li>1280x800 touchscreen 8 inch display (<a href="specs/lcd_panel.pdf">Datasheet</a>)</li>
 <li>2242 M.2 slot with PCIe Gen 3x4</li>
-<li>1 x USB 3.1 port</li>
-<li>1 x USB 3 type C port</li>
+<li>1 x USB 3.1 type A port</li>
+<li>1 x USB 3.2 Gen 1 type C port</li>
+</ul>
+<p>Thunderbolt is mentioned in the AMI BIOS, but the original listing for the device doesn't. Some Alder Lake processors support Thunderbolt on the CPU, but it looks like the N series doesn't.</p>
+<ul>
+<li><a href="hwinfo.html">HWInfo Report</a></li>
 </ul>
 <h2 id="os-support">OS Support</h2>
+<h3 id="windows">Windows</h3>
+<p>The device has drivers for Windows 10 and 11, a fresh installation of Windows 11 will boot and operate correctly but the Intel UHD graphics will only operate at 800x600, non-rotated.</p>
+<p>A driver package is available for the device: (link soon)</p>
+<h3 id="linux">Linux</h3>
+<p>Working distributions:</p>
 <ul>
-<li>Windows 10</li>
-<li>Windows 11</li>
-<li>Linux 5.? onwards</li>
+<li>PopOS - Tested and used by Chris D</li>
+<li>Arch Linux - Boots to the installer (see <a href="#workarounds">Workarounds</a>)</li>
+<li>NixOS - Boots to the installer (see <a href="#workarounds">Workarounds</a>)</li>
 </ul>
+<h2 id="workarounds">Workarounds</h2>
+<h3 id="in-built-screen-is-blank-after-booting-a-linux-kernel">In-built screen is blank after booting a Linux kernel</h3>
+<p><a href="https://gitlab.freedesktop.org/drm/intel/-/issues/9063">Issue tracker</a></p>
+<p>This is due to the text-mode modeset being wrong for the display. To disable modesetting at boot add the following to the kernel command line:</p>
+<p><code>i915.modeset=0</code></p>
+<p>This will disable the iGPU for use in X/Wayland, so useful for getting to the installer of some distributions.</p>
+<h3 id="the-screen-is-not-rotated-in-linux">The screen is not rotated in Linux</h3>
+<p>As root:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>echo 1 &gt; /sys/class/graphics/fbcon/rotate_all
+</code></pre></div>
+<p>X/Wayland can be done with Xrandr</p>
 
 
 
@@ -1922,7 +1999,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 3, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 4, 2024</span>
   </span>
 
     
