@@ -1490,6 +1490,30 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      MacOS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MacOS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linux-gnome-and-network-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linux, GNOME, and Network Manager
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#access" class="md-nav__link">
     <span class="md-ellipsis">
       Access
@@ -1895,6 +1919,19 @@
 <li><a href="members-vpn.ovpn">VPN Configuration</a></li>
 <li><a href="members-vpn-old.ovpn">VPN Configuration for older OpenVPN versions</a></li>
 </ul>
+<h2 id="macos">MacOS</h2>
+<p><a href="https://www.sparklabs.com/viscosity/">Viscosity</a> is the suggested OpenVPN client for MacOS, its simplifies the configuration and works without any issues. Install, and double click the above OVPN file to install the profile, then select the profile via the menubar item for Viscosity.</p>
+<h3 id="linux-gnome-and-network-manager">Linux, GNOME, and Network Manager</h3>
+<p>GNOME and Network Manager are commonly used on Ubuntu, Debian, and EL distributions (RHEL, CentOS, Fedora).</p>
+<ol>
+<li>Open GNOME Settings, and browse to 'Network'</li>
+<li>Click '+' in the VPN section and select 'Import from file...'</li>
+<li>Select the VPN configuration file from the link above.</li>
+<li>You'll be presented with a completed configuration, goto the 'IPv4' tab and tick on 'Use this connection only for resources on its network'</li>
+<li>Repeat the same again for the 'IPv6' tab.</li>
+<li>Click 'Save'</li>
+</ol>
+<p>You can now test the connection, by default it'll attempt to connect to your current username and will prompt you for a password, this will be what its setup on Authentik.</p>
 <h2 id="access">Access</h2>
 <p>This VPN will give you access the same as being on the WiFi within the hackspace. If you have any specific requirements you need from the VPN then contact <a href="../../membership/useful_contacts/#tech-infrastructure">Infra</a>.</p>
 
@@ -1919,7 +1956,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">August 17, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 5, 2024</span>
   </span>
 
     
