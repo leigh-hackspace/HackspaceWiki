@@ -81,6 +81,7 @@ First you need to create a rule for the sensor device in the hwdb, `/etc/udev/hw
 
 ```
 # A wide matching rule, but the Koosmile P8 has no Manf/Prod strings
+# This fixes the screen in 'laptop' mode to rotate correctly, but not tablet mode
 sensor:modalias:acpi:BOSC0200*
   ACCEL_MOUNT_MATRIX=-1, 0, 0; 0, 1, 0; 0, 0, 1
 ```
