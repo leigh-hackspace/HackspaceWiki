@@ -1883,9 +1883,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-screen-is-not-rotated-in-linux" class="md-nav__link">
+  <a href="#the-screen-is-not-rotated-correctly-in-linux-on-boot" class="md-nav__link">
     <span class="md-ellipsis">
-      The screen is not rotated in Linux
+      The screen is not rotated correctly in Linux on boot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-sensor-keeps-rotating-the-screen-incorrectly" class="md-nav__link">
+    <span class="md-ellipsis">
+      The sensor keeps rotating the screen incorrectly.
     </span>
   </a>
   
@@ -1967,7 +1976,7 @@
 <li>PopOS</li>
 <li>Arch Linux </li>
 <li>NixOS - Current release is missing the WiFi drivers</li>
-<li>Ubuntu 23.01</li>
+<li>Ubuntu 23.01 - Requires Kernel 6.7 for the screen to work correctly with the <a href="#in-built-screen-is-blank-after-booting-a-linux-kernel">workaround</a></li>
 </ul>
 <h2 id="workarounds">Workarounds</h2>
 <h3 id="in-built-screen-is-blank-after-booting-a-linux-kernel">In-built screen is blank after booting a Linux kernel</h3>
@@ -1975,11 +1984,32 @@
 <p>This is due to the modeset being wrong for the display (the values provided by the VBIOS seem to be wrong). To disable modesetting at boot add the following to the kernel command line:</p>
 <p><code>i915.modeset=0</code></p>
 <p>This will disable the iGPU for use in X/Wayland, so useful for getting to the installer of some distributions.</p>
-<h3 id="the-screen-is-not-rotated-in-linux">The screen is not rotated in Linux</h3>
+<h3 id="the-screen-is-not-rotated-correctly-in-linux-on-boot">The screen is not rotated correctly in Linux on boot</h3>
 <p>As root:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>echo 1 &gt; /sys/class/graphics/fbcon/rotate_all
 </code></pre></div>
 <p>X/Wayland can be done with Xrandr</p>
+<h3 id="the-sensor-keeps-rotating-the-screen-incorrectly">The sensor keeps rotating the screen incorrectly.</h3>
+<p>This issue is due to the 'IIO' sensors not being mapped correctly within Linux. This sensor works perfectly fine in Windows with the correct driver, but Linux doesn't seem to be able to detect the screen rotated. The rotation will work if the screen is rotated outwards like a tablet, but normally it believes that the correct rotation in laptop mode is 'right_up'.</p>
+<p>A couple of services are used in this system.</p>
+<ul>
+<li>udev</li>
+<li>systemd-hwdb</li>
+<li>iio-sensor-proxy</li>
+</ul>
+<p>First you need to create a rule for the sensor device in the hwdb, <code>/etc/udev/hwdb.d/60-sensors.hwdb</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a># A wide matching rule, but the Koosmile P8 has no Manf/Prod strings
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>sensor:modalias:acpi:BOSC0200*
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  ACCEL_MOUNT_MATRIX=-1, 0, 0; 0, 1, 0; 0, 0, 1
+</code></pre></div>
+<p>This file will set a udev variable for the device of <code>ACCEL_MOUNT_MATRIX</code>, which <code>iio-sensor-proxy</code> uses. Then you need to reload the hardware DB, and get udev to 'trigger' for the sensor device, recreating the settings and variables for it.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># systemd-hwdb update</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># udevadm trigger -v -p DEVNAME=/dev/iio:device0</span>
+</code></pre></div>
+<p>Next, you need to restart <code>iio-sensor-proxy</code></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># systemd restart iio-sensor-proxy</span>
+</code></pre></div>
+<p>Depending on your desktop environment, you may need to do some further configuration or install a library, in the case of GNOME you'll need the <a href="https://extensions.gnome.org/extension/5389/screen-rotate/">Screen Rotate</a> extension.</p>
 
 
 
@@ -2002,7 +2032,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 4, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 6, 2024</span>
   </span>
 
     
