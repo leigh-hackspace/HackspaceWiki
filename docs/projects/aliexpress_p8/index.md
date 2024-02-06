@@ -43,7 +43,7 @@ Working distributions:
 * PopOS
 * Arch Linux 
 * NixOS - Current release is missing the WiFi drivers
-* Ubuntu 23.01
+* Ubuntu 23.01 - Requires Kernel 6.7 for the screen to work correctly with the [workaround](#in-built-screen-is-blank-after-booting-a-linux-kernel)
 
 ## Workarounds
 
@@ -57,7 +57,7 @@ This is due to the modeset being wrong for the display (the values provided by t
 
 This will disable the iGPU for use in X/Wayland, so useful for getting to the installer of some distributions.
 
-### The screen is not rotated in Linux
+### The screen is not rotated correctly in Linux on boot
 
 As root:
 
@@ -66,3 +66,36 @@ echo 1 > /sys/class/graphics/fbcon/rotate_all
 ````
 
 X/Wayland can be done with Xrandr
+
+### The sensor keeps rotating the screen incorrectly.
+
+This issue is due to the 'IIO' sensors not being mapped correctly within Linux. This sensor works perfectly fine in Windows with the correct driver, but Linux doesn't seem to be able to detect the screen rotated. The rotation will work if the screen is rotated outwards like a tablet, but normally it believes that the correct rotation in laptop mode is 'right_up'.
+
+A couple of services are used in this system.
+
+* udev
+* systemd-hwdb
+* iio-sensor-proxy
+
+First you need to create a rule for the sensor device in the hwdb, `/etc/udev/hwdb.d/60-sensors.hwdb`:
+
+```
+# A wide matching rule, but the Koosmile P8 has no Manf/Prod strings
+sensor:modalias:acpi:BOSC0200*
+  ACCEL_MOUNT_MATRIX=-1, 0, 0; 0, 1, 0; 0, 0, 1
+```
+
+This file will set a udev variable for the device of `ACCEL_MOUNT_MATRIX`, which `iio-sensor-proxy` uses. Then you need to reload the hardware DB, and get udev to 'trigger' for the sensor device, recreating the settings and variables for it.
+
+```shell
+# systemd-hwdb update
+# udevadm trigger -v -p DEVNAME=/dev/iio:device0
+```
+
+Next, you need to restart `iio-sensor-proxy`
+
+```shell
+# systemd restart iio-sensor-proxy
+```
+
+Depending on your desktop environment, you may need to do some further configuration or install a library, in the case of GNOME you'll need the [Screen Rotate](https://extensions.gnome.org/extension/5389/screen-rotate/) extension.
