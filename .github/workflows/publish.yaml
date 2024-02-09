@@ -10,7 +10,10 @@ name: Docs - Publish
       - mkdocs.yaml
       - requirements-docs.txt
 jobs:
-  build:
+  publish:
+    environment:
+      name: production
+      url: https://wiki.leighhack.org
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
