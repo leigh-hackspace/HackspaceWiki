@@ -48,6 +48,7 @@ graph
     SWITCH3[Switch 3] -->|Port1 / Port46| SWITCH1
     3DPRINTERS[3D Printer Pis] --> |Port2-4| SWITCH3
     LASER[Laser-1] --> |Port5| SWITCH3
+    CAD1[CAD-1] --> |Port6| SWITCH3
     CNC[CNC-1]
     end
 ```
@@ -156,7 +157,7 @@ This subnet does have DHCP enabled, but we encourage static assignments for crit
 | Monster 3 LO100   | `10.3.1.24` | Rack 1                   |
 | Monster 4 LO100   | `10.3.1.25` | Rack 1                   |
 | NAS 2 iLO         | `10.3.1.26` | Rack 1                   |
-| Apps1             | `10.3.1.30` | ESX 1                    |
+| Apps1             | `10.3.1.30` | Monster                  |
 | MX1               | `10.3.1.31` | Monster                  |
 | k8s-lab-01        | `10.3.1.32` | Monster                  |
 | k8s-lab-02        | `10.3.1.33` | Monster                  |
@@ -165,6 +166,7 @@ This subnet does have DHCP enabled, but we encourage static assignments for crit
 | Authentik         | `10.3.1.36` | Monster                  |
 | RTSP              | `10.3.1.37` | Monster                  |
 | Discourse         | `10.3.1.38` | Monster                  |
+| Web1              | `10.3.1.39` | Monster                  |
 | HP Laserjet P3015 | `10.3.1.50` | Pi Room 5/7              |
 | GW - VIP 1        | `10.3.1.60` | VIP for Internal HAProxy |
 | GW - VIP 2        | `10.3.1.61` | VIP for K8s-Lab          |
@@ -187,8 +189,18 @@ DHCP enabled, `10.3.2.21 - 10.3.2.254`
 | Cam2        | `10.3.2.7`  | Defunct                 |
 | Cam3        | `10.3.2.8`  | Social Space            |
 | Cam4        | `10.3.2.9`  | Main Space              |
-| Cam5        | `10.3.2.10` | Main Space              |
-| Cam6        | `10.3.2.11` | Main Space              |
+| Cam5        | `10.3.2.10` | Pi Room                 |
+| Cam6        | `10.3.2.11` | Workshop                |
+
+Channel layouts for the APs:
+
+| Device | 2.4ghz | 5ghz | 6ghz |
+| ------ | ------ | ---- | ---- |
+| AP1    | 1      | 36   | N/A  |
+| AP2    | Auto   | Auto | N/A  |
+| AP3    | 6      | 40   | N/A  |
+| AP4    | 13     | N/A  | N/A  |
+
 
 ### Wired - VLAN 227
 
@@ -236,7 +248,7 @@ IP Range: `10.254.254.0/24`
 | `monster2`  | `10.254.254.12` |          |
 | `monster3`  | `10.254.254.13` |          |
 | `monster4`  | `10.254.254.14` |          |
-| `esx1`      | `10.254.254.15` |          |
+| `monster5`  | `10.254.254.15` |          |
 
 ### AD Lab - VLAN 232
 
