@@ -10,9 +10,12 @@ For all managed switches you can login using your [id.leighhack.org](https://id.
 
 All managed switches in the space are HP Procurve switches. They're now supported under the 'Aruba' brand as 'HPE/Aruba' switches.
 
-Switch 1 and 2 are **2510-48G**, and Switch 3 is a **2824**
+Switch 1 and 2 are **2510-48G**, and Switch 3 is a **2824**.
 
-While the 2824 is the older switch it offers L3-lite capabilities, that we don't use. The others are just standard L2 managed switches with the usual bells and whistles.
+While the 2824 is the older switch it offers L3-lite capabilities, that we don't use. The others are just standard L2 managed switches with the usual bells and whistles. Both switches have the standard HP CLI for any configuration changes, while they do have differences the base features will be the same.
+
+* [CLI Reference for the 2510 series](./2510-MgmtCfg-July2007-59914761.pdf)
+* [CLI Reference for the 2800 series](./59906023-1004-Mgmt%20&%20Config.pdf)
 
 ### Enabling a port untagged on a VLAN
 
