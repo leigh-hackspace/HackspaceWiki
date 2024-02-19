@@ -4,11 +4,18 @@ The hackspace has owned a iMac G3 for a few years.
 
 ![iMac G3 at the hackspace](imac.jpg)
 
+## Specs
+
 iMac 3G Blueberry slot loading, M5521, PowerMac2,1
 
 * PowerPC 750 G3 350mhz
 * 128MB PC100 RAM
 * Running Mac OS 9.0.2
+
+### Accessories
+
+* Apple blueberry G3 USB keyboard - damaged with a lot of keys missing.
+* Apple puck mouse - working condition.
 
 ## Current Issues
 
