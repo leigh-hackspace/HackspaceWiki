@@ -1178,8 +1178,7 @@
     SWITCH2[Switch 2] --&gt; |Port47/48| SWITCH1
     NAS1[NAS 1] --&gt; |Port3| SWITCH1
     NAS2[NAS 2] --&gt; |Port5/6/7| SWITCH1
-    ESX1[Monster 5] --&gt; |Port8/9/10| SWITCH1
-    MONSTER[Monster 1/2/3/4/] --&gt; |Port11-18| SWITCH1
+    MONSTER[Monster 1/2/3/4] --&gt; |Port11-18| SWITCH1
     LEIGHOOB[Leigh OOB] --&gt; |Port19| SWITCH1
     AP4[AP4 - B/G] --&gt; |Port21| SWITCH1
     MINISWITCH[Netgear Switch]
@@ -1332,15 +1331,6 @@
 <td>Powers the NAS systems only</td>
 </tr>
 <tr>
-<td>Monster 5</td>
-<td>Dell</td>
-<td>R320</td>
-<td>Server</td>
-<td>Rack 1</td>
-<td>Live</td>
-<td>Proxmox Cluster 'Monster'</td>
-</tr>
-<tr>
 <td>Leigh OOB</td>
 <td>Raspberry Pi</td>
 <td>2 B+</td>
@@ -1462,11 +1452,6 @@
 <td>Rack 1</td>
 </tr>
 <tr>
-<td>Monster 5</td>
-<td><code>10.3.1.10</code></td>
-<td>Rack 1</td>
-</tr>
-<tr>
 <td>Monster 1</td>
 <td><code>10.3.1.11</code></td>
 <td>Rack 1</td>
@@ -1484,11 +1469,6 @@
 <tr>
 <td>Monster 4</td>
 <td><code>10.3.1.14</code></td>
-<td>Rack 1</td>
-</tr>
-<tr>
-<td>Monster 5 iDRAC</td>
-<td><code>10.3.1.20</code></td>
 <td>Rack 1</td>
 </tr>
 <tr>
@@ -1589,7 +1569,7 @@
 </tbody>
 </table>
 <h3 id="wifi-vlan-226">WiFi - VLAN 226</h3>
-<p>WiFi users, General open access to the internet and internal services.</p>
+<p>WiFi users, General open access to the internet and internal services. The UnFi APs management interface is in Shared Services on DHCP, only non-UnFi devices are assigned a static IP on the WiFi VLAN.</p>
 <p>IP Range: <code>10.3.2.0/24</code></p>
 <p>DHCP enabled, <code>10.3.2.21 - 10.3.2.254</code></p>
 <table>
@@ -1601,21 +1581,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>AP1</td>
-<td><code>10.3.2.2</code></td>
-<td>On top of Rack 1</td>
-</tr>
-<tr>
-<td>AP2</td>
-<td><code>10.3.2.3</code></td>
-<td>Pi Room behind Printers</td>
-</tr>
-<tr>
-<td>AP3</td>
-<td><code>10.3.2.4</code></td>
-<td>Bar by the door</td>
-</tr>
 <tr>
 <td>AP4</td>
 <td><code>10.3.2.5</code></td>
@@ -1651,6 +1616,11 @@
 <td><code>10.3.2.11</code></td>
 <td>Workshop</td>
 </tr>
+<tr>
+<td>Cam7</td>
+<td><code>10.3.2.12</code></td>
+<td>CNC</td>
+</tr>
 </tbody>
 </table>
 <p>Channel layouts for the APs:</p>
@@ -1666,8 +1636,8 @@
 <tbody>
 <tr>
 <td>AP1</td>
-<td>1</td>
-<td>36</td>
+<td>Auto</td>
+<td>Auto</td>
 <td>N/A</td>
 </tr>
 <tr>
@@ -1678,8 +1648,8 @@
 </tr>
 <tr>
 <td>AP3</td>
-<td>6</td>
-<td>40</td>
+<td>Auto</td>
+<td>Auto</td>
 <td>N/A</td>
 </tr>
 <tr>
@@ -1695,7 +1665,8 @@
 <p>IP Range: <code>10.3.14.0/24</code></p>
 <p>DHCP enabled, <code>10.3.14.2 - 10.3.14.254</code></p>
 <h3 id="automation-vlan-229">Automation - VLAN 229</h3>
-<p>Used for any automation devices that do not require open internet access, or need to be secured away from the general network (e.g. Door system)</p>
+<p>Used for any automation devices that do not require open internet access, or need to be secured away from the general network (e.g. Door system).</p>
+<p>Accessible via <code>Leighhack-iot</code> WiFi SSID.</p>
 <p>IP Range <code>10.3.16.0/24</code></p>
 <p>DHCP enabled, <code>10.3.16.2 - 10.3.16.128</code></p>
 <p>This subnet does have DHCP enabled, but we use some static assignment. Here is the current list:</p>
@@ -1810,7 +1781,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">February 9, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 10, 2024</span>
   </span>
 
     
