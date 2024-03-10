@@ -11,8 +11,7 @@ graph
     SWITCH2[Switch 2] --> |Port47/48| SWITCH1
     NAS1[NAS 1] --> |Port3| SWITCH1
     NAS2[NAS 2] --> |Port5/6/7| SWITCH1
-    ESX1[Monster 5] --> |Port8/9/10| SWITCH1
-    MONSTER[Monster 1/2/3/4/] --> |Port11-18| SWITCH1
+    MONSTER[Monster 1/2/3/4] --> |Port11-18| SWITCH1
     LEIGHOOB[Leigh OOB] --> |Port19| SWITCH1
     AP4[AP4 - B/G] --> |Port21| SWITCH1
     MINISWITCH[Netgear Switch]
@@ -68,7 +67,6 @@ graph
 | NAS 1        | QNAP         | TS-431+                 | NAS       | Rack 1        | Live   |                                                                 |
 | NAS 2        | HP           | Microserver G8          | NAS       | Rack 1        | Live   |                                                                 |
 | UPS          | APC          | ???                     | UPS       | Rack 1        | Live   | Powers the NAS systems only                                     |
-| Monster 5    | Dell         | R320                    | Server    | Rack 1        | Live   | Proxmox Cluster 'Monster'                                       |
 | Leigh OOB    | Raspberry Pi | 2 B+                    | Server    | Rack 1        | Live   | Gives us 'out of band' access to Hackspace network and devices  |
 | Mini Switch  | Netgear      | ???                     | L2 Switch | Rack 1        | Live   | Multiple ports on the Mill network, needs switching to Switch 1 |
 | Blade Server | HP           | SL2x170z G6             | Server    | Rack 1        | Live   | Proxmox Cluster 'Monster'                                       |
@@ -145,12 +143,10 @@ This subnet does have DHCP enabled, but we encourage static assignments for crit
 | Switch 3          | `10.3.1.4`  | Workshop / Fabrication   |
 | NAS 1             | `10.3.1.5`  | Rack 1                   |
 | NAS 2             | `10.3.1.6`  | Rack 1                   |
-| Monster 5         | `10.3.1.10` | Rack 1                   |
 | Monster 1         | `10.3.1.11` | Rack 1                   |
 | Monster 2         | `10.3.1.12` | Rack 1                   |
 | Monster 3         | `10.3.1.13` | Rack 1                   |
 | Monster 4         | `10.3.1.14` | Rack 1                   |
-| Monster 5 iDRAC   | `10.3.1.20` | Rack 1                   |
 | Leigh OOB         | `10.3.1.21` | Rack 1                   |
 | Monster 1 LO100   | `10.3.1.22` | Rack 1                   |
 | Monster 2 LO100   | `10.3.1.23` | Rack 1                   |
@@ -173,7 +169,7 @@ This subnet does have DHCP enabled, but we encourage static assignments for crit
 
 ### WiFi - VLAN 226
 
-WiFi users, General open access to the internet and internal services.
+WiFi users, General open access to the internet and internal services. The UnFi APs management interface is in Shared Services on DHCP, only non-UnFi devices are assigned a static IP on the WiFi VLAN.
 
 IP Range: `10.3.2.0/24`
 
@@ -181,9 +177,6 @@ DHCP enabled, `10.3.2.21 - 10.3.2.254`
 
 | Device Name | IP Address  | Location                |
 | ----------- | ----------- | ----------------------- |
-| AP1         | `10.3.2.2`  | On top of Rack 1        |
-| AP2         | `10.3.2.3`  | Pi Room behind Printers |
-| AP3         | `10.3.2.4`  | Bar by the door         |
 | AP4         | `10.3.2.5`  | Behind Rack 1           |
 | Cam1        | `10.3.2.6`  | Rack 1                  |
 | Cam2        | `10.3.2.7`  | Defunct                 |
@@ -191,14 +184,15 @@ DHCP enabled, `10.3.2.21 - 10.3.2.254`
 | Cam4        | `10.3.2.9`  | Main Space              |
 | Cam5        | `10.3.2.10` | Pi Room                 |
 | Cam6        | `10.3.2.11` | Workshop                |
+| Cam7        | `10.3.2.12` | CNC                     |
 
 Channel layouts for the APs:
 
 | Device | 2.4ghz | 5ghz | 6ghz |
 | ------ | ------ | ---- | ---- |
-| AP1    | 1      | 36   | N/A  |
+| AP1    | Auto   | Auto | N/A  |
 | AP2    | Auto   | Auto | N/A  |
-| AP3    | 6      | 40   | N/A  |
+| AP3    | Auto   | Auto | N/A  |
 | AP4    | 13     | N/A  | N/A  |
 
 
@@ -212,7 +206,9 @@ DHCP enabled, `10.3.14.2 - 10.3.14.254`
 
 ### Automation - VLAN 229
 
-Used for any automation devices that do not require open internet access, or need to be secured away from the general network (e.g. Door system)
+Used for any automation devices that do not require open internet access, or need to be secured away from the general network (e.g. Door system).
+
+Accessible via `Leighhack-iot` WiFi SSID.
 
 IP Range `10.3.16.0/24`
 
