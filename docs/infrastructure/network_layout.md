@@ -85,12 +85,14 @@ graph LR
     DMZ[DMZ - VLAN 230]
     STORAGE[Storage - VLAN 231]
     ADLAB[AD Lab - VLAN 232]
+    PHONE[Phone - VLAN 222]
 
     SHARED --> INTERNET
     SHARED --> DMZ
     SHARED --> AUTOMATION
     SHARED <--> WiFi
     SHARED <--> WIRED
+    SHARED <--> PHONE
 
     DMZ <--> INTERNET
 
