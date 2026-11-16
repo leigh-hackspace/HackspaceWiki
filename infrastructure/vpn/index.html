@@ -793,10 +793,43 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#linux-gnome-and-network-manager" class="md-nav__link">
+  <a href="#android-no-command-line" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Linux, GNOME, and Network Manager
+        Android (no command line)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iphone-and-ipad-no-command-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        iPhone and iPad (no command line)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linux-macos-and-windows-with-a-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux, macOS, and Windows (with a terminal)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-it-worked" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check it worked
       
     </span>
   </a>
@@ -1278,35 +1311,72 @@ configs at the bottom of this page are kept for the record and do not connect.</
 <h2 id="requirements">Requirements</h2>
 <p>You'll need an account on <a href="https://id.leighhack.org">id.leighhack.org</a>. Ideally, sign up with the same email address that you used for your GoCardless membership and privileges will be automatically assigned - that puts you in the <code>Members</code> group, which is what the VPN checks. If not, then contact <a href="../../membership/useful_contacts/#tech-infrastructure">Infra</a>.</p>
 <h2 id="connecting">Connecting</h2>
-<p>Install Tailscale, then point it at our server. On the command line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>tailscale<span class="w"> </span>up<span class="w"> </span>--login-server<span class="o">=</span>https://tailscale.leighhack.org
+<p>The one rule on every device: <strong>tell the app which server to use before you sign in</strong>. If
+you sign in first you'll join Tailscale's own network instead of ours, and you'll have to
+log out and start again. The URL every time is:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://tailscale.leighhack.org
 </code></pre></div>
-<p>That prints a URL; open it, sign in with your Authentik account, and the device is on the
-network. Every device you've ever joined is listed in the admin UI at
-<a href="https://tailscale.leighhack.org/admin">tailscale.leighhack.org/admin</a>, so you can rename or
-remove old ones yourself.</p>
-<p>The apps have the same option in their settings rather than on the command line - it's
-usually called "Use custom hosting provider" or "Self-hosted" (Android: the three-dot menu
-on the sign-in screen; iOS: Settings → Advanced). Put <code>https://tailscale.leighhack.org</code> in
-it, then sign in.</p>
-<h3 id="linux-gnome-and-network-manager">Linux, GNOME, and Network Manager</h3>
-<p>The GNOME <code>Network</code> VPN panel has no Tailscale support - Tailscale is not a protocol
-NetworkManager speaks, it's a program with its own daemon. So install the <code>tailscale</code>
-package for your distro, and then either run the command above or install the GNOME
-extension that wraps it. There's nothing to import and no profile to configure.</p>
+<h3 id="android-no-command-line">Android (no command line)</h3>
+<ol>
+<li>Install Tailscale from the <a href="https://play.google.com/store/apps/details?id=com.tailscale.ipn">Play Store</a> or F-Droid.</li>
+<li>Open the app and tap the <strong>settings menu in the top-right corner</strong>, then <code>Accounts</code>.</li>
+<li>Tap the <strong>three-dot menu</strong> in the top-right and select <code>Use an alternate server</code>.</li>
+<li>Enter <code>https://tailscale.leighhack.org</code> and confirm. If a login window pops up, let it.</li>
+<li>Sign in with your id.leighhack.org account in the browser window that opens.</li>
+<li>Android will ask to add a VPN configuration - tap <code>Allow</code>/<code>OK</code>.</li>
+<li>Flip the switch at the top of the app to connect.</li>
+</ol>
+<h3 id="iphone-and-ipad-no-command-line">iPhone and iPad (no command line)</h3>
+<ol>
+<li>Install Tailscale from the <a href="https://apps.apple.com/app/tailscale/id1470499037">App Store</a>.</li>
+<li>Open the app, tap the <strong>account icon in the top-right</strong>, and select <code>Log in…</code>.</li>
+<li>Tap the <strong>options menu in the top-right</strong> and select <code>Use custom coordination server</code>.</li>
+<li>Enter <code>https://tailscale.leighhack.org</code>, then sign in with your id.leighhack.org account.</li>
+<li>iOS will open Settings asking you to add a VPN configuration - tap <code>Allow</code>, and use
+   Face ID/your passcode when it asks.</li>
+<li>Flip the switch in the app to connect.</li>
+</ol>
+<p>Two things specific to iOS: if the phone has ever been signed into Tailscale's own service,
+log out of that first. And the same setting is reachable outside the app - <strong>Settings →
+Tailscale → Alternate Coordination Server URL</strong> - which is the way to do it if you've
+already got a login stuck in there. Our server also prints these steps with its own URL
+filled in, if you open <a href="https://tailscale.leighhack.org/apple">tailscale.leighhack.org/apple</a>
+on the phone.</p>
+<h3 id="linux-macos-and-windows-with-a-terminal">Linux, macOS, and Windows (with a terminal)</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>tailscale<span class="w"> </span>up<span class="w"> </span>--login-server<span class="o">=</span>https://tailscale.leighhack.org
+</code></pre></div>
+<p>That prints a URL; open it, sign in, and the device is on the network.</p>
+<p>The GNOME <code>Network</code> VPN panel can't do this - Tailscale is not a protocol NetworkManager
+speaks, it's a program with its own daemon. Install the <code>tailscale</code> package for your distro
+and run the command above (or the GNOME extension that wraps it). There's nothing to import
+and no profile to configure.</p>
+<h3 id="check-it-worked">Check it worked</h3>
+<p>Open <a href="https://gatus.int.leighhack.org">gatus.int.leighhack.org</a> - it needs no login, so it's
+a clean yes/no. Your device also appears in the admin list at
+<a href="https://tailscale.leighhack.org/admin">tailscale.leighhack.org/admin</a>, where you can rename
+it or remove old ones yourself.</p>
 <h3 id="make-sure-you-get-the-lan">Make sure you get the LAN</h3>
 <p>Subnet routes are offered by the router and approved by us, but a client has to say it will
-use them:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>tailscale<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--accept-routes
+use them. On a laptop:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>tailscale<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--accept-routes
 </code></pre></div>
-<p>Without it you'll reach the services that run on tailnet addresses and nothing else - a
-<code>10.3.1.20</code> or <code>10.3.14.61</code> connection will just time out, which looks like "the VPN is
-broken" and isn't.</p>
+<p>On a phone there's a switch for it in the app's settings rather than a command, and its
+wording changes between versions (something like "Approve routes" / "Use subnet routers"),
+sometimes appearing as a prompt on the main screen instead.</p>
+<p>Without this you'll reach the things that live on tailnet addresses and nothing else, so
+<code>10.3.1.20</code> or <code>10.3.14.61</code> will just time out - which looks exactly like the VPN being
+broken, and isn't. It's the first thing to check, and the first thing to mention when
+asking for help.</p>
 <h2 id="access">Access</h2>
 <p>This VPN will give you access the same as being on the WiFi within the hackspace. All of
-<code>10.3.0.0/16</code>, the <code>10.3.x.x</code> VLANs, the CS network at <code>192.168.2.0/24</code>, and the space's
-IPv6 are reachable, and with the tailnet's DNS turned on <code>*.int.leighhack.org</code> resolves and
-the short machine names work too.</p>
+the space's subnets are reachable - the servers in <code>10.3.1.0/24</code>, the wireless block in
+<code>10.3.2.0/24</code>, the wired block in <code>10.3.14.0/24</code>, the CS network at <code>192.168.2.0/24</code>, and
+the space's IPv6.</p>
+<p>Names are worth knowing about, because they catch people out. <code>*.int.leighhack.org</code> has
+public DNS records pointing at the router's internal address, so a name <em>resolves</em> from
+anywhere, but it's only reachable when the VPN is carrying you - opening an <code>.int</code> link
+without the VPN on just hangs rather than giving an error. Short names like <code>services1</code>
+don't work off-site at all; use the <code>.int</code> name or the IP.</p>
 <p>The router also offers itself as an exit node, if you want everything on a device to come
 out of the space rather than just the traffic destined for us. Ask
 <a href="../../membership/useful_contacts/#tech-infrastructure">Infra</a> to turn that on for your device.</p>
@@ -1344,7 +1414,7 @@ genuinely need OpenVPN rather than Tailscale, say why to
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 16, 2026 20:01:17 UTC">November 16, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 16, 2026 20:28:04 UTC">November 16, 2026</span>
   </span>
 
     
