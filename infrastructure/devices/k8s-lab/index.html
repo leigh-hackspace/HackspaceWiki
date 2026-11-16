@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/devices/k8s-lab/">
       
       
-        <link rel="prev" href="../proxmox/">
+        <link rel="prev" href="../authentik/">
       
       
         <link rel="next" href="../state_switch/">
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#kubernetes-lab" class="md-skip">
+        <a href="#kubernetes-lab-retired" class="md-skip">
           Skip to content
         </a>
       
@@ -828,6 +828,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gateway / Router
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../network_switches/" class="md-nav__link">
         
   
@@ -856,14 +884,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../pfsense/" class="md-nav__link">
+      <a href="../nas/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    pfSense / Gateway
+    NAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proxmox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proxmox
   
 
     
@@ -909,62 +965,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../qnap_nas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    QNAP NAS
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../proxmox/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Proxmox Clusters
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -976,24 +976,6 @@
       
         
       
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Kubernetes Lab
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -1011,136 +993,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#cluster-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cluster Features
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Cluster Features">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#installed-and-working" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Installed and working
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#coming-soon" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Coming Soon
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#permissions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Permissions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#authentication" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Authentication
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Authentication">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-download-kubectl-and-your-preferred-clients" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. Download kubectl and your preferred clients
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-download-and-install-kubelogin" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Download and install kubelogin
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-set-up-the-kubeconfig" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Set up the kubeconfig
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-test-your-connection" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Test your connection
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1348,63 +1200,23 @@
   
 
 
-<h1 id="kubernetes-lab">Kubernetes Lab</h1>
-<h2 id="cluster-features">Cluster Features</h2>
-<h3 id="installed-and-working">Installed and working</h3>
-<ul>
-<li>OIDC single sign-on with <code>id.leighhack.org</code> (see <a href="#authentication">Authentication</a>)</li>
-<li>NFS-backed PVs - works well for all applications bar ones that use SQLite.</li>
-</ul>
-<h3 id="coming-soon">Coming Soon</h3>
-<ul>
-<li>MetalLB-based <code>LoadBalancer</code> Service types.</li>
-<li>Traefik-based <code>Ingress</code> support with mapping to <code>*.lab.leighhack.org</code></li>
-</ul>
-<h2 id="permissions">Permissions</h2>
-<p>By default, all members should have read permissions to the entire cluster. <code>Infra</code> members are cluster admins. </p>
-<p>Per-member namespaces with write access can be created via this repository (see <a href="https://github.com/leigh-hackspace/k8s-lab/tree/main/clusters/lab/members/nikdoof">nikdoof namespace</a> for an example).</p>
-<h2 id="authentication">Authentication</h2>
-<p>We use OIDC to authenticate via <code>id.leighhack.org</code></p>
-<h3 id="1-download-kubectl-and-your-preferred-clients">1. Download <code>kubectl</code> and your preferred clients</h3>
-<p><code>kubectl</code> is the basic tool needed to connect to Kubernetes clusters. The lab cluster is currently running v1.27, so make sure you download that version.</p>
-<p><a href="https://kubernetes.io/docs/tasks/tools/">Install tools</a></p>
-<h3 id="2-download-and-install-kubelogin">2. Download and install <code>kubelogin</code></h3>
-<p><a href="https://github.com/int128/kubelogin">Kubelogin</a> is a tool to help you login easily with a OIDC based Kubernetes cluster. To install it download the latest release and place it in your <code>PATH</code> named <code>kubectl-odic_login</code>. Now you can run <code>kubectl oidc-login</code> and be prompted with a setup message. You don't need to complete the setup (we've done the hard work for you!)</p>
-<h3 id="3-set-up-the-kubeconfig">3. Set up the kubeconfig</h3>
-<p>Here is a <code>kubeconfig</code> file you can use to connect to the lab cluster. Place this in <code>~/.kube/config</code> and it'll "just work".</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">clusters</span><span class="p">:</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">cluster</span><span class="p">:</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">certificate-authority-data</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJUXlvU05adTdsNll3RFFZSktvWklodmNOQVFFTEJRQ$</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="nt">server</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://k8s-lab.int.leighhack.org:6443</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leighhack-lab</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nt">contexts</span><span class="p">:</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">context</span><span class="p">:</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span><span class="nt">cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leighhack-lab</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leighhack-oidc</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leighhack-lab</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="nt">current-context</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leighhack-lab</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Config</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nt">preferences</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="nt">users</span><span class="p">:</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leighhack-oidc</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">user</span><span class="p">:</span>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">    </span><span class="nt">exec</span><span class="p">:</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">      </span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">client.authentication.k8s.io/v1beta1</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">      </span><span class="nt">args</span><span class="p">:</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oidc-login</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">get-token</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--oidc-issuer-url=https://id.leighhack.org/application/o/kubernetes-lab/</span>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--oidc-client-id=kubernetes-lab</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--oidc-extra-scope=email</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--oidc-extra-scope=openid</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">--oidc-extra-scope=profile</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">      </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kubectl</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">      </span><span class="nt">env</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">null</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">      </span><span class="nt">provideClusterInfo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-</code></pre></div>
-<h3 id="4-test-your-connection">4. Test your connection</h3>
-<p>Running <code>kubectl get pods -A</code> should redirect you to <code>id.leighhack.org</code> to login, once logged in it should complete the command and show you all pods running on the cluster.</p>
+<h1 id="kubernetes-lab-retired">Kubernetes Lab (retired)</h1>
+<p>We ran a small lab cluster: three VMs on the Proxmox host (<code>k8s-lab-01</code> - <code>k8s-lab-03</code>,
+<code>10.3.1.32</code> - <code>10.3.1.34</code>), Kubernetes v1.27, single sign-on through
+<a href="https://id.leighhack.org">id.leighhack.org</a>, and NFS-backed persistent volumes. The plan
+was MetalLB for <code>LoadBalancer</code> services and Traefik for <code>*.lab.leighhack.org</code>; that never
+happened.</p>
+<p><strong>It is not running, and hasn't been for a while.</strong> The VMs are stopped on <code>monster1</code>
+(their disks are still on the NAS), <code>k8s-lab.int.leighhack.org</code> no longer resolves, and
+<code>10.3.1.32</code> is <code>aibox</code> now. This page is kept so the design isn't lost, not because
+anything in it works.</p>
+<p>The manifests and per-member namespace setup lived in
+<a href="https://github.com/leigh-hackspace/k8s-lab">leigh-hackspace/k8s-lab</a>; the old <code>kubeconfig</code>
+and kubelogin instructions are in the git history of this page.</p>
+<p>If you want the cluster back, the honest starting point is "build a new one and delete
+these VMs" - three 8 GB nodes is most of what the host has, and a 2023 v1.27 cluster has
+no upgrade path anyone here has tested. Talk to <a href="../../../membership/useful_contacts/#tech-infrastructure">infra</a>
+before claiming those addresses again.</p>
 
 
 
@@ -1427,7 +1239,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 25, 2023 14:10:15 UTC">August 25, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 16, 2026 20:01:17 UTC">November 16, 2026</span>
   </span>
 
     

@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/devices/proxmox/">
       
       
-        <link rel="prev" href="../qnap_nas/">
+        <link rel="prev" href="../nas/">
       
       
-        <link rel="next" href="../k8s-lab/">
+        <link rel="next" href="../authentik/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Proxmox Clusters - Hackspace Wiki</title>
+        <title>Proxmox - Hackspace Wiki</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#proxmox-clusters" class="md-skip">
+        <a href="#proxmox" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Proxmox Clusters
+              Proxmox
             
           </span>
         </div>
@@ -828,6 +828,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gateway / Router
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../network_switches/" class="md-nav__link">
         
   
@@ -856,70 +884,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../pfsense/" class="md-nav__link">
+      <a href="../nas/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    pfSense / Gateway
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../authentik/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Authentik
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../qnap_nas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    QNAP NAS
+    NAS
   
 
     
@@ -956,7 +928,7 @@
   <span class="md-ellipsis">
     
   
-    Proxmox Clusters
+    Proxmox
   
 
     
@@ -974,7 +946,7 @@
   <span class="md-ellipsis">
     
   
-    Proxmox Clusters
+    Proxmox
   
 
     
@@ -1000,10 +972,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hardware" class="md-nav__link">
+  <a href="#storage" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Hardware
+        Storage
       
     </span>
   </a>
@@ -1011,21 +983,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#network-layout" class="md-nav__link">
+  <a href="#whats-running" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Network Layout
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#storage-layout" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Storage Layout
+        What's Running
       
     </span>
   </a>
@@ -1066,6 +1027,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#starting-a-vm-that-ha-manages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Starting a VM that HA manages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-an-outage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        After an outage
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1075,6 +1058,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../authentik/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentik
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1309,58 +1320,123 @@
   
 
 
-<h1 id="proxmox-clusters">Proxmox Clusters</h1>
-<p>Currently we have one operational Proxmox cluster, 'monster', which has enough CPU and Memory for anything we'll need in the hackspace.</p>
-<h2 id="hardware">Hardware</h2>
-<p>The cluster is made up of a single <a href="https://support.hpe.com/hpesc/public/docDisplay?docId=emr_na-c01800572">HP SL2x170z G6</a>, which has two blades it it, totalling 4 systems. Rough specs of each are:</p>
+<h1 id="proxmox">Proxmox</h1>
+<p>There is one Proxmox host, <code>monster1</code> (<code>10.3.1.11</code>), running Proxmox VE 9.x. The UI is at
+<a href="https://monster.int.leighhack.org">monster.int.leighhack.org</a> - sign in with your
+Authentik account (the <code>leighhack.org</code> OpenID realm).</p>
+<p>It is called "monster" after a machine that no longer exists: the HP SL2x170z blades and
+<code>monster2</code>-<code>monster5</code> are gone, and what's running now is a single desktop box.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Machine</td>
+<td>HP 290 G1 SFF</td>
+</tr>
+<tr>
+<td>CPU / RAM</td>
+<td>Intel i5-8500 (6 cores) / 32 GB</td>
+</tr>
+<tr>
+<td>Local disk</td>
+<td>500 GB SSD</td>
+</tr>
+<tr>
+<td>Not in this flake</td>
+<td>Nothing about this host or its VMs is declarative</td>
+</tr>
+</tbody>
+</table>
+<p><strong>There is no cluster, and no redundancy.</strong> HA is enabled, but with one node that means
+"restart a VM that dies", not "fail over".</p>
+<h2 id="storage">Storage</h2>
+<p>VM disks are qcow2 files on the NAS over NFS: <code>nas2-nfs</code> is
+<code>10.3.1.6:/mnt/sas-10k/proxmox-monster-ds1</code>, mounted at <code>/mnt/pve/nas2-nfs</code>. The second
+mount (<code>nas1-nfs</code>, the old QNAP) is disabled.</p>
+<p>Two consequences that bite people:</p>
 <ul>
-<li>2 x <a href="https://www.intel.com/content/www/us/en/products/sku/37106/intel-xeon-processor-x5550-8m-cache-2-66-ghz-6-40-gts-intel-qpi/specifications.html">Intel® Xeon® Processor X5550</a></li>
-<li>64GB DDR3</li>
-<li>128GB local SSD</li>
-<li>2 x HP NC362i Gigabit Ethernet</li>
-<li>1 x Dedicated LO100 port</li>
+<li><strong>After a power cut, every VM start fails</strong> with <code>storage 'nas2-nfs' is not online</code> while
+  the NAS is still booting. Check <code>pvesm status</code> and <code>mount | grep nas2-nfs</code> before
+  blaming a VM; the fix is to wait and retry.</li>
+<li>Boots take <strong>minutes</strong> even when nothing is wrong, because every disk is a file on a
+  network share with <code>cache=direct</code>.</li>
 </ul>
-<h2 id="network-layout">Network Layout</h2>
-<p>All nodes, gateway, and the NAS are on <a href="../../network_layout/#shared-services---vlan-225">VLAN225</a>. The Proxmox nodes are connected via their 2nd ethernet port, which also has shared LO100 enabled on them.</p>
-<pre class="mermaid"><code>graph 
-    SWITCH1[Switch1 - VLAN225]
-    GW[GW]
-    MON1[Monster1 - Blade 1]
-    MON2[Monster2 - Blade 1]
-    MON3[Monster3 - Blade 2]
-    MON4[Monster4 - Blade 2]
-    MON5[Monster5 - R320]
-    NAS1[NAS1 - NFS]
-    NAS2[NAS2 - NFS]
-
-    GW &lt;--&gt; SWITCH1
-    SWITCH1 &lt;--&gt; MON1
-    SWITCH1 &lt;--&gt; MON2
-    SWITCH1 &lt;--&gt; MON3
-    SWITCH1 &lt;--&gt; MON4
-    SWITCH1 &lt;--&gt; MON5
-    SWITCH1 &lt;--&gt; NAS1
-    SWITCH1 &lt;--&gt; NAS2</code></pre>
-<h2 id="storage-layout">Storage Layout</h2>
-<pre class="mermaid"><code>graph 
-    MON1[Monster1 - Blade 1]
-    MON2[Monster2 - Blade 1]
-    MON3[Monster3 - Blade 2]
-    MON4[Monster4 - Blade 2]
-    MON5[Monster5 - R320]
-    NAS[NAS1 - /prox-monster-datastore]
-    NAS2[NAS2 - /mnt/sas-10k/proxmox-monster-ds1]
-
-    MON1 --&gt; NAS
-    MON2 --&gt; NAS
-    MON3 --&gt; NAS
-    MON4 --&gt; NAS
-    MON5 --&gt; NAS
-    MON1 --&gt; NAS2
-    MON2 --&gt; NAS2
-    MON3 --&gt; NAS2
-    MON4 --&gt; NAS2
-    MON5 --&gt; NAS2</code></pre>
+<p><strong>There are no backup jobs and no snapshots on this host.</strong> <code>/etc/pve/jobs.cfg</code> is empty,
+and the NAS holds the only copy of every disk image. Treat anything you put here as
+dispensable unless you have copied it somewhere else.</p>
+<h2 id="whats-running">What's Running</h2>
+<table>
+<thead>
+<tr>
+<th>VMID</th>
+<th>Name</th>
+<th>Address</th>
+<th>State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>109</td>
+<td><code>apps1</code></td>
+<td><code>10.3.1.30</code></td>
+<td>Running. Mostly superseded by services1, but a few things still live in it</td>
+</tr>
+<tr>
+<td>127</td>
+<td><code>web1</code></td>
+<td><code>10.3.1.39</code></td>
+<td>Running. The hackspace website: <code>webhooks.</code>, <code>web-test.</code> and <code>retro.leighhack.org</code></td>
+</tr>
+<tr>
+<td>108</td>
+<td><code>authentik</code></td>
+<td><code>10.3.1.36</code></td>
+<td><strong>Stopped on purpose</strong> since the 2026-10-28 cutover to containers on services1. It must stay stopped</td>
+</tr>
+<tr>
+<td>128</td>
+<td><code>mercury</code></td>
+<td><code>10.3.1.166</code></td>
+<td>Stopped. The intercom, replaced by Asterisk on services1</td>
+</tr>
+<tr>
+<td>107</td>
+<td><code>mx1</code></td>
+<td>-</td>
+<td>Stopped since 2026-10. This was the outbound mail relay</td>
+</tr>
+<tr>
+<td>100/103/104</td>
+<td><code>k8s-lab-*</code></td>
+<td>-</td>
+<td>Stopped, see <a href="../k8s-lab/">Kubernetes Lab</a></td>
+</tr>
+<tr>
+<td>110-118</td>
+<td>GOAD / Windows lab</td>
+<td>-</td>
+<td>Stopped since 2023-2025</td>
+</tr>
+<tr>
+<td>132</td>
+<td><code>Terraria</code></td>
+<td>-</td>
+<td>Stopped</td>
+</tr>
+</tbody>
+</table>
+<p>Anything not in that list is dormant disk. Before starting a VM to "check whether anyone is
+using it", ask in Slack - half of these have last written to disk years ago.</p>
+<p><code>10.3.1.36</code> is answered by services1 now, but its <strong>DHCP reservation is still live and
+still names the old VM's MAC</strong> - booting VM 108 takes that address back, and two hosts
+answering one address is silent for whoever is trying to log in. The intercom's address is
+protected the other way: the router is told <code>dhcp-host=10.3.1.166,ignore</code> so nothing else
+can be handed it.</p>
 <h2 id="admin-tasks">Admin Tasks</h2>
 <h3 id="allowing-users-access-to-the-cluster">Allowing users access to the Cluster</h3>
 <ul>
@@ -1375,6 +1451,19 @@
 <li>On the login screen, select the dropdown and pick 'Linux PAM'</li>
 <li>Username is 'root', password is in the password manager.</li>
 </ul>
+<h3 id="starting-a-vm-that-ha-manages">Starting a VM that HA manages</h3>
+<p>Use <code>ha-manager</code>, never <code>qm start</code>, or HA and the VM disagree about who owns it:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ha-manager<span class="w"> </span><span class="nb">set</span><span class="w"> </span>vm:109<span class="w"> </span>--state<span class="w"> </span>started
+</code></pre></div>
+<p>If the service is sitting in <code>error</code>, clearing it is <strong>disable, wait, then start</strong> - doing
+both in one loop races and the start is rejected:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ha-manager<span class="w"> </span>disable<span class="w"> </span>vm:109<span class="w"> </span><span class="p">;</span><span class="w"> </span>sleep<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="p">;</span><span class="w"> </span>ha-manager<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>vm:109<span class="w"> </span><span class="p">;</span><span class="w"> </span>ha-manager<span class="w"> </span><span class="nb">set</span><span class="w"> </span>vm:109<span class="w"> </span>--state<span class="w"> </span>started
+</code></pre></div>
+<p>The VMs that are not HA-managed (<code>107 mx1</code>, <code>132 Terraria</code>) are <code>qm start</code>ed by hand.</p>
+<h3 id="after-an-outage">After an outage</h3>
+<p><code>docs/monster-powercut-runbook.md</code> in the infra repo is the full procedure, including what
+to start in which order and how long the NAS takes. The host is deliberately not on the
+router's shutdown list, so it stays up until the mains actually go.</p>
 
 
 
@@ -1397,7 +1486,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 3, 2024 11:43:27 UTC">February 3, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 16, 2026 20:01:17 UTC">November 16, 2026</span>
   </span>
 
     

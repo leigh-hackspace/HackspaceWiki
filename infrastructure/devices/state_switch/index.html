@@ -828,6 +828,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gateway / Router
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../network_switches/" class="md-nav__link">
         
   
@@ -856,14 +884,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../pfsense/" class="md-nav__link">
+      <a href="../nas/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    pfSense / Gateway
+    NAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proxmox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proxmox
   
 
     
@@ -892,62 +948,6 @@
     
   
     Authentik
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../qnap_nas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    QNAP NAS
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../proxmox/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Proxmox Clusters
   
 
     
@@ -1272,7 +1272,12 @@
 
 <h1 id="hackspace-state-switch-v1">Hackspace State Switch v1</h1>
 <p>The state switch is a physical switch located near the <a href="../../../facilities/main_space/">Main Space</a> entrance doors. This small device provide a physical open/close indicator for the hackspace, and the status is made available via the Space API endpoint, Home Assistand, Slack bot, and website.</p>
-<p>The device itself is a simple ESP8266 (A WeMoS D1-Mini clone with USB-C) with a RGB LED, and a rocker switch. It runs <a href="https://esphome.io">ESPHome</a> and connects to our Home Assistant instance.</p>
+<p>The device itself is a simple ESP8266 (A WeMoS D1-Mini clone with USB-C) with a RGB LED, and a rocker switch. It runs <a href="https://esphome.io">ESPHome</a> and connects to our Home Assistant instance, which lives on <code>services1</code> and is at <a href="https://ha.int.leighhack.org">ha.int.leighhack.org</a>.</p>
+<p>It answers to <code>big-button</code> on the wireless VLAN (<code>10.3.2.21</code>). The switch drives the
+open/closed state in Home Assistant, and that one boolean is what
+<a href="https://api.leighhack.org">api.leighhack.org</a>'s <code>state.open</code>, the Slack bot, and the
+<a href="https://status.leighhack.org">status page</a> all read - there is no other source of whether
+we're open.</p>
 <p><img alt="A picture of the Hackspace State switch, with its LED glowing green, indicating that it is open." src="state_switch.jpg" /></p>
 <h2 id="physical">Physical</h2>
 <ul>
@@ -1380,8 +1385,10 @@
 </table>
 <p><img alt="A layout diagram showing the usage of each GPIO on a D1 Mini" src="d1-mini.webp" /></p>
 <h2 id="source">Source</h2>
-<p>The Hackspace State Switch uses ESPHome, and the config is available in the <code>esphome-config</code> repository in the Leigh Hackspace Github org:</p>
-<p><a href="https://github.com/leigh-hackspace/esphome-config/blob/main/big-button.yaml">big-button.yaml</a></p>
+<p>The Hackspace State Switch uses ESPHome. Its config was kept in the <code>esphome-config</code>
+repository in the Leigh Hackspace GitHub org, alongside the other ESPHome devices; that
+repository isn't public any more, so the current YAML is with
+<a href="../../../membership/useful_contacts/#tech-infrastructure">infra</a>.</p>
 
 
 
@@ -1404,7 +1411,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 3, 2024 11:44:25 UTC">February 3, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 16, 2026 20:01:17 UTC">November 16, 2026</span>
   </span>
 
     

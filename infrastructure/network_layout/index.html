@@ -798,10 +798,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#wifi-vlan-226" class="md-nav__link">
+  <a href="#wireless-vlan-226" class="md-nav__link">
     <span class="md-ellipsis">
       
-        WiFi - VLAN 226
+        Wireless - VLAN 226
       
     </span>
   </a>
@@ -820,10 +820,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#automation-vlan-229" class="md-nav__link">
+  <a href="#phone-vlan-222" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Automation - VLAN 229
+        Phone - VLAN 222
       
     </span>
   </a>
@@ -831,10 +831,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dmz-vlan-230" class="md-nav__link">
+  <a href="#cs_vlan-vlan-1337" class="md-nav__link">
     <span class="md-ellipsis">
       
-        DMZ - VLAN 230
+        CS_VLAN - VLAN 1337
       
     </span>
   </a>
@@ -842,10 +842,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#storage-vlan-231" class="md-nav__link">
+  <a href="#ipv6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Storage - VLAN 231
+        IPv6
       
     </span>
   </a>
@@ -853,32 +853,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#ad-lab-vlan-232" class="md-nav__link">
+  <a href="#retired" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AD Lab - VLAN 232
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#openvpn" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        OpenVPN
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#oob-access" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        OOB Access
+        Retired
       
     </span>
   </a>
@@ -887,6 +865,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#out-of-band-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of Band Access
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1022,6 +1011,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../devices/gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gateway / Router
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../devices/network_switches/" class="md-nav__link">
         
   
@@ -1050,14 +1067,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../devices/pfsense/" class="md-nav__link">
+      <a href="../devices/nas/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    pfSense / Gateway
+    NAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devices/proxmox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proxmox
   
 
     
@@ -1086,62 +1131,6 @@
     
   
     Authentik
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../devices/qnap_nas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    QNAP NAS
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../devices/proxmox/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Proxmox Clusters
   
 
     
@@ -1343,53 +1332,49 @@
 
 <h1 id="network-layout">Network Layout</h1>
 <h2 id="physical-network-layout">Physical Network Layout</h2>
-<pre class="mermaid"><code>graph 
-    subgraph Rack1
-    GW[GW - pfSense] 
-    AP[AP 1] --&gt;|Port20| SWITCH1
-    SWITCH1[Switch 1] --&gt;|Port1 / em0| GW
-    SWITCH2[Switch 2] --&gt; |Port47/48| SWITCH1
-    NAS1[NAS 1] --&gt; |Port3| SWITCH1
-    NAS2[NAS 2] --&gt; |Port5/6/7| SWITCH1
-    MONSTER[Monster 1/2/3/4] --&gt; |Port11-18| SWITCH1
-    LEIGHOOB[Leigh OOB] --&gt; |Port19| SWITCH1
-    AP4[AP4 - B/G] --&gt; |Port21| SWITCH1
-    MINISWITCH[Netgear Switch]
-    end
-
+<pre class="mermaid"><code>graph
     subgraph Mill
     MILL[Mill Network - VLAN 1] --&gt; MILLROUTER[Mill Router - Draytek]
     end
 
     MILLROUTER --&gt; INTERNET((Internet))
-    AAISP[Andrews Arnold] --&gt; INTERNET
+    AAISP[Andrews &amp; Arnold L2TP] --&gt; INTERNET
 
-    LEIGHOOB --&gt;|eth1| MINISWITCH
-    GW --&gt;|em3| MINISWITCH
-    MINISWITCH --&gt; MILL
-    GW -. L2TP via Mill Network .-&gt; AAISP
+    subgraph Rack1
+    GW[GW - NixOS router] --&gt;|router-uplink| HUB[AAISP hub]
+    GW --&gt;|router-lan trunk| SWITCH1[Switch 1]
+    NAS[NAS - TrueNAS] --&gt; |Port5/6/7| SWITCH1
+    MONSTER[Monster 1] --&gt; |Port11-18| SWITCH1
+    UPS[UPS - APC XS 1400U] -.-&gt; GW
+    end
 
-    subgraph Pi Room
-    PIROOMPC[Pi Room PCs] --&gt;|Port1-42| SWITCH2
-    PRINTERS[HP Printer] --&gt;|Port44| SWITCH2
-    PIROOMAP[AP 2] --&gt; |Port43| SWITCH2
+    HUB --&gt; AAISP
+
+    SWITCH1 --&gt;|Port47/48| SWITCH2[Switch 2]
+    SWITCH1 --&gt;|Port1 / Port46| SWITCH3[Switch 3]
+
+    subgraph PiRoom[Pi Room]
+    PIROOMPC[Pi Room PCs - netboot] --&gt;|Port1-42| SWITCH2
+    AIBOX[aibox] --&gt; |VLAN 227| SWITCH2
     end
 
     subgraph Classroom
     CLASSROOMPC[Class Room PCs] --&gt;|Port1-42| SWITCH2
     end
 
-    subgraph Bar
-    AP3[AP3] --&gt;|Port22| SWITCH1
-    end
-
     subgraph Fabrication
-    SWITCH3[Switch 3] --&gt;|Port1 / Port46| SWITCH1
-    3DPRINTERS[3D Printer Pis] --&gt; |Port2-4| SWITCH3
+    3DPRINTERS[Print server Pis] --&gt; |Port2-4| SWITCH3
     LASER[Laser-1] --&gt; |Port5| SWITCH3
     CAD1[CAD-1] --&gt; |Port6| SWITCH3
-    CNC[CNC-1]
-    end</code></pre>
+    end
+
+    AP1[AP1 - Main Space] --&gt;|Port25| SWITCH1
+    AP2[AP2 - Pi Room] --&gt; SWITCH2
+    AP3[AP3 - Fabrication] --&gt; SWITCH3
+    AP4[AP4 - Social] --&gt; SWITCH1</code></pre>
+<p>Port numbers are a habit rather than a record: <code>show running-config</code> on the switch (or
+<a href="../devices/network_switches/">switch-gui</a>) is the only authority on what is patched
+where.</p>
 <h2 id="hardware">Hardware</h2>
 <table>
 <thead>
@@ -1406,12 +1391,48 @@
 <tbody>
 <tr>
 <td>GW</td>
-<td>HP</td>
-<td>Unknown</td>
+<td>Supermicro</td>
+<td>X9SCM (Xeon E3-1220 v2)</td>
 <td>Router</td>
 <td>Rack 1</td>
 <td>Live</td>
-<td>HP desktop system running pfSense</td>
+<td>NixOS, see <a href="../devices/gateway/">gateway</a></td>
+</tr>
+<tr>
+<td>services1</td>
+<td>HP</td>
+<td>ProDesk 600 G3 SFF</td>
+<td>Server</td>
+<td>Rack 1</td>
+<td>Live</td>
+<td>NixOS, most of our services</td>
+</tr>
+<tr>
+<td>services2</td>
+<td>Gigabyte</td>
+<td>AB350 Gaming-ITX/ac</td>
+<td>Server</td>
+<td>Rack 1</td>
+<td>Live</td>
+<td>NixOS, RTX 3060 inference</td>
+</tr>
+<tr>
+<td>services3</td>
+<td>ASUS</td>
+<td>Z170 PRO GAMING</td>
+<td>Server</td>
+<td>Bench</td>
+<td>Live</td>
+<td>NixOS, GTX 1080 Ti inference, on Wi-Fi for now</td>
+</tr>
+<tr>
+<td>aibox</td>
+<td>GMKtec</td>
+<td>NucBox M6</td>
+<td>Server</td>
+<td>Pi Room</td>
+<td>Live</td>
+<td>NixOS, the network's build machine, netboots the Pi Room PCs</td>
 </tr>
 <tr>
 <td>Switch 1</td>
@@ -1420,7 +1441,7 @@
 <td>L2 Switch</td>
 <td>Rack 1</td>
 <td>Live</td>
-<td>For Rack 1 hardware</td>
+<td>Core switch, VLANs tagged on the GW uplink</td>
 </tr>
 <tr>
 <td>Switch 2</td>
@@ -1429,7 +1450,7 @@
 <td>L2 Switch</td>
 <td>Rack 1</td>
 <td>Live</td>
-<td>For wired clients in the rooms</td>
+<td>Wired clients in the rooms</td>
 </tr>
 <tr>
 <td>Switch 3</td>
@@ -1438,43 +1459,70 @@
 <td>L2 Switch</td>
 <td>Fabrication</td>
 <td>Live</td>
-<td>Switch for the fabrication area</td>
+<td>Fabrication area</td>
 </tr>
 <tr>
-<td>AP 1</td>
-<td>Linksys</td>
-<td>WRT1900ACS</td>
+<td>AP1</td>
+<td>Ubiquiti</td>
+<td>U7PG2</td>
 <td>AP</td>
-<td>Top of Rack</td>
+<td>Main Space</td>
 <td>Live</td>
-<td>Uses stock firmware</td>
+<td>UniFi, adopted, replaced 2026-10-31</td>
 </tr>
 <tr>
-<td>AP 2</td>
-<td>BT</td>
-<td>Business Hub 5 Type A</td>
+<td>AP2</td>
+<td>Ubiquiti</td>
+<td>U7LT</td>
 <td>AP</td>
 <td>Pi Room</td>
 <td>Live</td>
-<td>Uses stock firmware (supports OpenWRT)</td>
+<td>UniFi, adopted</td>
 </tr>
 <tr>
-<td>AP 3</td>
-<td>Cisco</td>
-<td>RV110W</td>
+<td>AP3</td>
+<td>Ubiquiti</td>
+<td>U7LT</td>
 <td>AP</td>
-<td>Bar</td>
+<td>Fabrication</td>
 <td>Live</td>
-<td>Uses stock firmware</td>
+<td>UniFi, adopted</td>
 </tr>
 <tr>
-<td>AP 4</td>
-<td>Linksys</td>
-<td>Wireless-G ADSL Gateway</td>
+<td>AP4</td>
+<td>Ubiquiti</td>
+<td>U7LT</td>
 <td>AP</td>
-<td>Behind Rack 1</td>
+<td>Social Space</td>
 <td>Live</td>
-<td>B/G Only network for old devices</td>
+<td>UniFi, adopted</td>
+</tr>
+<tr>
+<td>NAS</td>
+<td>HP</td>
+<td>MicroServer Gen8</td>
+<td>NAS</td>
+<td>Rack 1</td>
+<td>Live</td>
+<td>TrueNAS, NFS + SMB + the borg backup server</td>
+</tr>
+<tr>
+<td>Monster 1</td>
+<td>HP</td>
+<td>SL2x170z G6 blade</td>
+<td>Server</td>
+<td>Rack 1</td>
+<td>Live</td>
+<td>Proxmox VE 9, the only node in use, see <a href="../devices/proxmox/">proxmox</a></td>
+</tr>
+<tr>
+<td>UPS</td>
+<td>APC</td>
+<td>Back-UPS XS 1400U</td>
+<td>UPS</td>
+<td>Rack 1</td>
+<td>Live</td>
+<td>On the router's USB port, drives the fleet shutdown</td>
 </tr>
 <tr>
 <td>NAS 1</td>
@@ -1482,26 +1530,8 @@
 <td>TS-431+</td>
 <td>NAS</td>
 <td>Rack 1</td>
-<td>Live</td>
-<td></td>
-</tr>
-<tr>
-<td>NAS 2</td>
-<td>HP</td>
-<td>Microserver G8</td>
-<td>NAS</td>
-<td>Rack 1</td>
-<td>Live</td>
-<td></td>
-</tr>
-<tr>
-<td>UPS</td>
-<td>APC</td>
-<td>???</td>
-<td>UPS</td>
-<td>Rack 1</td>
-<td>Live</td>
-<td>Powers the NAS systems only</td>
+<td>Dead</td>
+<td>Retired 2026, see <a href="../devices/nas/">nas</a></td>
 </tr>
 <tr>
 <td>Leigh OOB</td>
@@ -1509,60 +1539,50 @@
 <td>2 B+</td>
 <td>Server</td>
 <td>Rack 1</td>
-<td>Live</td>
-<td>Gives us 'out of band' access to Hackspace network and devices</td>
+<td>Gone</td>
+<td>Replaced by the tailnet</td>
 </tr>
 <tr>
-<td>Mini Switch</td>
-<td>Netgear</td>
-<td>???</td>
-<td>L2 Switch</td>
-<td>Rack 1</td>
-<td>Live</td>
-<td>Multiple ports on the Mill network, needs switching to Switch 1</td>
-</tr>
-<tr>
-<td>Blade Server</td>
+<td>Monster 2-5</td>
 <td>HP</td>
-<td>SL2x170z G6</td>
+<td>-</td>
 <td>Server</td>
 <td>Rack 1</td>
-<td>Live</td>
-<td>Proxmox Cluster 'Monster'</td>
+<td>Gone</td>
+<td>Only one Proxmox node is in use</td>
 </tr>
 </tbody>
 </table>
+<p>The SSIDs and the APs are managed by a UniFi "OS Server" appliance running in
+containers on services1, at
+<a href="https://unifi-admin.int.leighhack.org">unifi-admin.int.leighhack.org</a>. The older
+Linksys, BT, and Cisco access points that used to be here are gone.</p>
 <h2 id="l3-layout-vlans">L3 Layout / VLANs</h2>
-<p>TL;DR: All VLANs can access Shared Services, Automation is only accessible via Shared Services.</p>
+<p>TL;DR: every VLAN is routed by GW, all of them can reach Shared Services, and the
+only way in from outside is the <a href="../devices/gateway/#the-front-door">front door</a> on
+GW. The old Automation, DMZ, Storage, and AD Lab VLANs were dropped when the router was
+rebuilt; what they were used for now lives somewhere else, noted below.</p>
 <pre class="mermaid"><code>graph LR
     INTERNET((Internet))
+    GW[GW - front door]
     SHARED[Shared Services - VLAN 225]
-    WiFi[WiFi - VLAN 226]
+    WiFi[Wireless - VLAN 226]
     WIRED[Wired - VLAN 227]
-    AUTOMATION[Automation VLAN 229]
-    DMZ[DMZ - VLAN 230]
-    STORAGE[Storage - VLAN 231]
-    ADLAB[AD Lab - VLAN 232]
     PHONE[Phone - VLAN 222]
+    CS[CS_VLAN - VLAN 1337]
 
-    SHARED --&gt; INTERNET
-    SHARED --&gt; DMZ
-    SHARED --&gt; AUTOMATION
-    SHARED &lt;--&gt; WiFi
-    SHARED &lt;--&gt; WIRED
-    SHARED &lt;--&gt; PHONE
-
-    DMZ &lt;--&gt; INTERNET
-
-    WIRED --&gt; DMZ
-    WIRED --&gt; INTERNET
-
-    WiFi --&gt; DMZ
-    WiFi --&gt; INTERNET
-    WiFi &lt;--&gt; WIRED
-</code></pre>
+    INTERNET &lt;--&gt; GW
+    GW &lt;--&gt; SHARED
+    GW &lt;--&gt; WiFi
+    GW &lt;--&gt; WIRED
+    GW &lt;--&gt; PHONE
+    GW &lt;--&gt; CS</code></pre>
+<p>The VLANs, their blocks, and the dynamic DHCP range each one hands out, are one table in
+the repo (<code>common/vlans.nix</code>); the fixed addresses below are another (<code>common/dns-records.nix</code>).
+Both are rendered into dnsmasq's config on the router at deploy time, so a device and a
+name are each one line in one file.</p>
 <h3 id="mill-network-vlan-1">Mill Network - VLAN '1'</h3>
-<p>The mill provides internet access via a 100mbps internal network. It can be a bit unreliable but it works for our general usage. </p>
+<p>The mill provides internet access via a 100mbps internal network. It can be a bit unreliable but it works for our general usage.</p>
 <ul>
 <li>ISP: <a href="https://aware-soft.com/">Awareness Software Ltd</a> (AS34931)</li>
 <li>Mill Network Administrator: <a href="mailto:data@imagevillage.co.uk">Mark Nightingale</a>, Image Village.</li>
@@ -1576,177 +1596,112 @@
 </ul>
 <p>Usage is bound by the <a href="../mill_network_tc/">LBPT Tenant Network Agreement</a>.</p>
 <h3 id="shared-services-vlan-225">Shared Services - VLAN 225</h3>
-<p>Where the servers, routers, and other central bits are hosted.</p>
-<p>IP Range: <code>10.3.1.0/24</code></p>
-<p>The range is split into logical groups:</p>
-<ul>
-<li><code>1</code> to <code>9</code> - Network hardware</li>
-<li><code>10</code> to <code>19</code> - Physical Servers</li>
-<li><code>20</code> to <code>29</code> - Physical Server Management Interfaces</li>
-<li><code>30</code> to <code>49</code> - VMs</li>
-<li><code>50</code> to <code>59</code> - Printers</li>
-</ul>
-<p>This subnet does have DHCP enabled, but we encourage static assignments for critical hardware and services. Here is the current list:</p>
+<p>Where the servers, routers, and other central bits are hosted. Everything the flake
+deploys answers here.</p>
+<p>IP Range: <code>10.3.1.0/24</code>, DHCP <code>10.3.1.150 - 10.3.1.253</code></p>
 <table>
 <thead>
 <tr>
 <th>Device Name</th>
 <th>IP Address</th>
-<th>Location</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>GW</td>
 <td><code>10.3.1.1</code></td>
-<td>Rack 1</td>
+<td>The router, VLAN 225's address is its own</td>
 </tr>
 <tr>
 <td>Switch 1</td>
 <td><code>10.3.1.2</code></td>
-<td>Rack 1</td>
+<td></td>
 </tr>
 <tr>
 <td>Switch 2</td>
 <td><code>10.3.1.3</code></td>
-<td>Rack 1</td>
+<td></td>
 </tr>
 <tr>
 <td>Switch 3</td>
 <td><code>10.3.1.4</code></td>
-<td>Workshop / Fabrication</td>
+<td>Fabrication</td>
 </tr>
 <tr>
-<td>NAS 1</td>
-<td><code>10.3.1.5</code></td>
-<td>Rack 1</td>
-</tr>
-<tr>
-<td>NAS 2</td>
+<td>NAS</td>
 <td><code>10.3.1.6</code></td>
-<td>Rack 1</td>
+<td>TrueNAS, still answers to <code>nas2</code></td>
+</tr>
+<tr>
+<td>services1</td>
+<td><code>10.3.1.20</code></td>
+<td></td>
+</tr>
+<tr>
+<td>services2</td>
+<td><code>10.3.1.21</code></td>
+<td></td>
 </tr>
 <tr>
 <td>Monster 1</td>
 <td><code>10.3.1.11</code></td>
-<td>Rack 1</td>
-</tr>
-<tr>
-<td>Monster 2</td>
-<td><code>10.3.1.12</code></td>
-<td>Rack 1</td>
-</tr>
-<tr>
-<td>Monster 3</td>
-<td><code>10.3.1.13</code></td>
-<td>Rack 1</td>
-</tr>
-<tr>
-<td>Monster 4</td>
-<td><code>10.3.1.14</code></td>
-<td>Rack 1</td>
-</tr>
-<tr>
-<td>Leigh OOB</td>
-<td><code>10.3.1.21</code></td>
-<td>Rack 1</td>
-</tr>
-<tr>
-<td>Monster 1 LO100</td>
-<td><code>10.3.1.22</code></td>
-<td>Rack 1</td>
-</tr>
-<tr>
-<td>Monster 2 LO100</td>
-<td><code>10.3.1.23</code></td>
-<td>Rack 1</td>
-</tr>
-<tr>
-<td>Monster 3 LO100</td>
-<td><code>10.3.1.24</code></td>
-<td>Rack 1</td>
-</tr>
-<tr>
-<td>Monster 4 LO100</td>
-<td><code>10.3.1.25</code></td>
-<td>Rack 1</td>
-</tr>
-<tr>
-<td>NAS 2 iLO</td>
-<td><code>10.3.1.26</code></td>
-<td>Rack 1</td>
+<td>Proxmox</td>
 </tr>
 <tr>
 <td>Apps1</td>
 <td><code>10.3.1.30</code></td>
-<td>Monster</td>
+<td>Proxmox VM, mostly superseded</td>
 </tr>
 <tr>
-<td>MX1</td>
-<td><code>10.3.1.31</code></td>
-<td>Monster</td>
-</tr>
-<tr>
-<td>k8s-lab-01</td>
+<td>aibox</td>
 <td><code>10.3.1.32</code></td>
-<td>Monster</td>
-</tr>
-<tr>
-<td>k8s-lab-02</td>
-<td><code>10.3.1.33</code></td>
-<td>Monster</td>
-</tr>
-<tr>
-<td>k8s-lab-03</td>
-<td><code>10.3.1.34</code></td>
-<td>Monster</td>
-</tr>
-<tr>
-<td>Cobalt RAQ3</td>
-<td><code>10.3.1.35</code></td>
-<td>Monster</td>
+<td></td>
 </tr>
 <tr>
 <td>Authentik</td>
 <td><code>10.3.1.36</code></td>
-<td>Monster</td>
-</tr>
-<tr>
-<td>RTSP</td>
-<td><code>10.3.1.37</code></td>
-<td>Monster</td>
-</tr>
-<tr>
-<td>Discourse</td>
-<td><code>10.3.1.38</code></td>
-<td>Monster</td>
+<td>A <strong>second address on services1</strong>, not a box - see <a href="../devices/authentik/">authentik</a></td>
 </tr>
 <tr>
 <td>Web1</td>
 <td><code>10.3.1.39</code></td>
-<td>Monster</td>
+<td>Proxmox VM, the hackspace website previews</td>
 </tr>
 <tr>
-<td>HP Laserjet P3015</td>
-<td><code>10.3.1.50</code></td>
-<td>Pi Room 5/7</td>
+<td>AP1 - Main Space</td>
+<td><code>10.3.1.41</code></td>
+<td>APs are on the wired run, so they get 225 addresses</td>
 </tr>
 <tr>
-<td>GW - VIP 1</td>
-<td><code>10.3.1.60</code></td>
-<td>VIP for Internal HAProxy</td>
+<td>AP2 - Pi Room</td>
+<td><code>10.3.1.42</code></td>
+<td></td>
 </tr>
 <tr>
-<td>GW - VIP 2</td>
-<td><code>10.3.1.61</code></td>
-<td>VIP for K8s-Lab</td>
+<td>AP3 - Fabrication</td>
+<td><code>10.3.1.43</code></td>
+<td></td>
+</tr>
+<tr>
+<td>AP4 - Social</td>
+<td><code>10.3.1.44</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Intercom</td>
+<td><code>10.3.1.166</code></td>
+<td>Asterisk, a second address on services1</td>
 </tr>
 </tbody>
 </table>
-<h3 id="wifi-vlan-226">WiFi - VLAN 226</h3>
-<p>WiFi users, General open access to the internet and internal services. The UnFi APs management interface is in Shared Services on DHCP, only non-UnFi devices are assigned a static IP on the WiFi VLAN.</p>
-<p>IP Range: <code>10.3.2.0/24</code></p>
-<p>DHCP enabled, <code>10.3.2.21 - 10.3.2.254</code></p>
+<p>Two things about that table that are easy to get wrong. <code>10.3.1.36</code> and <code>10.3.1.166</code> are
+not machines: they are extra addresses on services1, kept because the ProCurve switches
+and the phone handsets have those numbers typed into them and can't be reconfigured.
+And <code>10.3.1.5</code> (<code>NAS 1</code>, the QNAP) is still reserved but does not answer.</p>
+<h3 id="wireless-vlan-226">Wireless - VLAN 226</h3>
+<p>Wireless clients, cameras, and anything networked that only has Wi-Fi.</p>
+<p>IP Range: <code>10.3.2.0/24</code>, DHCP <code>10.3.2.100 - 10.3.2.253</code></p>
 <table>
 <thead>
 <tr>
@@ -1757,29 +1712,14 @@
 </thead>
 <tbody>
 <tr>
-<td>AP4</td>
-<td><code>10.3.2.5</code></td>
-<td>Behind Rack 1</td>
+<td>SLZB-06M</td>
+<td><code>10.3.2.2</code></td>
+<td>Zigbee coordinator (PoE)</td>
 </tr>
 <tr>
 <td>Cam1</td>
 <td><code>10.3.2.6</code></td>
-<td>Rack 1</td>
-</tr>
-<tr>
-<td>Cam2</td>
-<td><code>10.3.2.7</code></td>
-<td>Defunct</td>
-</tr>
-<tr>
-<td>Cam3</td>
-<td><code>10.3.2.8</code></td>
-<td>Social Space</td>
-</tr>
-<tr>
-<td>Cam4</td>
-<td><code>10.3.2.9</code></td>
-<td>Main Space</td>
+<td></td>
 </tr>
 <tr>
 <td>Cam5</td>
@@ -1787,153 +1727,135 @@
 <td>Pi Room</td>
 </tr>
 <tr>
-<td>Cam6</td>
+<td>Cam8</td>
 <td><code>10.3.2.11</code></td>
-<td>Workshop</td>
+<td>Main Space</td>
 </tr>
 <tr>
 <td>Cam7</td>
 <td><code>10.3.2.12</code></td>
 <td>CNC</td>
 </tr>
+<tr>
+<td>Cam9</td>
+<td><code>10.3.2.17</code></td>
+<td>Social Space</td>
+</tr>
+<tr>
+<td>Sumup Solo</td>
+<td><code>10.3.2.15</code></td>
+<td>Card terminal</td>
+</tr>
+<tr>
+<td>Big Button</td>
+<td><code>10.3.2.21</code></td>
+<td>The <a href="../devices/state_switch/">state switch</a></td>
+</tr>
+<tr>
+<td>Brother</td>
+<td><code>10.3.2.30</code></td>
+<td>MFC-L3740CDW, the member printer</td>
+</tr>
+<tr>
+<td>Voron</td>
+<td><code>10.3.2.50</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Elegoo</td>
+<td><code>10.3.2.55</code></td>
+<td>Resin printer</td>
+</tr>
+<tr>
+<td>Snapmaker</td>
+<td><code>10.3.2.56</code></td>
+<td></td>
+</tr>
+<tr>
+<td>CNC-1</td>
+<td><code>10.3.2.61</code></td>
+<td></td>
+</tr>
+<tr>
+<td>LED strips</td>
+<td><code>10.3.2.70</code>, <code>10.3.2.71</code></td>
+<td><code>led180</code>, <code>led-pi-room</code></td>
+</tr>
+<tr>
+<td>services3</td>
+<td><code>10.3.2.213</code></td>
+<td>On the bench, so this is its Wi-Fi lease</td>
+</tr>
 </tbody>
 </table>
-<p>Channel layouts for the APs:</p>
-<table>
-<thead>
-<tr>
-<th>Device</th>
-<th>2.4ghz</th>
-<th>5ghz</th>
-<th>6ghz</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AP1</td>
-<td>Auto</td>
-<td>Auto</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>AP2</td>
-<td>Auto</td>
-<td>Auto</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>AP3</td>
-<td>Auto</td>
-<td>Auto</td>
-<td>N/A</td>
-</tr>
-<tr>
-<td>AP4</td>
-<td>13</td>
-<td>N/A</td>
-<td>N/A</td>
-</tr>
-</tbody>
-</table>
+<p>Cameras 2, 3, 4 and 6 are gone; what's left is the four OpenIPC/thingino cameras plus
+<code>cam1</code>. Each of them is on Wi-Fi, and a camera's picture quality is a property of the
+access point it happens to have joined, so read the cell before blaming the camera.</p>
+<p>Channel plans are chosen by the UniFi controller rather than written down, and they
+change; ask infra for a current read if a camera or a printer is being awkward.</p>
 <h3 id="wired-vlan-227">Wired - VLAN 227</h3>
 <p>The general hackspace wired network. This covers the Pi Room, Classroom, Electronics, and Fabrication.</p>
-<p>IP Range: <code>10.3.14.0/24</code></p>
-<p>DHCP enabled, <code>10.3.14.2 - 10.3.14.254</code></p>
-<h3 id="automation-vlan-229">Automation - VLAN 229</h3>
-<p>Used for any automation devices that do not require open internet access, or need to be secured away from the general network (e.g. Door system).</p>
-<p>Accessible via <code>Leighhack-iot</code> WiFi SSID.</p>
-<p>IP Range <code>10.3.16.0/24</code></p>
-<p>DHCP enabled, <code>10.3.16.2 - 10.3.16.128</code></p>
-<p>This subnet does have DHCP enabled, but we use some static assignment. Here is the current list:</p>
+<p>IP Range: <code>10.3.14.0/24</code>, DHCP <code>10.3.14.150 - 10.3.14.253</code></p>
 <table>
 <thead>
 <tr>
 <th>Device Name</th>
 <th>IP Address</th>
-<th>Location</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td>workshop / main_space / woodwork</td>
+<td><code>10.3.14.11</code> / <code>.12</code> / <code>.13</code></td>
+<td>The room panels</td>
+</tr>
+<tr>
+<td>aibox (wired)</td>
+<td><code>10.3.14.32</code></td>
+<td>aibox's second NIC, on the Pi Room run</td>
+</tr>
+<tr>
+<td>CAD-1</td>
+<td><code>10.3.14.51</code></td>
 <td></td>
-<td></td>
-<td></td>
+</tr>
+<tr>
+<td>3d-lime / 3d-blue</td>
+<td><code>10.3.14.61</code> / <code>10.3.14.62</code></td>
+<td>Klipper print servers, fixed by IP on purpose</td>
+</tr>
+<tr>
+<td>PI-ROOM-01 ... PI-ROOM-10</td>
+<td><code>10.3.14.101</code> - <code>.110</code></td>
+<td>Netbooted from aibox, no local disk</td>
 </tr>
 </tbody>
 </table>
-<h3 id="dmz-vlan-230">DMZ - VLAN 230</h3>
-<p>Used for internet facing services, all systems are allocated addresses within the A&amp;A delegated IP range.</p>
-<p>IP Range: <code>81.187.195.16/29</code></p>
-<table>
-<thead>
-<tr>
-<th>Device Name</th>
-<th>IP Address</th>
-<th>Location</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GW</td>
-<td><code>81.187.195.17</code></td>
-<td>Rack 1</td>
-</tr>
-</tbody>
-</table>
-<h3 id="storage-vlan-231">Storage - VLAN 231</h3>
-<p>Non-routed VLAN for VM hosts to connect to storage devices either via iSCSI or NFS, to keep that main broadcast traffic off the main subnets.</p>
-<p><strong>Currently not implemented</strong></p>
-<p>IP Range: <code>10.254.254.0/24</code></p>
-<table>
-<thead>
-<tr>
-<th>Device Name</th>
-<th>IP Address</th>
-<th>Location</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>nas02</code></td>
-<td><code>10.254.254.2</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>monster1</code></td>
-<td><code>10.254.254.11</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>monster2</code></td>
-<td><code>10.254.254.12</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>monster3</code></td>
-<td><code>10.254.254.13</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>monster4</code></td>
-<td><code>10.254.254.14</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>monster5</code></td>
-<td><code>10.254.254.15</code></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="ad-lab-vlan-232">AD Lab - VLAN 232</h3>
-<p>IP Range: <code>192.168.10.0/24</code></p>
-<p>A non-routed VLAN for our Active Directory lab - <a href="https://github.com/leigh-hackspace/GOAD">GOAD</a></p>
-<p>Consult the GOAD documentation for the breakdown of systems within the environment.</p>
-<h3 id="openvpn">OpenVPN</h3>
-<p>The pfSense has a OpenVPN server, this allocates IPs in the <code>10.3.254.0/24</code> range and is available as a normal interface on pfSense, but it doesn't have a VLAN assigned to it.</p>
-<h3 id="oob-access">OOB Access</h3>
-<p>Out of band access to the network is available via 'Leigh OOB', this uses Tailscale to handle situations where GW or the L2TP is unavailable.</p>
-<p>For access, contact the <a href="../../membership/useful_contacts/#tech-infrastructure">Infra team</a>, or Andrew Williams.</p>
+<h3 id="phone-vlan-222">Phone - VLAN 222</h3>
+<p>IP Range: <code>10.3.22.0/24</code>, no dynamic range - a device arriving on it gets no lease, which
+is the point of the VLAN existing. The handsets and the intercom are on fixed addresses.</p>
+<h3 id="cs_vlan-vlan-1337">CS_VLAN - VLAN 1337</h3>
+<p>The other network in the building, arriving on the router's LAN trunk with its own tag:
+<code>192.168.2.0/24</code>, DHCP <code>192.168.2.150 - 192.168.2.250</code>. GW routes it but owns none of its
+addresses.</p>
+<h3 id="ipv6">IPv6</h3>
+<p>AAISP delegate <code>2001:8b0:1d14::/48</code>, and each VLAN gets a <code>/64</code> named after it
+(<code>2001:8b0:1d14:225::/64</code>, <code>...226::/64</code>, and so on) alongside a ULA in
+<code>fd99:dead:beef:&lt;vlan&gt;d::/64</code>. Addresses are SLAAC via router advertisements; all IPv6
+leaves through the AAISP tunnel, so if that tunnel is down the network has no IPv6 at all.</p>
+<h3 id="retired">Retired</h3>
+<ul>
+<li><strong>Automation - VLAN 229</strong> (<code>10.3.16.0/24</code>): dropped at the 2026-10-21 router cutover. The door system and the automation run from services1 now.</li>
+<li><strong>DMZ - VLAN 230</strong> (<code>81.187.195.16/29</code>): the AAISP <code>/29</code> is not a VLAN, it's routed to the tunnel. Nothing is published except through the front door.</li>
+<li><strong>Storage - VLAN 231</strong>: never implemented, and now moot.</li>
+<li><strong>AD Lab - VLAN 232</strong> (<code>192.168.10.0/24</code>, <a href="https://github.com/leigh-hackspace/GOAD">GOAD</a>): the lab VMs are stopped and the VLAN is not created.</li>
+</ul>
+<h2 id="out-of-band-access">Out of Band Access</h2>
+<p>'Leigh OOB' and its Tailscale-on-a-Pi are gone. Every flake machine, the switches (over
+the LAN only), and the router are reachable over the <a href="../vpn/">tailnet</a>, and the router,
+the uplinks, the leases and the live connection table are all visible at
+<a href="https://network-info.int.leighhack.org">network-info.int.leighhack.org</a>.</p>
 
 
 
@@ -1956,7 +1878,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 22, 2024 13:08:14 UTC">June 22, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 16, 2026 20:01:17 UTC">November 16, 2026</span>
   </span>
 
     

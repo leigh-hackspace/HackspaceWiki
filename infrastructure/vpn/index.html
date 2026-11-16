@@ -781,26 +781,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#configuration" class="md-nav__link">
+  <a href="#connecting" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Configuration
+        Connecting
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#macos" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        MacOS
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="MacOS">
+    <nav class="md-nav" aria-label="Connecting">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -808,6 +797,17 @@
     <span class="md-ellipsis">
       
         Linux, GNOME, and Network Manager
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-sure-you-get-the-lan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Make sure you get the LAN
       
     </span>
   </a>
@@ -824,6 +824,17 @@
     <span class="md-ellipsis">
       
         Access
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-old-openvpn-configs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Old OpenVPN Configs
       
     </span>
   </a>
@@ -934,6 +945,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../devices/gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gateway / Router
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../devices/network_switches/" class="md-nav__link">
         
   
@@ -962,14 +1001,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../devices/pfsense/" class="md-nav__link">
+      <a href="../devices/nas/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    pfSense / Gateway
+    NAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devices/proxmox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proxmox
   
 
     
@@ -998,62 +1065,6 @@
     
   
     Authentik
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../devices/qnap_nas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    QNAP NAS
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../devices/proxmox/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Proxmox Clusters
   
 
     
@@ -1254,31 +1265,63 @@
 
 
 <h1 id="vpn">VPN</h1>
-<p>Leigh Hackspace offers a VPN service to its members, this allows you connect to hackspace internal services while outside of the space itself. </p>
-<p>We currently use OpenVPN, so on Windows, Linux, Android, and iOS you can use the native packages, and on macOS we suggest <a href="https://www.sparklabs.com/viscosity/">Viscosity</a>.</p>
+<p>Leigh Hackspace offers a VPN service to its members, this allows you connect to hackspace internal services while outside of the space itself.</p>
+<p>We run our own <a href="https://tailscale.com">Tailscale</a> network (the control server is
+<a href="https://headscale.net">Headscale</a>, on the router), so you use the normal Tailscale client
+on Windows, Linux, macOS, Android, and iOS. It is not Tailscale's hosted service: you tell
+the client to use <em>our</em> coordination server, and you sign in with
+<a href="https://id.leighhack.org">id.leighhack.org</a>.</p>
+<blockquote>
+<p>The old OpenVPN service is retired. It went away with the pfSense box it ran on; the
+configs at the bottom of this page are kept for the record and do not connect.</p>
+</blockquote>
 <h2 id="requirements">Requirements</h2>
-<p>You'll need an account on <a href="https://id.leighhack.org">id.leighhack.org</a>. Ideally, sign up with the same email address that you used for your GoCardless membership and privileges will be automatically assigned. If not, then contact <a href="../../membership/useful_contacts/#tech-infrastructure">Infra</a>.</p>
-<h2 id="configuration">Configuration</h2>
-<p>These config files should enable you to configure and connect with a click of a button:</p>
+<p>You'll need an account on <a href="https://id.leighhack.org">id.leighhack.org</a>. Ideally, sign up with the same email address that you used for your GoCardless membership and privileges will be automatically assigned - that puts you in the <code>Members</code> group, which is what the VPN checks. If not, then contact <a href="../../membership/useful_contacts/#tech-infrastructure">Infra</a>.</p>
+<h2 id="connecting">Connecting</h2>
+<p>Install Tailscale, then point it at our server. On the command line:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>tailscale<span class="w"> </span>up<span class="w"> </span>--login-server<span class="o">=</span>https://tailscale.leighhack.org
+</code></pre></div>
+<p>That prints a URL; open it, sign in with your Authentik account, and the device is on the
+network. Every device you've ever joined is listed in the admin UI at
+<a href="https://tailscale.leighhack.org/admin">tailscale.leighhack.org/admin</a>, so you can rename or
+remove old ones yourself.</p>
+<p>The apps have the same option in their settings rather than on the command line - it's
+usually called "Use custom hosting provider" or "Self-hosted" (Android: the three-dot menu
+on the sign-in screen; iOS: Settings → Advanced). Put <code>https://tailscale.leighhack.org</code> in
+it, then sign in.</p>
+<h3 id="linux-gnome-and-network-manager">Linux, GNOME, and Network Manager</h3>
+<p>The GNOME <code>Network</code> VPN panel has no Tailscale support - Tailscale is not a protocol
+NetworkManager speaks, it's a program with its own daemon. So install the <code>tailscale</code>
+package for your distro, and then either run the command above or install the GNOME
+extension that wraps it. There's nothing to import and no profile to configure.</p>
+<h3 id="make-sure-you-get-the-lan">Make sure you get the LAN</h3>
+<p>Subnet routes are offered by the router and approved by us, but a client has to say it will
+use them:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>tailscale<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--accept-routes
+</code></pre></div>
+<p>Without it you'll reach the services that run on tailnet addresses and nothing else - a
+<code>10.3.1.20</code> or <code>10.3.14.61</code> connection will just time out, which looks like "the VPN is
+broken" and isn't.</p>
+<h2 id="access">Access</h2>
+<p>This VPN will give you access the same as being on the WiFi within the hackspace. All of
+<code>10.3.0.0/16</code>, the <code>10.3.x.x</code> VLANs, the CS network at <code>192.168.2.0/24</code>, and the space's
+IPv6 are reachable, and with the tailnet's DNS turned on <code>*.int.leighhack.org</code> resolves and
+the short machine names work too.</p>
+<p>The router also offers itself as an exit node, if you want everything on a device to come
+out of the space rather than just the traffic destined for us. Ask
+<a href="../../membership/useful_contacts/#tech-infrastructure">Infra</a> to turn that on for your device.</p>
+<p>If you have any specific requirements you need from the VPN then contact
+<a href="../../membership/useful_contacts/#tech-infrastructure">Infra</a>.</p>
+<h2 id="the-old-openvpn-configs">The Old OpenVPN Configs</h2>
+<p>These are the configs for the service we ran before the router was rebuilt. They will not
+connect: there is no OpenVPN server listening, and we haven't rebuilt one because the old
+one's keys and its Authentik bind account only existed on the retired appliance. If you
+genuinely need OpenVPN rather than Tailscale, say why to
+<a href="../../membership/useful_contacts/#tech-infrastructure">Infra</a>.</p>
 <ul>
 <li><a href="members-vpn.ovpn">VPN Configuration</a></li>
 <li><a href="members-vpn-old.ovpn">VPN Configuration for older OpenVPN versions</a></li>
 </ul>
-<h2 id="macos">MacOS</h2>
-<p><a href="https://www.sparklabs.com/viscosity/">Viscosity</a> is the suggested OpenVPN client for MacOS, its simplifies the configuration and works without any issues. Install, and double click the above OVPN file to install the profile, then select the profile via the menubar item for Viscosity.</p>
-<h3 id="linux-gnome-and-network-manager">Linux, GNOME, and Network Manager</h3>
-<p>GNOME and Network Manager are commonly used on Ubuntu, Debian, and EL distributions (RHEL, CentOS, Fedora).</p>
-<ol>
-<li>Open GNOME Settings, and browse to 'Network'</li>
-<li>Click '+' in the VPN section and select 'Import from file...'</li>
-<li>Select the VPN configuration file from the link above.</li>
-<li>You'll be presented with a completed configuration, goto the 'IPv4' tab and tick on 'Use this connection only for resources on its network'</li>
-<li>Repeat the same again for the 'IPv6' tab.</li>
-<li>Click 'Save'</li>
-</ol>
-<p>You can now test the connection, by default it'll attempt to connect to your current username and will prompt you for a password, this will be what its setup on Authentik.</p>
-<h2 id="access">Access</h2>
-<p>This VPN will give you access the same as being on the WiFi within the hackspace. If you have any specific requirements you need from the VPN then contact <a href="../../membership/useful_contacts/#tech-infrastructure">Infra</a>.</p>
 
 
 
@@ -1301,7 +1344,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="February 5, 2024 16:36:38 UTC">February 5, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 16, 2026 20:01:17 UTC">November 16, 2026</span>
   </span>
 
     

@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://leigh-hackspace.github.io/HackspaceWiki/infrastructure/devices/authentik/">
       
       
-        <link rel="prev" href="../pfsense/">
+        <link rel="prev" href="../proxmox/">
       
       
-        <link rel="next" href="../qnap_nas/">
+        <link rel="next" href="../k8s-lab/">
       
       
         
@@ -828,6 +828,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gateway / Router
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../network_switches/" class="md-nav__link">
         
   
@@ -856,14 +884,42 @@
   
   
     <li class="md-nav__item">
-      <a href="../pfsense/" class="md-nav__link">
+      <a href="../nas/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    pfSense / Gateway
+    NAS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../proxmox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Proxmox
   
 
     
@@ -944,6 +1000,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#where-it-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where It Runs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-its-wired-into" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It's Wired Into
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#admin-tasks" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -977,6 +1055,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#add-or-remove-someone-from-infra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add or remove someone from Infra
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-an-oidc-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create an OIDC app
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripting-against-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scripting against it
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -986,62 +1097,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../qnap_nas/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    QNAP NAS
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../proxmox/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Proxmox Clusters
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1277,8 +1332,44 @@
 
 
 <h1 id="authentik">Authentik</h1>
-<p>Authentik is the system we use to provide single sign-on and administration of users within the Hackspace</p>
-<p><a href="https://id.leighhack.org/">https://id.leighhack.org/</a></p>
+<p>Authentik is the system we use to provide single sign-on and administration of users within the Hackspace.</p>
+<p><a href="https://id.leighhack.org">https://id.leighhack.org/</a></p>
+<p>It's the front door for everything in <a href="../../internal_services/">Internal Services</a>, and
+it's also where your account lives for logging into the Pi Room machines and the servers.
+The <code>Members</code> group (put there by a nightly sync from your GoCardless membership) is what
+the <a href="../../vpn/">tailnet</a> and the member-facing services check; <code>Infra</code> is what gets you
+into the administrative ones.</p>
+<h2 id="where-it-runs">Where It Runs</h2>
+<p>Containers on <code>services1</code> - server, worker, Postgres, Redis, and the RADIUS and LDAP
+outposts, all under podman, all managed by the infra repo. That moved here from a dedicated
+appliance VM on 2026-10-28.</p>
+<p><code>authentik.int.leighhack.org</code> and <code>10.3.1.36</code> are answered by that box, and <strong><code>10.3.1.36</code>
+is a second address on services1, not a machine</strong>. It was kept as an address rather than
+moved because the ProCurve switches have <code>radius-server host 10.3.1.36</code> in NVRAM and the
+LDAP clients point at the name; both groups are unreconfigurable. The old VM (<code>108</code> on
+Proxmox) is stopped, has <code>onboot</code> cleared, and must stay that way - it still has the live
+DHCP reservation for that address, so starting it means two hosts answering one address.</p>
+<p>Two things that are load-bearing and must not be "tidied up":</p>
+<ul>
+<li><strong><code>AUTHENTIK_SECRET_KEY</code> is unrotatable.</strong> The database we migrated was sealed with it
+  and Authentik cannot re-encrypt what it has already written. Rotating it locks the
+  installation.</li>
+<li><strong>The outpost tokens</strong> (RADIUS and LDAP) live in the database and came across with it.
+  Same argument.</li>
+</ul>
+<h2 id="what-its-wired-into">What It's Wired Into</h2>
+<ul>
+<li>OIDC for our own apps (Grafana, Filestore, switch-gui, the membership dashboard, and the
+  rest), always authorization-code with <strong>S256 PKCE</strong> and an <code>Infra</code>/<code>Members</code> group check</li>
+<li>The <a href="../../vpn/">tailnet</a> - devices sign in with Authentik and only the <code>Members</code> group
+  is allowed</li>
+<li>RADIUS for the network switches, and LDAP/S for the Pi Room and anything else that wants
+  a directory. Note the switches don't actually authenticate over RADIUS yet - see
+  <a href="../network_switches/#logging-in">Network Switches</a></li>
+<li>Unix accounts on the NixOS boxes: your uid is <code>2000 +</code> your Authentik user id, and that
+  number is the ACL on your NAS home directory. It is derived, not stored, so <strong>don't
+  delete and re-create a user</strong> to fix something</li>
+</ul>
 <h2 id="admin-tasks">Admin Tasks</h2>
 <h3 id="reset-a-users-password">Reset a user's password</h3>
 <ul>
@@ -1297,6 +1388,26 @@
 <li>Select the user required</li>
 <li>Click 'Edit', untick the 'Is Active' field, and click Save.</li>
 </ul>
+<h3 id="add-or-remove-someone-from-infra">Add or remove someone from Infra</h3>
+<p>Same route, 'Groups' instead of 'Users', then <code>Infra</code> → Members. This takes effect on a
+login rather than instantly: a session that's already signed in keeps whatever groups it was
+issued with until it re-authenticates.</p>
+<h3 id="create-an-oidc-app">Create an OIDC app</h3>
+<p><strong>Read <code>docs/authentik-oidc-notes.md</code> in the infra repo first.</strong> It has the provider table
+and three things that each cost someone a session: copy the flows and <code>signing_key</code> from a
+known-good provider rather than making new ones, duration fields must be <code>key=value</code>
+(<code>minutes=5</code>, never <code>5m</code> - <code>5m</code> saves fine and then 500s at the authorize endpoint), and a
+custom scope needs a real ScopeMapping child row, because a plain PropertyMapping is
+silently ignored.</p>
+<p>Client secrets are write-only in the UI but <strong>readable through the ORM</strong>, so never dump a
+whole provider object into a terminal, a log, or a screenshot.</p>
+<h3 id="scripting-against-it">Scripting against it</h3>
+<p>The admin REST API can't be used from the box it runs on - nginx routes
+<code>/api/v3/...</code> collection endpoints to the UI SPA, so they answer 404 with HTML. Use the
+ORM shell instead:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>authentik-server<span class="w"> </span>ak<span class="w"> </span>shell
+</code></pre></div>
+<p>Real admins are in the <code>Infra</code> group. The old <code>akadmin</code> account is disabled.</p>
 
 
 
@@ -1319,7 +1430,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 17, 2023 11:22:28 UTC">August 17, 2023</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 16, 2026 20:01:17 UTC">November 16, 2026</span>
   </span>
 
     
