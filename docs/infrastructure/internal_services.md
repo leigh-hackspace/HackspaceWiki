@@ -9,7 +9,7 @@ without `.int` are public. Most of them want you to be signed in with your
 
 | Service | Address | Reachable from |
 | ------- | ------- | -------------- |
-| Monitoring overview | [status.leighhack.org](https://status.leighhack.org) | Anywhere, once signed in |
+| Monitoring overview | [gatus.int.leighhack.org](https://gatus.int.leighhack.org) | LAN / VPN |
 | Prometheus | [prometheus.int.leighhack.org](https://prometheus.int.leighhack.org) | LAN / VPN, Infra |
 | Grafana | [grafana.int.leighhack.org](https://grafana.int.leighhack.org) | LAN / VPN, Infra |
 | Gatus (uptime alerts) | [gatus.int.leighhack.org](https://gatus.int.leighhack.org) | LAN / VPN |
@@ -98,7 +98,8 @@ services check; `Infra` is what gets you into the administrative ones. Ask
 
 Prometheus scrapes every machine we control (and the print servers' APIs), Grafana
 draws it, and Gatus checks the endpoints and shouts in Slack when one stops answering.
-`status.leighhack.org` is the public view of that, and each box also runs its own little
+`gatus.int.leighhack.org` is the uptime view - it needs no login, so it's the one to send
+to someone when something's down - and each box also runs its own little
 status dashboard (`services1-status.int`, `services2-status.int`, `aibox-status.int`) for
 when the monitoring itself is the thing that's broken.
 

@@ -7,7 +7,7 @@ The device itself is a simple ESP8266 (A WeMoS D1-Mini clone with USB-C) with a 
 It answers to `big-button` on the wireless VLAN (`10.3.2.21`). The switch drives the
 open/closed state in Home Assistant, and that one boolean is what
 [api.leighhack.org](https://api.leighhack.org)'s `state.open`, the Slack bot, and the
-[status page](https://status.leighhack.org) all read - there is no other source of whether
+the [status page](https://gatus.int.leighhack.org) all read - there is no other source of whether
 we're open.
 
 ![A picture of the Hackspace State switch, with its LED glowing green, indicating that it is open.](state_switch.jpg)

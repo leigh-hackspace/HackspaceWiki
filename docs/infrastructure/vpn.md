@@ -17,48 +17,91 @@ You'll need an account on [id.leighhack.org](https://id.leighhack.org). Ideally,
 
 ## Connecting
 
-Install Tailscale, then point it at our server. On the command line:
+The one rule on every device: **tell the app which server to use before you sign in**. If
+you sign in first you'll join Tailscale's own network instead of ours, and you'll have to
+log out and start again. The URL every time is:
+
+```
+https://tailscale.leighhack.org
+```
+
+### Android (no command line)
+
+1. Install Tailscale from the [Play Store](https://play.google.com/store/apps/details?id=com.tailscale.ipn) or F-Droid.
+2. Open the app and tap the **settings menu in the top-right corner**, then `Accounts`.
+3. Tap the **three-dot menu** in the top-right and select `Use an alternate server`.
+4. Enter `https://tailscale.leighhack.org` and confirm. If a login window pops up, let it.
+5. Sign in with your id.leighhack.org account in the browser window that opens.
+6. Android will ask to add a VPN configuration - tap `Allow`/`OK`.
+7. Flip the switch at the top of the app to connect.
+
+### iPhone and iPad (no command line)
+
+1. Install Tailscale from the [App Store](https://apps.apple.com/app/tailscale/id1470499037).
+2. Open the app, tap the **account icon in the top-right**, and select `Log in…`.
+3. Tap the **options menu in the top-right** and select `Use custom coordination server`.
+4. Enter `https://tailscale.leighhack.org`, then sign in with your id.leighhack.org account.
+5. iOS will open Settings asking you to add a VPN configuration - tap `Allow`, and use
+   Face ID/your passcode when it asks.
+6. Flip the switch in the app to connect.
+
+Two things specific to iOS: if the phone has ever been signed into Tailscale's own service,
+log out of that first. And the same setting is reachable outside the app - **Settings →
+Tailscale → Alternate Coordination Server URL** - which is the way to do it if you've
+already got a login stuck in there. Our server also prints these steps with its own URL
+filled in, if you open [tailscale.leighhack.org/apple](https://tailscale.leighhack.org/apple)
+on the phone.
+
+### Linux, macOS, and Windows (with a terminal)
 
 ```bash
 sudo tailscale up --login-server=https://tailscale.leighhack.org
 ```
 
-That prints a URL; open it, sign in with your Authentik account, and the device is on the
-network. Every device you've ever joined is listed in the admin UI at
-[tailscale.leighhack.org/admin](https://tailscale.leighhack.org/admin), so you can rename or
-remove old ones yourself.
+That prints a URL; open it, sign in, and the device is on the network.
 
-The apps have the same option in their settings rather than on the command line - it's
-usually called "Use custom hosting provider" or "Self-hosted" (Android: the three-dot menu
-on the sign-in screen; iOS: Settings → Advanced). Put `https://tailscale.leighhack.org` in
-it, then sign in.
+The GNOME `Network` VPN panel can't do this - Tailscale is not a protocol NetworkManager
+speaks, it's a program with its own daemon. Install the `tailscale` package for your distro
+and run the command above (or the GNOME extension that wraps it). There's nothing to import
+and no profile to configure.
 
-### Linux, GNOME, and Network Manager
+### Check it worked
 
-The GNOME `Network` VPN panel has no Tailscale support - Tailscale is not a protocol
-NetworkManager speaks, it's a program with its own daemon. So install the `tailscale`
-package for your distro, and then either run the command above or install the GNOME
-extension that wraps it. There's nothing to import and no profile to configure.
+Open [gatus.int.leighhack.org](https://gatus.int.leighhack.org) - it needs no login, so it's
+a clean yes/no. Your device also appears in the admin list at
+[tailscale.leighhack.org/admin](https://tailscale.leighhack.org/admin), where you can rename
+it or remove old ones yourself.
 
 ### Make sure you get the LAN
 
 Subnet routes are offered by the router and approved by us, but a client has to say it will
-use them:
+use them. On a laptop:
 
 ```bash
 sudo tailscale set --accept-routes
 ```
 
-Without it you'll reach the services that run on tailnet addresses and nothing else - a
-`10.3.1.20` or `10.3.14.61` connection will just time out, which looks like "the VPN is
-broken" and isn't.
+On a phone there's a switch for it in the app's settings rather than a command, and its
+wording changes between versions (something like "Approve routes" / "Use subnet routers"),
+sometimes appearing as a prompt on the main screen instead.
+
+Without this you'll reach the things that live on tailnet addresses and nothing else, so
+`10.3.1.20` or `10.3.14.61` will just time out - which looks exactly like the VPN being
+broken, and isn't. It's the first thing to check, and the first thing to mention when
+asking for help.
 
 ## Access
 
 This VPN will give you access the same as being on the WiFi within the hackspace. All of
-`10.3.0.0/16`, the `10.3.x.x` VLANs, the CS network at `192.168.2.0/24`, and the space's
-IPv6 are reachable, and with the tailnet's DNS turned on `*.int.leighhack.org` resolves and
-the short machine names work too.
+the space's subnets are reachable - the servers in `10.3.1.0/24`, the wireless block in
+`10.3.2.0/24`, the wired block in `10.3.14.0/24`, the CS network at `192.168.2.0/24`, and
+the space's IPv6.
+
+Names are worth knowing about, because they catch people out. `*.int.leighhack.org` has
+public DNS records pointing at the router's internal address, so a name *resolves* from
+anywhere, but it's only reachable when the VPN is carrying you - opening an `.int` link
+without the VPN on just hangs rather than giving an error. Short names like `services1`
+don't work off-site at all; use the `.int` name or the IP.
 
 The router also offers itself as an exit node, if you want everything on a device to come
 out of the space rather than just the traffic destined for us. Ask
