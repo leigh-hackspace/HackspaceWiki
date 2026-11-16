@@ -109,7 +109,7 @@ name are each one line in one file.
 
 ### Mill Network - VLAN '1'
 
-The mill provides internet access via a 100mbps internal network. It can be a bit unreliable but it works for our general usage.
+The mill provides internet access via a gigabit internal network. It can be a bit unreliable but it works for our general usage.
 
 * ISP: [Awareness Software Ltd](https://aware-soft.com/) (AS34931)
 * Mill Network Administrator: [Mark Nightingale](mailto:data@imagevillage.co.uk), Image Village.
