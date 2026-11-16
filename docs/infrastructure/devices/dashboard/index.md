@@ -1,5 +1,11 @@
 # Dashboard
 
+> **Status 2026-11-16: probably not running.** Nothing serves `dashboard.int.leighhack.org`
+> any more - the name isn't in the router's DNS table and doesn't resolve - and no device
+> has had a lease under that name. The AIO PC may still be sitting in the main space, but
+> the DashKiosk instance this page manages is not reachable. Check with
+> [infra](../../../membership/useful_contacts.md#tech-infrastructure) before spending time on it.
+
 The dashboard is a AIO (all-in-one) PC that shows interesting stuff about the hackspace, either the current status, flyers for upcoming events or just fun bits of information.
 
 ## System

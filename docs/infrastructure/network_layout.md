@@ -3,111 +3,113 @@
 ## Physical Network Layout
 
 ```mermaid
-graph 
-    subgraph Rack1
-    GW[GW - pfSense] 
-    AP[AP 1] -->|Port20| SWITCH1
-    SWITCH1[Switch 1] -->|Port1 / em0| GW
-    SWITCH2[Switch 2] --> |Port47/48| SWITCH1
-    NAS1[NAS 1] --> |Port3| SWITCH1
-    NAS2[NAS 2] --> |Port5/6/7| SWITCH1
-    MONSTER[Monster 1/2/3/4] --> |Port11-18| SWITCH1
-    LEIGHOOB[Leigh OOB] --> |Port19| SWITCH1
-    AP4[AP4 - B/G] --> |Port21| SWITCH1
-    MINISWITCH[Netgear Switch]
-    end
-
+graph
     subgraph Mill
     MILL[Mill Network - VLAN 1] --> MILLROUTER[Mill Router - Draytek]
     end
 
     MILLROUTER --> INTERNET((Internet))
-    AAISP[Andrews Arnold] --> INTERNET
+    AAISP[Andrews & Arnold L2TP] --> INTERNET
 
-    LEIGHOOB -->|eth1| MINISWITCH
-    GW -->|em3| MINISWITCH
-    MINISWITCH --> MILL
-    GW -. L2TP via Mill Network .-> AAISP
+    subgraph Rack1
+    GW[GW - NixOS router] -->|router-uplink| HUB[AAISP hub]
+    GW -->|router-lan trunk| SWITCH1[Switch 1]
+    NAS[NAS - TrueNAS] --> |Port5/6/7| SWITCH1
+    MONSTER[Monster 1] --> |Port11-18| SWITCH1
+    UPS[UPS - APC XS 1400U] -.-> GW
+    end
 
-    subgraph Pi Room
-    PIROOMPC[Pi Room PCs] -->|Port1-42| SWITCH2
-    PRINTERS[HP Printer] -->|Port44| SWITCH2
-    PIROOMAP[AP 2] --> |Port43| SWITCH2
+    HUB --> AAISP
+
+    SWITCH1 -->|Port47/48| SWITCH2[Switch 2]
+    SWITCH1 -->|Port1 / Port46| SWITCH3[Switch 3]
+
+    subgraph PiRoom[Pi Room]
+    PIROOMPC[Pi Room PCs - netboot] -->|Port1-42| SWITCH2
+    AIBOX[aibox] --> |VLAN 227| SWITCH2
     end
 
     subgraph Classroom
     CLASSROOMPC[Class Room PCs] -->|Port1-42| SWITCH2
     end
-    
-    subgraph Bar
-    AP3[AP3] -->|Port22| SWITCH1
-    end
-    
+
     subgraph Fabrication
-    SWITCH3[Switch 3] -->|Port1 / Port46| SWITCH1
-    3DPRINTERS[3D Printer Pis] --> |Port2-4| SWITCH3
+    3DPRINTERS[Print server Pis] --> |Port2-4| SWITCH3
     LASER[Laser-1] --> |Port5| SWITCH3
     CAD1[CAD-1] --> |Port6| SWITCH3
-    CNC[CNC-1]
     end
+
+    AP1[AP1 - Main Space] -->|Port25| SWITCH1
+    AP2[AP2 - Pi Room] --> SWITCH2
+    AP3[AP3 - Fabrication] --> SWITCH3
+    AP4[AP4 - Social] --> SWITCH1
 ```
+
+Port numbers are a habit rather than a record: `show running-config` on the switch (or
+[switch-gui](devices/network_switches/index.md)) is the only authority on what is patched
+where.
 
 ## Hardware
 
-| Name         | Manf         | Model                   | Type      | Location      | Status | Notes                                                           |
-| ------------ | ------------ | ----------------------- | --------- | ------------- | ------ | --------------------------------------------------------------- |
-| GW           | HP           | Unknown                 | Router    | Rack 1        | Live   | HP desktop system running pfSense                               |
-| Switch 1     | HP           | Procurve 2510-48G       | L2 Switch | Rack 1        | Live   | For Rack 1 hardware                                             |
-| Switch 2     | HP           | Procurve 2510-48G       | L2 Switch | Rack 1        | Live   | For wired clients in the rooms                                  |
-| Switch 3     | HP           | Procurve 2824           | L2 Switch | Fabrication   | Live   | Switch for the fabrication area                                 |
-| AP 1         | Linksys      | WRT1900ACS              | AP        | Top of Rack   | Live   | Uses stock firmware                                             |
-| AP 2         | BT           | Business Hub 5 Type A   | AP        | Pi Room       | Live   | Uses stock firmware (supports OpenWRT)                          |
-| AP 3         | Cisco        | RV110W                  | AP        | Bar           | Live   | Uses stock firmware                                             |
-| AP 4         | Linksys      | Wireless-G ADSL Gateway | AP        | Behind Rack 1 | Live   | B/G Only network for old devices                                |
-| NAS 1        | QNAP         | TS-431+                 | NAS       | Rack 1        | Live   |                                                                 |
-| NAS 2        | HP           | Microserver G8          | NAS       | Rack 1        | Live   |                                                                 |
-| UPS          | APC          | ???                     | UPS       | Rack 1        | Live   | Powers the NAS systems only                                     |
-| Leigh OOB    | Raspberry Pi | 2 B+                    | Server    | Rack 1        | Live   | Gives us 'out of band' access to Hackspace network and devices  |
-| Mini Switch  | Netgear      | ???                     | L2 Switch | Rack 1        | Live   | Multiple ports on the Mill network, needs switching to Switch 1 |
-| Blade Server | HP           | SL2x170z G6             | Server    | Rack 1        | Live   | Proxmox Cluster 'Monster'                                       |
+| Name         | Manf         | Model                   | Type      | Location      | Status | Notes                                              |
+| ------------ | ------------ | ----------------------- | --------- | ------------- | ------ | -------------------------------------------------- |
+| GW           | Supermicro   | X9SCM (Xeon E3-1220 v2) | Router    | Rack 1        | Live   | NixOS, see [gateway](devices/gateway/index.md)     |
+| services1    | HP           | ProDesk 600 G3 SFF      | Server    | Rack 1        | Live   | NixOS, most of our services                        |
+| services2    | Gigabyte     | AB350 Gaming-ITX/ac     | Server    | Rack 1        | Live   | NixOS, RTX 3060 inference                          |
+| services3    | ASUS         | Z170 PRO GAMING         | Server    | Bench         | Live   | NixOS, GTX 1080 Ti inference, on Wi-Fi for now     |
+| aibox        | GMKtec       | NucBox M6               | Server    | Pi Room       | Live   | NixOS, the network's build machine, netboots the Pi Room PCs |
+| Switch 1     | HP           | Procurve 2510-48G       | L2 Switch | Rack 1        | Live   | Core switch, VLANs tagged on the GW uplink         |
+| Switch 2     | HP           | Procurve 2510-48G       | L2 Switch | Rack 1        | Live   | Wired clients in the rooms                         |
+| Switch 3     | HP           | Procurve 2824           | L2 Switch | Fabrication   | Live   | Fabrication area                                   |
+| AP1          | Ubiquiti     | U7PG2                  | AP        | Main Space    | Live   | UniFi, adopted, replaced 2026-10-31                |
+| AP2          | Ubiquiti     | U7LT                   | AP        | Pi Room       | Live   | UniFi, adopted                                     |
+| AP3          | Ubiquiti     | U7LT                   | AP        | Fabrication   | Live   | UniFi, adopted                                     |
+| AP4          | Ubiquiti     | U7LT                   | AP        | Social Space  | Live   | UniFi, adopted                                     |
+| NAS          | HP           | MicroServer Gen8        | NAS       | Rack 1        | Live   | TrueNAS, NFS + SMB + the borg backup server        |
+| Monster 1    | HP           | SL2x170z G6 blade       | Server    | Rack 1        | Live   | Proxmox VE 9, the only node in use, see [proxmox](devices/proxmox/index.md) |
+| UPS          | APC          | Back-UPS XS 1400U       | UPS       | Rack 1        | Live   | On the router's USB port, drives the fleet shutdown |
+| NAS 1        | QNAP         | TS-431+                 | NAS       | Rack 1        | Dead   | Retired 2026, see [nas](devices/nas/index.md)      |
+| Leigh OOB    | Raspberry Pi | 2 B+                    | Server    | Rack 1        | Gone   | Replaced by the tailnet                            |
+| Monster 2-5  | HP           | -                       | Server    | Rack 1        | Gone   | Only one Proxmox node is in use                    |
+
+The SSIDs and the APs are managed by a UniFi "OS Server" appliance running in
+containers on services1, at
+[unifi-admin.int.leighhack.org](https://unifi-admin.int.leighhack.org). The older
+Linksys, BT, and Cisco access points that used to be here are gone.
 
 ## L3 Layout / VLANs
 
-TL;DR: All VLANs can access Shared Services, Automation is only accessible via Shared Services.
+TL;DR: every VLAN is routed by GW, all of them can reach Shared Services, and the
+only way in from outside is the [front door](devices/gateway/index.md#the-front-door) on
+GW. The old Automation, DMZ, Storage, and AD Lab VLANs were dropped when the router was
+rebuilt; what they were used for now lives somewhere else, noted below.
 
 ```mermaid
 graph LR
     INTERNET((Internet))
+    GW[GW - front door]
     SHARED[Shared Services - VLAN 225]
-    WiFi[WiFi - VLAN 226]
+    WiFi[Wireless - VLAN 226]
     WIRED[Wired - VLAN 227]
-    AUTOMATION[Automation VLAN 229]
-    DMZ[DMZ - VLAN 230]
-    STORAGE[Storage - VLAN 231]
-    ADLAB[AD Lab - VLAN 232]
     PHONE[Phone - VLAN 222]
+    CS[CS_VLAN - VLAN 1337]
 
-    SHARED --> INTERNET
-    SHARED --> DMZ
-    SHARED --> AUTOMATION
-    SHARED <--> WiFi
-    SHARED <--> WIRED
-    SHARED <--> PHONE
-
-    DMZ <--> INTERNET
-
-    WIRED --> DMZ
-    WIRED --> INTERNET
-
-    WiFi --> DMZ
-    WiFi --> INTERNET
-    WiFi <--> WIRED
-
+    INTERNET <--> GW
+    GW <--> SHARED
+    GW <--> WiFi
+    GW <--> WIRED
+    GW <--> PHONE
+    GW <--> CS
 ```
+
+The VLANs, their blocks, and the dynamic DHCP range each one hands out, are one table in
+the repo (`common/vlans.nix`); the fixed addresses below are another (`common/dns-records.nix`).
+Both are rendered into dnsmasq's config on the router at deploy time, so a device and a
+name are each one line in one file.
 
 ### Mill Network - VLAN '1'
 
-The mill provides internet access via a 100mbps internal network. It can be a bit unreliable but it works for our general usage. 
+The mill provides internet access via a 100mbps internal network. It can be a bit unreliable but it works for our general usage.
 
 * ISP: [Awareness Software Ltd](https://aware-soft.com/) (AS34931)
 * Mill Network Administrator: [Mark Nightingale](mailto:data@imagevillage.co.uk), Image Village.
@@ -123,145 +125,109 @@ Usage is bound by the [LBPT Tenant Network Agreement](mill_network_tc.md).
 
 ### Shared Services - VLAN 225
 
-Where the servers, routers, and other central bits are hosted.
+Where the servers, routers, and other central bits are hosted. Everything the flake
+deploys answers here.
 
-IP Range: `10.3.1.0/24`
+IP Range: `10.3.1.0/24`, DHCP `10.3.1.150 - 10.3.1.253`
 
-The range is split into logical groups:
+| Device Name       | IP Address  | Notes |
+| ----------------- | ----------- | ----- |
+| GW                | `10.3.1.1`  | The router, VLAN 225's address is its own |
+| Switch 1          | `10.3.1.2`  | |
+| Switch 2          | `10.3.1.3`  | |
+| Switch 3          | `10.3.1.4`  | Fabrication |
+| NAS               | `10.3.1.6`  | TrueNAS, still answers to `nas2` |
+| services1         | `10.3.1.20` | |
+| services2         | `10.3.1.21` | |
+| Monster 1         | `10.3.1.11` | Proxmox |
+| Apps1             | `10.3.1.30` | Proxmox VM, mostly superseded |
+| aibox             | `10.3.1.32` | |
+| Authentik         | `10.3.1.36` | A **second address on services1**, not a box - see [authentik](devices/authentik/index.md) |
+| Web1              | `10.3.1.39` | Proxmox VM, the hackspace website previews |
+| AP1 - Main Space  | `10.3.1.41` | APs are on the wired run, so they get 225 addresses |
+| AP2 - Pi Room     | `10.3.1.42` | |
+| AP3 - Fabrication | `10.3.1.43` | |
+| AP4 - Social      | `10.3.1.44` | |
+| Intercom          | `10.3.1.166` | Asterisk, a second address on services1 |
 
-* `1` to `9` - Network hardware
-* `10` to `19` - Physical Servers
-* `20` to `29` - Physical Server Management Interfaces
-* `30` to `49` - VMs
-* `50` to `59` - Printers
+Two things about that table that are easy to get wrong. `10.3.1.36` and `10.3.1.166` are
+not machines: they are extra addresses on services1, kept because the ProCurve switches
+and the phone handsets have those numbers typed into them and can't be reconfigured.
+And `10.3.1.5` (`NAS 1`, the QNAP) is still reserved but does not answer.
 
-This subnet does have DHCP enabled, but we encourage static assignments for critical hardware and services. Here is the current list:
+### Wireless - VLAN 226
 
-| Device Name       | IP Address  | Location                 |
-| ----------------- | ----------- | ------------------------ |
-| GW                | `10.3.1.1`  | Rack 1                   |
-| Switch 1          | `10.3.1.2`  | Rack 1                   |
-| Switch 2          | `10.3.1.3`  | Rack 1                   |
-| Switch 3          | `10.3.1.4`  | Workshop / Fabrication   |
-| NAS 1             | `10.3.1.5`  | Rack 1                   |
-| NAS 2             | `10.3.1.6`  | Rack 1                   |
-| Monster 1         | `10.3.1.11` | Rack 1                   |
-| Monster 2         | `10.3.1.12` | Rack 1                   |
-| Monster 3         | `10.3.1.13` | Rack 1                   |
-| Monster 4         | `10.3.1.14` | Rack 1                   |
-| Leigh OOB         | `10.3.1.21` | Rack 1                   |
-| Monster 1 LO100   | `10.3.1.22` | Rack 1                   |
-| Monster 2 LO100   | `10.3.1.23` | Rack 1                   |
-| Monster 3 LO100   | `10.3.1.24` | Rack 1                   |
-| Monster 4 LO100   | `10.3.1.25` | Rack 1                   |
-| NAS 2 iLO         | `10.3.1.26` | Rack 1                   |
-| Apps1             | `10.3.1.30` | Monster                  |
-| MX1               | `10.3.1.31` | Monster                  |
-| k8s-lab-01        | `10.3.1.32` | Monster                  |
-| k8s-lab-02        | `10.3.1.33` | Monster                  |
-| k8s-lab-03        | `10.3.1.34` | Monster                  |
-| Cobalt RAQ3       | `10.3.1.35` | Monster                  |
-| Authentik         | `10.3.1.36` | Monster                  |
-| RTSP              | `10.3.1.37` | Monster                  |
-| Discourse         | `10.3.1.38` | Monster                  |
-| Web1              | `10.3.1.39` | Monster                  |
-| HP Laserjet P3015 | `10.3.1.50` | Pi Room 5/7              |
-| GW - VIP 1        | `10.3.1.60` | VIP for Internal HAProxy |
-| GW - VIP 2        | `10.3.1.61` | VIP for K8s-Lab          |
+Wireless clients, cameras, and anything networked that only has Wi-Fi.
 
-### WiFi - VLAN 226
+IP Range: `10.3.2.0/24`, DHCP `10.3.2.100 - 10.3.2.253`
 
-WiFi users, General open access to the internet and internal services. The UnFi APs management interface is in Shared Services on DHCP, only non-UnFi devices are assigned a static IP on the WiFi VLAN.
+| Device Name | IP Address  | Location |
+| ----------- | ----------- | -------- |
+| SLZB-06M    | `10.3.2.2`  | Zigbee coordinator (PoE) |
+| Cam1        | `10.3.2.6`  | |
+| Cam5        | `10.3.2.10` | Pi Room |
+| Cam8        | `10.3.2.11` | Main Space |
+| Cam7        | `10.3.2.12` | CNC |
+| Cam9        | `10.3.2.17` | Social Space |
+| Sumup Solo  | `10.3.2.15` | Card terminal |
+| Big Button  | `10.3.2.21` | The [state switch](devices/state_switch/index.md) |
+| Brother     | `10.3.2.30` | MFC-L3740CDW, the member printer |
+| Voron       | `10.3.2.50` | |
+| Elegoo      | `10.3.2.55` | Resin printer |
+| Snapmaker   | `10.3.2.56` | |
+| CNC-1       | `10.3.2.61` | |
+| LED strips  | `10.3.2.70`, `10.3.2.71` | `led180`, `led-pi-room` |
+| services3   | `10.3.2.213` | On the bench, so this is its Wi-Fi lease |
 
-IP Range: `10.3.2.0/24`
+Cameras 2, 3, 4 and 6 are gone; what's left is the four OpenIPC/thingino cameras plus
+`cam1`. Each of them is on Wi-Fi, and a camera's picture quality is a property of the
+access point it happens to have joined, so read the cell before blaming the camera.
 
-DHCP enabled, `10.3.2.21 - 10.3.2.254`
-
-| Device Name | IP Address  | Location                |
-| ----------- | ----------- | ----------------------- |
-| AP4         | `10.3.2.5`  | Behind Rack 1           |
-| Cam1        | `10.3.2.6`  | Rack 1                  |
-| Cam2        | `10.3.2.7`  | Defunct                 |
-| Cam3        | `10.3.2.8`  | Social Space            |
-| Cam4        | `10.3.2.9`  | Main Space              |
-| Cam5        | `10.3.2.10` | Pi Room                 |
-| Cam6        | `10.3.2.11` | Workshop                |
-| Cam7        | `10.3.2.12` | CNC                     |
-
-Channel layouts for the APs:
-
-| Device | 2.4ghz | 5ghz | 6ghz |
-| ------ | ------ | ---- | ---- |
-| AP1    | Auto   | Auto | N/A  |
-| AP2    | Auto   | Auto | N/A  |
-| AP3    | Auto   | Auto | N/A  |
-| AP4    | 13     | N/A  | N/A  |
-
+Channel plans are chosen by the UniFi controller rather than written down, and they
+change; ask infra for a current read if a camera or a printer is being awkward.
 
 ### Wired - VLAN 227
 
 The general hackspace wired network. This covers the Pi Room, Classroom, Electronics, and Fabrication.
 
-IP Range: `10.3.14.0/24`
+IP Range: `10.3.14.0/24`, DHCP `10.3.14.150 - 10.3.14.253`
 
-DHCP enabled, `10.3.14.2 - 10.3.14.254`
+| Device Name | IP Address | Notes |
+| ----------- | ---------- | ----- |
+| workshop / main_space / woodwork | `10.3.14.11` / `.12` / `.13` | The room panels |
+| aibox (wired) | `10.3.14.32` | aibox's second NIC, on the Pi Room run |
+| CAD-1 | `10.3.14.51` | |
+| 3d-lime / 3d-blue | `10.3.14.61` / `10.3.14.62` | Klipper print servers, fixed by IP on purpose |
+| PI-ROOM-01 ... PI-ROOM-10 | `10.3.14.101` - `.110` | Netbooted from aibox, no local disk |
 
-### Automation - VLAN 229
+### Phone - VLAN 222
 
-Used for any automation devices that do not require open internet access, or need to be secured away from the general network (e.g. Door system).
+IP Range: `10.3.22.0/24`, no dynamic range - a device arriving on it gets no lease, which
+is the point of the VLAN existing. The handsets and the intercom are on fixed addresses.
 
-Accessible via `Leighhack-iot` WiFi SSID.
+### CS_VLAN - VLAN 1337
 
-IP Range `10.3.16.0/24`
+The other network in the building, arriving on the router's LAN trunk with its own tag:
+`192.168.2.0/24`, DHCP `192.168.2.150 - 192.168.2.250`. GW routes it but owns none of its
+addresses.
 
-DHCP enabled, `10.3.16.2 - 10.3.16.128`
+### IPv6
 
-This subnet does have DHCP enabled, but we use some static assignment. Here is the current list:
+AAISP delegate `2001:8b0:1d14::/48`, and each VLAN gets a `/64` named after it
+(`2001:8b0:1d14:225::/64`, `...226::/64`, and so on) alongside a ULA in
+`fd99:dead:beef:<vlan>d::/64`. Addresses are SLAAC via router advertisements; all IPv6
+leaves through the AAISP tunnel, so if that tunnel is down the network has no IPv6 at all.
 
-| Device Name | IP Address | Location |
-| ----------- | ---------- | -------- |
+### Retired
 
-### DMZ - VLAN 230
+* **Automation - VLAN 229** (`10.3.16.0/24`): dropped at the 2026-10-21 router cutover. The door system and the automation run from services1 now.
+* **DMZ - VLAN 230** (`81.187.195.16/29`): the AAISP `/29` is not a VLAN, it's routed to the tunnel. Nothing is published except through the front door.
+* **Storage - VLAN 231**: never implemented, and now moot.
+* **AD Lab - VLAN 232** (`192.168.10.0/24`, [GOAD](https://github.com/leigh-hackspace/GOAD)): the lab VMs are stopped and the VLAN is not created.
 
-Used for internet facing services, all systems are allocated addresses within the A&A delegated IP range.
+## Out of Band Access
 
-IP Range: `81.187.195.16/29`
-
-| Device Name | IP Address      | Location |
-| ----------- | --------------- | -------- |
-| GW          | `81.187.195.17` | Rack 1   |
-
-### Storage - VLAN 231
-
-Non-routed VLAN for VM hosts to connect to storage devices either via iSCSI or NFS, to keep that main broadcast traffic off the main subnets.
-
-**Currently not implemented**
-
-IP Range: `10.254.254.0/24`
-
-| Device Name | IP Address      | Location |
-| ----------- | --------------- | -------- |
-| `nas02`     | `10.254.254.2`  |          |
-| `monster1`  | `10.254.254.11` |          |
-| `monster2`  | `10.254.254.12` |          |
-| `monster3`  | `10.254.254.13` |          |
-| `monster4`  | `10.254.254.14` |          |
-| `monster5`  | `10.254.254.15` |          |
-
-### AD Lab - VLAN 232
-
-IP Range: `192.168.10.0/24`
-
-A non-routed VLAN for our Active Directory lab - [GOAD](https://github.com/leigh-hackspace/GOAD)
-
-Consult the GOAD documentation for the breakdown of systems within the environment.
-
-### OpenVPN
-
-The pfSense has a OpenVPN server, this allocates IPs in the `10.3.254.0/24` range and is available as a normal interface on pfSense, but it doesn't have a VLAN assigned to it.
-
-### OOB Access
-
-Out of band access to the network is available via 'Leigh OOB', this uses Tailscale to handle situations where GW or the L2TP is unavailable.
-
-For access, contact the [Infra team](../membership/useful_contacts.md#tech-infrastructure), or Andrew Williams.
+'Leigh OOB' and its Tailscale-on-a-Pi are gone. Every flake machine, the switches (over
+the LAN only), and the router are reachable over the [tailnet](vpn.md), and the router,
+the uplinks, the leases and the live connection table are all visible at
+[network-info.int.leighhack.org](https://network-info.int.leighhack.org).

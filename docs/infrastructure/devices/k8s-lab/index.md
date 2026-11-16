@@ -1,74 +1,21 @@
-# Kubernetes Lab
+# Kubernetes Lab (retired)
 
-## Cluster Features
+We ran a small lab cluster: three VMs on the Proxmox host (`k8s-lab-01` - `k8s-lab-03`,
+`10.3.1.32` - `10.3.1.34`), Kubernetes v1.27, single sign-on through
+[id.leighhack.org](https://id.leighhack.org), and NFS-backed persistent volumes. The plan
+was MetalLB for `LoadBalancer` services and Traefik for `*.lab.leighhack.org`; that never
+happened.
 
-### Installed and working
+**It is not running, and hasn't been for a while.** The VMs are stopped on `monster1`
+(their disks are still on the NAS), `k8s-lab.int.leighhack.org` no longer resolves, and
+`10.3.1.32` is `aibox` now. This page is kept so the design isn't lost, not because
+anything in it works.
 
-* OIDC single sign-on with `id.leighhack.org` (see [Authentication](#authentication))
-* NFS-backed PVs - works well for all applications bar ones that use SQLite.
+The manifests and per-member namespace setup lived in
+[leigh-hackspace/k8s-lab](https://github.com/leigh-hackspace/k8s-lab); the old `kubeconfig`
+and kubelogin instructions are in the git history of this page.
 
-### Coming Soon
-
-* MetalLB-based `LoadBalancer` Service types.
-* Traefik-based `Ingress` support with mapping to `*.lab.leighhack.org`
-
-## Permissions
-
-By default, all members should have read permissions to the entire cluster. `Infra` members are cluster admins. 
-
-Per-member namespaces with write access can be created via this repository (see [nikdoof namespace](https://github.com/leigh-hackspace/k8s-lab/tree/main/clusters/lab/members/nikdoof) for an example).
-
-## Authentication
-
-We use OIDC to authenticate via `id.leighhack.org`
-
-### 1. Download `kubectl` and your preferred clients
-
-`kubectl` is the basic tool needed to connect to Kubernetes clusters. The lab cluster is currently running v1.27, so make sure you download that version.
-
-[Install tools](https://kubernetes.io/docs/tasks/tools/)
-
-### 2. Download and install `kubelogin`
-
-[Kubelogin](https://github.com/int128/kubelogin) is a tool to help you login easily with a OIDC based Kubernetes cluster. To install it download the latest release and place it in your `PATH` named `kubectl-odic_login`. Now you can run `kubectl oidc-login` and be prompted with a setup message. You don't need to complete the setup (we've done the hard work for you!)
-
-### 3. Set up the kubeconfig
-
-Here is a `kubeconfig` file you can use to connect to the lab cluster. Place this in `~/.kube/config` and it'll "just work".
-
-```yaml
-apiVersion: v1
-clusters:
-- cluster:
-    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJUXlvU05adTdsNll3RFFZSktvWklodmNOQVFFTEJRQ$
-    server: https://k8s-lab.int.leighhack.org:6443
-  name: leighhack-lab
-contexts:
-- context:
-    cluster: leighhack-lab
-    user: leighhack-oidc
-  name: leighhack-lab
-current-context: leighhack-lab
-kind: Config
-preferences: {}
-users:
-- name: leighhack-oidc
-  user:
-    exec:
-      apiVersion: client.authentication.k8s.io/v1beta1
-      args:
-      - oidc-login
-      - get-token
-      - --oidc-issuer-url=https://id.leighhack.org/application/o/kubernetes-lab/
-      - --oidc-client-id=kubernetes-lab
-      - --oidc-extra-scope=email
-      - --oidc-extra-scope=openid
-      - --oidc-extra-scope=profile
-      command: kubectl
-      env: null
-      provideClusterInfo: false
-```
-
-### 4. Test your connection
-
-Running `kubectl get pods -A` should redirect you to `id.leighhack.org` to login, once logged in it should complete the command and show you all pods running on the cluster.
+If you want the cluster back, the honest starting point is "build a new one and delete
+these VMs" - three 8 GB nodes is most of what the host has, and a 2023 v1.27 cluster has
+no upgrade path anyone here has tested. Talk to [infra](../../../membership/useful_contacts.md#tech-infrastructure)
+before claiming those addresses again.

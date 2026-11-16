@@ -1,67 +1,61 @@
-# Proxmox Clusters
+# Proxmox
 
-Currently we have one operational Proxmox cluster, 'monster', which has enough CPU and Memory for anything we'll need in the hackspace.
+There is one Proxmox host, `monster1` (`10.3.1.11`), running Proxmox VE 9.x. The UI is at
+[monster.int.leighhack.org](https://monster.int.leighhack.org) - sign in with your
+Authentik account (the `leighhack.org` OpenID realm).
 
-## Hardware
+It is called "monster" after a machine that no longer exists: the HP SL2x170z blades and
+`monster2`-`monster5` are gone, and what's running now is a single desktop box.
 
-The cluster is made up of a single [HP SL2x170z G6](https://support.hpe.com/hpesc/public/docDisplay?docId=emr_na-c01800572), which has two blades it it, totalling 4 systems. Rough specs of each are:
+| | |
+| --- | --- |
+| Machine | HP 290 G1 SFF |
+| CPU / RAM | Intel i5-8500 (6 cores) / 32 GB |
+| Local disk | 500 GB SSD |
+| Not in this flake | Nothing about this host or its VMs is declarative |
 
-* 2 x [Intel® Xeon® Processor X5550](https://www.intel.com/content/www/us/en/products/sku/37106/intel-xeon-processor-x5550-8m-cache-2-66-ghz-6-40-gts-intel-qpi/specifications.html)
-* 64GB DDR3
-* 128GB local SSD
-* 2 x HP NC362i Gigabit Ethernet
-* 1 x Dedicated LO100 port
+**There is no cluster, and no redundancy.** HA is enabled, but with one node that means
+"restart a VM that dies", not "fail over".
 
-## Network Layout
+## Storage
 
-All nodes, gateway, and the NAS are on [VLAN225](../../network_layout.md#shared-services---vlan-225). The Proxmox nodes are connected via their 2nd ethernet port, which also has shared LO100 enabled on them.
+VM disks are qcow2 files on the NAS over NFS: `nas2-nfs` is
+`10.3.1.6:/mnt/sas-10k/proxmox-monster-ds1`, mounted at `/mnt/pve/nas2-nfs`. The second
+mount (`nas1-nfs`, the old QNAP) is disabled.
 
-```mermaid
-graph 
-    SWITCH1[Switch1 - VLAN225]
-    GW[GW]
-    MON1[Monster1 - Blade 1]
-    MON2[Monster2 - Blade 1]
-    MON3[Monster3 - Blade 2]
-    MON4[Monster4 - Blade 2]
-    MON5[Monster5 - R320]
-    NAS1[NAS1 - NFS]
-    NAS2[NAS2 - NFS]
+Two consequences that bite people:
 
-    GW <--> SWITCH1
-    SWITCH1 <--> MON1
-    SWITCH1 <--> MON2
-    SWITCH1 <--> MON3
-    SWITCH1 <--> MON4
-    SWITCH1 <--> MON5
-    SWITCH1 <--> NAS1
-    SWITCH1 <--> NAS2
-```
+* **After a power cut, every VM start fails** with `storage 'nas2-nfs' is not online` while
+  the NAS is still booting. Check `pvesm status` and `mount | grep nas2-nfs` before
+  blaming a VM; the fix is to wait and retry.
+* Boots take **minutes** even when nothing is wrong, because every disk is a file on a
+  network share with `cache=direct`.
 
-## Storage Layout
+**There are no backup jobs and no snapshots on this host.** `/etc/pve/jobs.cfg` is empty,
+and the NAS holds the only copy of every disk image. Treat anything you put here as
+dispensable unless you have copied it somewhere else.
 
-```mermaid
-graph 
-    MON1[Monster1 - Blade 1]
-    MON2[Monster2 - Blade 1]
-    MON3[Monster3 - Blade 2]
-    MON4[Monster4 - Blade 2]
-    MON5[Monster5 - R320]
-    NAS[NAS1 - /prox-monster-datastore]
-    NAS2[NAS2 - /mnt/sas-10k/proxmox-monster-ds1]
+## What's Running
 
-    MON1 --> NAS
-    MON2 --> NAS
-    MON3 --> NAS
-    MON4 --> NAS
-    MON5 --> NAS
-    MON1 --> NAS2
-    MON2 --> NAS2
-    MON3 --> NAS2
-    MON4 --> NAS2
-    MON5 --> NAS2
-```
+| VMID | Name | Address | State |
+| ---- | ---- | ------- | ----- |
+| 109 | `apps1` | `10.3.1.30` | Running. Mostly superseded by services1, but a few things still live in it |
+| 127 | `web1` | `10.3.1.39` | Running. The hackspace website: `webhooks.`, `web-test.` and `retro.leighhack.org` |
+| 108 | `authentik` | `10.3.1.36` | **Stopped on purpose** since the 2026-10-28 cutover to containers on services1. It must stay stopped |
+| 128 | `mercury` | `10.3.1.166` | Stopped. The intercom, replaced by Asterisk on services1 |
+| 107 | `mx1` | - | Stopped since 2026-10. This was the outbound mail relay |
+| 100/103/104 | `k8s-lab-*` | - | Stopped, see [Kubernetes Lab](../k8s-lab/index.md) |
+| 110-118 | GOAD / Windows lab | - | Stopped since 2023-2025 |
+| 132 | `Terraria` | - | Stopped |
 
+Anything not in that list is dormant disk. Before starting a VM to "check whether anyone is
+using it", ask in Slack - half of these have last written to disk years ago.
+
+`10.3.1.36` is answered by services1 now, but its **DHCP reservation is still live and
+still names the old VM's MAC** - booting VM 108 takes that address back, and two hosts
+answering one address is silent for whoever is trying to log in. The intercom's address is
+protected the other way: the router is told `dhcp-host=10.3.1.166,ignore` so nothing else
+can be handed it.
 
 ## Admin Tasks
 
@@ -77,3 +71,26 @@ graph
 * Go to [https://monster.int.leighhack.org/](https://monster.int.leighhack.org/)
 * On the login screen, select the dropdown and pick 'Linux PAM'
 * Username is 'root', password is in the password manager.
+
+### Starting a VM that HA manages
+
+Use `ha-manager`, never `qm start`, or HA and the VM disagree about who owns it:
+
+```bash
+ha-manager set vm:109 --state started
+```
+
+If the service is sitting in `error`, clearing it is **disable, wait, then start** - doing
+both in one loop races and the start is rejected:
+
+```bash
+ha-manager disable vm:109 ; sleep 15 ; ha-manager enable vm:109 ; ha-manager set vm:109 --state started
+```
+
+The VMs that are not HA-managed (`107 mx1`, `132 Terraria`) are `qm start`ed by hand.
+
+### After an outage
+
+`docs/monster-powercut-runbook.md` in the infra repo is the full procedure, including what
+to start in which order and how long the NAS takes. The host is deliberately not on the
+router's shutdown list, so it stays up until the mains actually go.

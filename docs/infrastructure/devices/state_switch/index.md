@@ -2,7 +2,13 @@
 
 The state switch is a physical switch located near the [Main Space](../../../facilities/main_space.md) entrance doors. This small device provide a physical open/close indicator for the hackspace, and the status is made available via the Space API endpoint, Home Assistand, Slack bot, and website.
 
-The device itself is a simple ESP8266 (A WeMoS D1-Mini clone with USB-C) with a RGB LED, and a rocker switch. It runs [ESPHome](https://esphome.io) and connects to our Home Assistant instance.
+The device itself is a simple ESP8266 (A WeMoS D1-Mini clone with USB-C) with a RGB LED, and a rocker switch. It runs [ESPHome](https://esphome.io) and connects to our Home Assistant instance, which lives on `services1` and is at [ha.int.leighhack.org](https://ha.int.leighhack.org).
+
+It answers to `big-button` on the wireless VLAN (`10.3.2.21`). The switch drives the
+open/closed state in Home Assistant, and that one boolean is what
+[api.leighhack.org](https://api.leighhack.org)'s `state.open`, the Slack bot, and the
+[status page](https://status.leighhack.org) all read - there is no other source of whether
+we're open.
 
 ![A picture of the Hackspace State switch, with its LED glowing green, indicating that it is open.](state_switch.jpg)
 
@@ -35,6 +41,7 @@ Due to not reading the docs before fitting together, the switch is connected to 
 
 ## Source
 
-The Hackspace State Switch uses ESPHome, and the config is available in the `esphome-config` repository in the Leigh Hackspace Github org:
-
-[big-button.yaml](https://github.com/leigh-hackspace/esphome-config/blob/main/big-button.yaml)
+The Hackspace State Switch uses ESPHome. Its config was kept in the `esphome-config`
+repository in the Leigh Hackspace GitHub org, alongside the other ESPHome devices; that
+repository isn't public any more, so the current YAML is with
+[infra](../../../membership/useful_contacts.md#tech-infrastructure).

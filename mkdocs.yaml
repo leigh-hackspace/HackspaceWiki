@@ -133,11 +133,11 @@ nav:
       - VPN: infrastructure/vpn.md
       - Devices & Services:
         - infrastructure/devices/index.md
+        - Gateway / Router: infrastructure/devices/gateway/index.md
         - Network Switches: infrastructure/devices/network_switches/index.md
-        - pfSense / Gateway: infrastructure/devices/pfsense/index.md
+        - NAS: infrastructure/devices/nas/index.md
+        - Proxmox: infrastructure/devices/proxmox/index.md
         - Authentik: infrastructure/devices/authentik/index.md
-        - QNAP NAS: infrastructure/devices/qnap_nas/index.md
-        - Proxmox Clusters: infrastructure/devices/proxmox/index.md
         - Kubernetes Lab: infrastructure/devices/k8s-lab/index.md
         - Hackspace State Switch v1: infrastructure/devices/state_switch/index.md
         - Dashboard: infrastructure/devices/dashboard/index.md
